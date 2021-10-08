@@ -5,6 +5,8 @@ Player::Player(sf::Texture *texture, sf::Vector2u imageCount, float switchTime, 
 {
   row = 0;
   faceRight = true;
+  mHealth = 5;
+  spawnPoint = sf::Vector2f(765.0f, 408.0f);
 
   body.setSize(sf::Vector2f(100.0f, 100.0f));
   body.setOrigin(body.getSize() / 2.0f);
@@ -42,6 +44,12 @@ void Player::Update(float deltaTime)
       faceRight = false;
   }
 
+  if (mHealth == 0)
+  {
+    body.setPosition(sf::Vector2f(765.0f, 408.0f));
+    mHealth = 5;
+  }
+
   anim.Update(row, deltaTime, faceRight);
   body.setTextureRect(anim.uvRect);
   body.move(movement);
@@ -50,4 +58,5 @@ void Player::Update(float deltaTime)
 void Player::Draw(sf::RenderWindow &window)
 {
   window.draw(body);
+  playerUI.SetHeart(mHealth, window);
 }

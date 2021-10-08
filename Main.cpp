@@ -1,8 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Animation.h"
 #include "Player.h"
-#include "PlayerUI.h"
-#include "Platform.h"
+#include "Enemy.h"
 #include <iostream>
 
 static const float SCREEN_HEIGHT = 800.0f;
@@ -23,18 +22,12 @@ int main()
   sf::Texture playerTexture;
   playerTexture.loadFromFile("./assets/Character/Character.png");
 
-  sf::Texture heartTexture;
-  heartTexture.loadFromFile("./assets/UI/Heart.png");
-
-  sf::Sprite heart(heartTexture);
-  heart.setScale(2.0f, 2.0f);
-
   Player player(&playerTexture, sf::Vector2u(4, 4), 0.2f, 200.0f);
   player.SetPosition(sf::Vector2f(765.0f, 408.0f));
 
   auto platformPos = window.mapPixelToCoords(sf::Vector2i(291, 40));
   std::cout << platformPos.x << ' ' << platformPos.y << '\n';
-  Platform platform1(nullptr, sf::Vector2f(8.0f, 16.0f), platformPos);
+  Enemy enemy(nullptr, sf::Vector2f(8.0f, 16.0f), platformPos);
 
   sf::Texture mapTexture;
   mapTexture.loadFromFile("./assets/Maps/01.png");
@@ -44,8 +37,6 @@ int main()
 
   float deltaTime = 0.0f;
   sf::Clock clock;
-
-  PlayerUI playerUI(heart);
 
   while (window.isOpen())
   {
@@ -70,21 +61,26 @@ int main()
       }
     }
 
-    platform1.GetCollider().CheckCollision(player.GetCollider(), sf::Vector2f(0.0f, 0.0f), 1.0f);
-    // player.GetCollider().CheckCollision(platform1.GetCollider(), sf::Vector2f(0.0f, 0.0f), 1.0f);
+    // enemy.GetCollider().CheckCollision(player.GetCollider(), sf::Vector2f(0.0f, 0.0f), 1.0f);
+    bool hit = player.GetCollider().CheckCollision(enemy.GetCollider(), sf::Vector2f(0.0f, 0.0f), 0.0f);
+
+    if (hit)
+    {
+      player.TakeDamage(1);
+      player.SetPosition(player.GetPosition() + sf::Vector2f(0.0f, 20.0f));
+    }
 
     player.Update(deltaTime);
     // view.setCenter(player.GetPosition());
     // sf::Vector2f mousePos(sf::Mouse::getPosition(window));
     // player.setPosition(mousePos);
-    window.clear(sf::Color::Magenta);
+    window.clear();
     window.draw(map);
-    platform1.Draw(window);
+    // enemy.Draw(window);
     player.Draw(window);
-    playerUI.SetHeart(5, window);
     window.display();
     //std::cout << player.GetPosition().x << ' ' << player.GetPosition().y << '\n';
-    std::cout << sf::Mouse::getPosition(window).x << ' ' << sf::Mouse::getPosition(window).y << '\n';
+    // std::cout << sf::Mouse::getPosition(window).x << ' ' << sf::Mouse::getPosition(window).y << '\n';
   }
 
   return 0;

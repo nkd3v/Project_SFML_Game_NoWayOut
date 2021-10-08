@@ -6,9 +6,10 @@ class PlayerUI
 private:
   sf::Sprite mHeart;
   sf::Vector2f heartSize;
+  sf::Texture mHeartTexture;
 
 public:
-  PlayerUI(sf::Sprite sHeart);
+  PlayerUI();
   ~PlayerUI();
 
   void SetHeart(int health, sf::RenderWindow &window) const;

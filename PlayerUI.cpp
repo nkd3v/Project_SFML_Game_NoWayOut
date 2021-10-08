@@ -1,11 +1,15 @@
 #include "PlayerUI.h"
 
-PlayerUI::PlayerUI(sf::Sprite heart)
-  : mHeart(heart)
+PlayerUI::PlayerUI()
 {
+  mHeartTexture.loadFromFile("./assets/UI/Heart.png");
+
+  mHeart.setTexture(mHeartTexture);
+  mHeart.setScale(sf::Vector2f(2.0f, 2.0f));
+
   heartSize.x = mHeart.getTexture()->getSize().x * mHeart.getScale().x;
   heartSize.y = mHeart.getTexture()->getSize().y * mHeart.getScale().y;
-
+  
   mHeart.setOrigin(heartSize / 2.0f);
 }
 

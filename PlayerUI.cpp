@@ -25,7 +25,7 @@ void PlayerUI::SetHeart(int health, sf::RenderWindow &window) const
   for (int i = 0; i < health; i++)
   {
     sf::Sprite iHeart(mHeart);
-    iHeart.setPosition(firstHeartPos.x + i * heartSize.x, firstHeartPos.y);
+    iHeart.setPosition(firstHeartPos + sf::Vector2f(i * heartSize.x, 0.0f));
     window.draw(iHeart);
   }
 }

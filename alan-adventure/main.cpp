@@ -16,26 +16,23 @@ void ResizeView(const sf::RenderWindow &window, sf::View &view)
 
 int main()
 {
-  sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "SFML works!");
+  sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Alan's Adventure");
   sf::View view(sf::Vector2f(765.0f, 408.0f), sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
   window.setView(view);
 
   sf::Texture playerTexture;
-  playerTexture.loadFromFile("./assets/Character/Character.png");
+  playerTexture.loadFromFile("assets/Character/Character.png");
 
   Player player(&playerTexture, sf::Vector2u(4, 4), 0.2f, 200.0f);
   player.SetPosition(sf::Vector2f(765.0f, 408.0f));
 
-  auto platformPos = window.mapPixelToCoords(sf::Vector2i(291, 40));
-  std::cout << platformPos.x << ' ' << platformPos.y << '\n';
-
   sf::Texture enemyTexture;
-  enemyTexture.loadFromFile("/assets/Enemy/Enemy01.png");
-  Enemy enemy(&enemyTexture, sf::Vector2u(4, 4), 0.2f, 200.0f, sf::Vector2f(8.0f, 16.0f), platformPos);
+  enemyTexture.loadFromFile("assets/Enemy/Enemy01.png");
+  Enemy enemy(&enemyTexture, sf::Vector2u(4, 4), 0.2f, 100.0f, sf::Vector2f(100.0f, 100.0f), sf::Vector2f(765.0f, 408.0f));
+  enemy.SetTarget(&player.body);
 
   sf::Texture mapTexture;
-  mapTexture.loadFromFile("./assets/Maps/01.png");
-
+  mapTexture.loadFromFile("assets/Maps/01.png");
   sf::Sprite map(mapTexture);
   map.setScale(sf::Vector2f(0.8f, 0.8f));
 
@@ -66,22 +63,23 @@ int main()
     }
 
     // enemy.GetCollider().CheckCollision(player.GetCollider(), sf::Vector2f(0.0f, 0.0f), 1.0f);
-    bool hit = player.GetCollider().CheckCollision(enemy.GetCollider(), sf::Vector2f(0.0f, 0.0f), 0.0f);
+    //bool hit = player.GetCollider().CheckCollision(enemy.GetCollider(), sf::Vector2f(0.0f, 0.0f), 0.0f);
 
-    if (hit)
-    {
-      player.TakeDamage(1);
-      player.SetPosition(player.GetPosition() + sf::Vector2f(0.0f, 20.0f));
-    }
+    //if (hit)
+    //{
+    //  player.TakeDamage(1);
+    //  player.SetPosition(player.GetPosition() + sf::Vector2f(0.0f, 20.0f));
+    //}
     player.Update(deltaTime, window);
+    enemy.Update(deltaTime);
     // view.setCenter(player.GetPosition());
     // sf::Vector2f mousePos(sf::Mouse::getPosition(window));
     // player.setPosition(mousePos);
     window.clear();
     window.setView(view);
     window.draw(map);
-    // enemy.Draw(window);
     player.Draw(window);
+    enemy.Draw(window);
     window.display();
     //std::cout << player.GetPosition().x << ' ' << player.GetPosition().y << '\n';
     // std::cout << sf::Mouse::getPosition(window).x << ' ' << sf::Mouse::getPosition(window).y << '\n';

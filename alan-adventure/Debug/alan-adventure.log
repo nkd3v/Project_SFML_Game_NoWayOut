@@ -1,12 +1,12 @@
-﻿Build started 10/13/2021 3:37:46 PM.
+﻿Build started 10/13/2021 4:47:13 PM.
 Logging verbosity is set to: Normal.     1>Project "C:\Subjects\programming-project\alans-adventure\alan-adventure\alan-adventure.vcxproj" on node 2 (Build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\alan-adventure.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
        VcpkgTripletSelection:
          Using triplet "x86-windows" from "C:\vcpkg\installed\\x86-windows\"
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\bin\HostX86\x86\CL.exe /c /I"C:\Subjects\programming-project\alans-adventure\deps\SFML-2.5.1\include\\" /I"C:\vcpkg\installed\\x86-windows\include" /ZI /JMC /nologo /W3 /WX- /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /permissive- /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc142.pdb" /external:W3 /Gd /TP /analyze- /FC /errorReport:prompt main.cpp
-         main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\bin\HostX86\x86\CL.exe /c /I"C:\Subjects\programming-project\alans-adventure\deps\SFML-2.5.1\include\\" /I"C:\vcpkg\installed\\x86-windows\include" /ZI /JMC /nologo /W3 /WX- /diagnostics:column /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /permissive- /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc142.pdb" /external:W3 /Gd /TP /analyze- /FC /errorReport:prompt Enemy.cpp
+         Enemy.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\bin\HostX86\x86\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Subjects\programming-project\alans-adventure\Debug\alan-adventure.exe" /INCREMENTAL /ILK:"Debug\alan-adventure.ilk" /NOLOGO /LIBPATH:"C:\Subjects\programming-project\alans-adventure\deps\SFML-2.5.1\lib\\" /LIBPATH:"C:\vcpkg\installed\\x86-windows\debug\lib" /LIBPATH:"C:\vcpkg\installed\\x86-windows\debug\lib\manual-link" "sfml-audio-d.lib" "sfml-graphics-d.lib" "sfml-system-d.lib" "sfml-window-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib flac.lib freetype.lib ogg.lib openal32.lib vorbis.lib vorbisenc.lib vorbisfile.lib "C:\vcpkg\installed\\x86-windows\debug\lib\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Subjects\programming-project\alans-adventure\Debug\alan-adventure.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Subjects\programming-project\alans-adventure\Debug\alan-adventure.lib" /MACHINE:X86 Debug\Animation.obj
          Debug\Bullet.obj
@@ -32,4 +32,4 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:01.39
+Time Elapsed 00:00:01.33

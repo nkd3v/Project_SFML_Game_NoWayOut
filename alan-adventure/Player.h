@@ -22,10 +22,10 @@ public:
   void TakeDamage(int dmg) { mHealth -= dmg; }
 
   PlayerUI playerUI;
+  sf::RectangleShape body;
 
 private:
   int mHealth;
-  sf::RectangleShape body;
   Animation anim;
   unsigned int row;
   float speed;

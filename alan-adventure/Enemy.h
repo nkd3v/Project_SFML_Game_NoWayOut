@@ -17,10 +17,16 @@ public:
   ~Enemy();
 
   void Draw(sf::RenderWindow &window);
+  void Update(float deltaTime);
+  void SetTarget(sf::Transformable* target);
   Collider GetCollider() { return Collider(body); }
   
 
 private:
   sf::RectangleShape body;
   Animation anim;
+  unsigned int row{};
+  float mSpeed;
+  sf::Transformable* mTargetRef{};
+  bool faceRight{};
 };

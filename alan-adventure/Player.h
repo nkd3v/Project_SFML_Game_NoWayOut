@@ -5,12 +5,11 @@
 #include "Collider.h"
 #include "PlayerUI.h"
 #include "Bullet.h"
+#include "Weapon.h"
 
 class Player
 {
 public:
-  enum FaceDir { LEFT, RIGHT, UP, DOWN };
-
   Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed);
   ~Player();
 
@@ -32,7 +31,8 @@ private:
   float speed;
   bool faceRight;
   sf::Vector2f spawnPoint;
-
-  std::vector<Bullet> bullets;
+  float faceAngle;
   sf::Texture bulletTexture;
+  sf::Texture weaponTexture;
+  Weapon weapon{};
 };

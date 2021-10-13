@@ -28,7 +28,10 @@ int main()
 
   auto platformPos = window.mapPixelToCoords(sf::Vector2i(291, 40));
   std::cout << platformPos.x << ' ' << platformPos.y << '\n';
-  Enemy enemy(nullptr, sf::Vector2f(8.0f, 16.0f), platformPos);
+
+  sf::Texture enemyTexture;
+  enemyTexture.loadFromFile("/assets/Enemy/Enemy01.png");
+  Enemy enemy(&enemyTexture, sf::Vector2u(4, 4), 0.2f, 200.0f, sf::Vector2f(8.0f, 16.0f), platformPos);
 
   sf::Texture mapTexture;
   mapTexture.loadFromFile("./assets/Maps/01.png");

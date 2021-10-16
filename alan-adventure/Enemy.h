@@ -20,7 +20,7 @@ public:
   void Update(float deltaTime);
   void SetTarget(sf::Transformable* target);
   Collider GetCollider() { return Collider(body); }
-  
+  sf::RectangleShape& GetBody() { return body; }
 
 private:
   sf::RectangleShape body;

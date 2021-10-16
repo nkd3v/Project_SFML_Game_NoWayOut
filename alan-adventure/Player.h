@@ -24,6 +24,7 @@ public:
   PlayerUI playerUI;
   sf::RectangleShape body;
 
+  Weapon weapon{};
 private:
   int mHealth;
   Animation anim;
@@ -34,5 +35,4 @@ private:
   float faceAngle;
   sf::Texture bulletTexture;
   sf::Texture weaponTexture;
-  Weapon weapon{};
 };

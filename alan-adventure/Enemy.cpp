@@ -2,7 +2,7 @@
 #include <iostream>
 
 Enemy::Enemy(
-  sf::Texture *texture,
+  sf::Texture* texture,
   sf::Vector2u imageCount,
   float switchTime,
   float speed,
@@ -21,7 +21,7 @@ Enemy::~Enemy()
 
 }
 
-void Enemy::Draw(sf::RenderWindow &window)
+void Enemy::Draw(sf::RenderWindow& window)
 {
   window.draw(body);
 }

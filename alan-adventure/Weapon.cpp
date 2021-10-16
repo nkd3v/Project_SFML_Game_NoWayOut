@@ -1,4 +1,5 @@
 #include "Weapon.h"
+#include <memory>
 #include <iostream>
 
 Weapon::Weapon(sf::Texture& weaponTexture, sf::Texture& bulletTexture, float shootCooldown)
@@ -15,24 +16,28 @@ void Weapon::Shoot(sf::Vector2f pos, float angle)
 {
   if (CanShoot())
   {
-    bullets.emplace_back(Bullet(*m_SBullet.getTexture(), pos, 1000.0f, angle));
+    bullets.emplace_back(new Bullet(*m_SBullet.getTexture(), pos, 1000.0f, angle));
   }
 }
 
 void Weapon::Update(float deltaTime)
 {
-  /*for (auto itr = bullets.begin(); itr != bullets.end(); itr++)
+  for (auto itr = bullets.begin(); itr != bullets.end();)
   {
-    if (itr->EndOfLife())
+    if ((*itr)->EndOfLife())
     {
-      bullets.erase(itr);
-      itr--;
+      delete (*itr);
+      itr = bullets.erase(itr);
     }
-  }*/
+    else
+    {
+      itr++;
+    }
+  }
 
   for (auto& bullet : bullets)
   {
-    bullet.Update(deltaTime);
+    bullet->Update(deltaTime);
   }
 }
 
@@ -40,8 +45,13 @@ void Weapon::Draw(sf::RenderTarget& target)
 {
   for (auto& bullet : bullets)
   {
-    bullet.Draw(target);
+    bullet->Draw(target);
   }
+}
+
+std::vector<Bullet*>& Weapon::GetBullets()
+{
+  return bullets;
 }
 
 bool Weapon::CanShoot()

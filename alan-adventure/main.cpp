@@ -2,6 +2,8 @@
 #include "Animation.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Weapon.h"
+#include <vector>
 #include <memory>
 #include <iostream>
 
@@ -17,6 +19,8 @@ void ResizeView(const sf::RenderWindow &window, sf::View &view)
 int main()
 {
   sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Alan's Adventure");
+  window.setFramerateLimit(60);
+
   sf::View view(sf::Vector2f(765.0f, 408.0f), sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
   window.setView(view);
 
@@ -27,9 +31,14 @@ int main()
   player.SetPosition(sf::Vector2f(765.0f, 408.0f));
 
   sf::Texture enemyTexture;
-  enemyTexture.loadFromFile("assets/Enemy/Enemy01.png");
-  Enemy enemy(&enemyTexture, sf::Vector2u(4, 4), 0.2f, 100.0f, sf::Vector2f(100.0f, 100.0f), sf::Vector2f(765.0f, 408.0f));
-  enemy.SetTarget(&player.body);
+  enemyTexture.loadFromFile("assets/Enemy/spr_blob_big.png");
+  std::vector<Enemy> enemies;
+  for (int i = 0; i < 1; i++)
+  {
+    enemies.emplace_back(Enemy(&enemyTexture, sf::Vector2u(6, 4), 0.2f, 100.0f, sf::Vector2f(100.0f, 100.0f), sf::Vector2f(rand() % 100 + 765.0f, rand() % 40 + 408.0f)));
+    enemies.back().GetBody().setScale(0.6f, 0.6f);
+    enemies.back().SetTarget(&player.body);
+  }
 
   sf::Texture mapTexture;
   mapTexture.loadFromFile("assets/Maps/01.png");
@@ -62,27 +71,47 @@ int main()
       }
     }
 
-    // enemy.GetCollider().CheckCollision(player.GetCollider(), sf::Vector2f(0.0f, 0.0f), 1.0f);
-    //bool hit = player.GetCollider().CheckCollision(enemy.GetCollider(), sf::Vector2f(0.0f, 0.0f), 0.0f);
+    std::vector<Bullet*> &bullets = player.weapon.GetBullets();
+    bool killedEnemy = false;
+    for (size_t i = 0; i < bullets.size(); i++)
+    {
+      for (size_t j = 0; j < enemies.size(); j++)
+      {
+        if (bullets.at(i)->GetBody().getGlobalBounds().intersects(enemies.at(j).GetBody().getGlobalBounds()))
+        {
+          delete bullets.at(i);
+          bullets.erase(bullets.begin() + i);
+          enemies.erase(enemies.begin() + j);
+          killedEnemy = true;
+          // break is mandatory because of bullet deletion.
+          break;
+        }
+      }
+    }
 
-    //if (hit)
-    //{
-    //  player.TakeDamage(1);
-    //  player.SetPosition(player.GetPosition() + sf::Vector2f(0.0f, 20.0f));
-    //}
+    if (killedEnemy)
+    {
+      for (int i = 0; i < 2; i++)
+      {
+        enemies.emplace_back(Enemy(&enemyTexture, sf::Vector2u(6, 4), 0.2f, 100.0f, sf::Vector2f(100.0f, 100.0f), sf::Vector2f(rand() % 100 + 765.0f, rand() % 40 + 408.0f)));
+        enemies.back().GetBody().setScale(0.6, 0.6);
+        enemies.back().SetTarget(&player.body);
+      }
+    }
+
     player.Update(deltaTime, window);
-    enemy.Update(deltaTime);
-    // view.setCenter(player.GetPosition());
-    // sf::Vector2f mousePos(sf::Mouse::getPosition(window));
-    // player.setPosition(mousePos);
     window.clear();
     window.setView(view);
     window.draw(map);
     player.Draw(window);
-    enemy.Draw(window);
+
+    for (auto &enemy : enemies)
+    {
+      enemy.Update(deltaTime);
+      enemy.Draw(window);
+    }
+
     window.display();
-    //std::cout << player.GetPosition().x << ' ' << player.GetPosition().y << '\n';
-    // std::cout << sf::Mouse::getPosition(window).x << ' ' << sf::Mouse::getPosition(window).y << '\n';
   }
 
   return 0;

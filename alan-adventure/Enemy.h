@@ -19,6 +19,7 @@ public:
   void Draw(sf::RenderWindow &window);
   void Update(float deltaTime);
   void SetTarget(sf::Transformable* target);
+  sf::Vector2f GetPosition() { return body.getPosition(); }
   Collider GetCollider() { return Collider(body); }
   sf::RectangleShape& GetBody() { return body; }
 

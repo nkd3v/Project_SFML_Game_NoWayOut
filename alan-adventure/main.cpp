@@ -52,6 +52,9 @@ int main()
   {
     deltaTime = clock.restart().asSeconds();
 
+    auto t(window.mapPixelToCoords(sf::Mouse::getPosition(window)));
+    std::cout << t.x << ' ' << t.y << '\n';
+
     sf::Event event;
     while (window.pollEvent(event))
     {
@@ -68,6 +71,51 @@ int main()
       case sf::Event::Resized:
         ResizeView(window, view);
         break;
+      }
+    }
+
+    for (size_t i = 0; i < enemies.size(); i++)
+    {
+      for (size_t j = 0; j < enemies.size(); j++)
+      {
+        if (i == j) continue;
+        if (enemies.at(i).GetCollider().CheckCollision(enemies.at(j).GetCollider(), {}, 0));
+      }
+    }
+
+    for (size_t i = 0; i < enemies.size(); i++)
+    {
+      if (player.GetCollider().CheckCollision(enemies.at(i).GetCollider(), {}, 0))
+      {
+        player.TakeDamage(1);
+        sf::Vector2f delta = player.body.getPosition() - enemies.at(i).GetBody().getPosition();
+        
+        if (abs(delta.x) < abs(delta.y))
+        {
+          if (delta.x > 0)
+          {
+            player.body.move(25, 0);
+            enemies.at(i).GetBody().move(-25, 0);
+          }
+          else
+          {
+            player.body.move(-25, 0);
+            enemies.at(i).GetBody().move(25, 0);
+          }
+        }
+        else
+        {
+          if (delta.y > 0)
+          {
+            player.body.move(0, 25);
+            enemies.at(i).GetBody().move(0, -25);
+          }
+          else
+          {
+            player.body.move(0, -25);
+            enemies.at(i).GetBody().move(0, 25);
+          }
+        }
       }
     }
 
@@ -91,9 +139,10 @@ int main()
 
     if (killedEnemy)
     {
-      for (int i = 0; i < 2; i++)
+      size_t spawnCount = rand() % 2 + 1;
+      for (size_t i = 0; i < spawnCount; i++)
       {
-        enemies.emplace_back(Enemy(&enemyTexture, sf::Vector2u(6, 4), 0.2f, 100.0f, sf::Vector2f(100.0f, 100.0f), sf::Vector2f(rand() % 100 + 765.0f, rand() % 40 + 408.0f)));
+        enemies.emplace_back(Enemy(&enemyTexture, sf::Vector2u(6, 4), 0.2f, 100.0f, sf::Vector2f(100.0f, 100.0f), sf::Vector2f(rand() % 100 + 477.0f, rand() % 40 + 1000.0f)));
         enemies.back().GetBody().setScale(0.6, 0.6);
         enemies.back().SetTarget(&player.body);
       }

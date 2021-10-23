@@ -15,6 +15,7 @@ public:
 	void Shoot(sf::Vector2f pos, float angle);
 	void Update(float deltaTime);
 	void Draw(sf::RenderTarget& target);
+	void ChangeCooldown(float delta) { m_ShootCooldown += delta; }
 	std::vector<Bullet*>& GetBullets();
 
 private:

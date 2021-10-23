@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SFML/Graphics.hpp"
+#include "GameState.h"
 
 class Game
 {
@@ -9,11 +9,14 @@ private:
 	sf::RenderWindow *window;
 	sf::Event sfEvent;
 
+	std::stack<std::unique_ptr<State>> states;
+
 	sf::Clock dtClock;
 	float dt;
 
 	// Initialization
-	void initVariables();
+	void initWindow();
+	void initStates();
 
 public:
 	// Constructor and destructor

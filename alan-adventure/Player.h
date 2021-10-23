@@ -21,6 +21,11 @@ public:
   Collider GetCollider() { return Collider(body); }
   void TakeDamage(int dmg) { mHealth -= dmg; }
 
+  void resetHealth() { mHealth = 5; }
+  void setSpeed(float t_speed) { speed = t_speed; }
+  void addSpeed(float t_speed) { speed += t_speed; }
+  void changeCooldown(float delta) { weapon.ChangeCooldown(delta); }
+
   PlayerUI playerUI;
   sf::RectangleShape body;
 

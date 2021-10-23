@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Weapon.h"
+#include "Game.h"
 #include <vector>
 #include <memory>
 #include <iostream>
@@ -29,6 +30,10 @@ int main()
 
   Player player(&playerTexture, sf::Vector2u(4, 4), 0.2f, 200.0f);
   player.SetPosition(sf::Vector2f(765.0f, 408.0f));
+
+  sf::Texture cherryTexture;
+  cherryTexture.loadFromFile("assets/Items/cherry.png");
+  std::vector<sf::Sprite*> cherrys;
 
   sf::Texture enemyTexture;
   enemyTexture.loadFromFile("assets/Enemy/spr_blob_big.png");
@@ -79,7 +84,7 @@ int main()
       for (size_t j = 0; j < enemies.size(); j++)
       {
         if (i == j) continue;
-        if (enemies.at(i).GetCollider().CheckCollision(enemies.at(j).GetCollider(), {}, 0));
+        if (enemies.at(i).GetCollider().CheckCollision(enemies.at(j).GetCollider(), {}, 0)) {}
       }
     }
 
@@ -128,12 +133,32 @@ int main()
         if (bullets.at(i)->GetBody().getGlobalBounds().intersects(enemies.at(j).GetBody().getGlobalBounds()))
         {
           delete bullets.at(i);
+
+          if (1)
+          {
+            cherrys.emplace_back(new sf::Sprite(cherryTexture));
+            cherrys.back()->setPosition(enemies.at(j).GetPosition());
+            cherrys.back()->setScale(3.0f, 3.0f);
+          }
+
           bullets.erase(bullets.begin() + i);
           enemies.erase(enemies.begin() + j);
+
           killedEnemy = true;
           // break is mandatory because of bullet deletion.
           break;
         }
+      }
+    }
+
+    for (size_t i = 0; i < cherrys.size(); i++)
+    {
+      if (player.body.getGlobalBounds().intersects(cherrys.at(i)->getGlobalBounds()))
+      {
+        delete cherrys.at(i);
+        cherrys.erase(cherrys.begin() + i);
+        player.resetHealth();
+        player.changeCooldown(-0.5f);
       }
     }
 
@@ -143,7 +168,7 @@ int main()
       for (size_t i = 0; i < spawnCount; i++)
       {
         enemies.emplace_back(Enemy(&enemyTexture, sf::Vector2u(6, 4), 0.2f, 100.0f, sf::Vector2f(100.0f, 100.0f), sf::Vector2f(rand() % 100 + 477.0f, rand() % 40 + 1000.0f)));
-        enemies.back().GetBody().setScale(0.6, 0.6);
+        enemies.back().GetBody().setScale(0.6f, 0.6f);
         enemies.back().SetTarget(&player.body);
       }
     }
@@ -158,6 +183,11 @@ int main()
     {
       enemy.Update(deltaTime);
       enemy.Draw(window);
+    }
+
+    for (auto& cherry : cherrys)
+    {
+      window.draw(*cherry);
     }
 
     window.display();

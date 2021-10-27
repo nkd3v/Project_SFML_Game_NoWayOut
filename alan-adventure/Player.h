@@ -19,7 +19,7 @@ public:
   void SetPosition(const sf::Vector2f &pos) { body.setPosition(pos); }
   sf::Vector2f GetPosition() { return body.getPosition(); }
   Collider GetCollider() { return Collider(body); }
-  void TakeDamage(int dmg) { mHealth -= dmg; }
+  void TakeDamage(int dmg);
 
   void resetHealth() { mHealth = 5; }
   void setSpeed(float t_speed) { speed = t_speed; }
@@ -28,6 +28,8 @@ public:
 
   PlayerUI playerUI;
   sf::RectangleShape body;
+
+  bool died = false;
 
   Weapon weapon{};
 private:

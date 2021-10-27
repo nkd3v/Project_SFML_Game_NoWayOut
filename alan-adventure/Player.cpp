@@ -70,8 +70,9 @@ void Player::Update(float deltaTime, sf::RenderTarget &window)
       faceRight = false;
   }
 
-  if (mHealth == 0)
+  if (mHealth <= 0)
   {
+    died = true;
     body.setPosition(sf::Vector2f(765.0f, 408.0f));
     mHealth = 5;
   }
@@ -88,4 +89,9 @@ void Player::Draw(sf::RenderWindow &window)
   window.draw(body);
   weapon.Draw(window);
   playerUI.SetHeart(mHealth, window);
+}
+
+void Player::TakeDamage(int dmg)
+{
+  mHealth -= dmg;
 }

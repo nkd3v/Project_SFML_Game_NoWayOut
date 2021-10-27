@@ -23,11 +23,22 @@ public:
   Collider GetCollider() { return Collider(body); }
   sf::RectangleShape& GetBody() { return body; }
 
+  void kill();
+
 private:
+  void updateAlive(float dt);
+  void updateDie(float dt);
+
   sf::RectangleShape body;
   Animation anim;
   unsigned int row{};
   float mSpeed;
   sf::Transformable* mTargetRef{};
   bool faceRight{};
+  int hp;
+
+  sf::Texture bodyTexture;
+  Animation dieAnim;
+  sf::Texture dieTexture;
+  bool isAlive = true;
 };

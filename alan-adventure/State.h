@@ -19,11 +19,12 @@ private:
   sf::RenderWindow* window;
   std::vector<sf::Texture*> textures;
   bool quit = false;
-  const bool& getQuit() const { return quit; }
 
 public:
   State(sf::RenderWindow* window);
   virtual ~State();
+
+  const bool& getQuit() const { return quit; }
 
   virtual void checkForQuit() = 0;
 

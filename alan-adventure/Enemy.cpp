@@ -8,17 +8,21 @@ Enemy::Enemy(
   float speed,
   sf::Vector2f size,
   sf::Vector2f position
-) : anim(texture, imageCount, switchTime), mSpeed(speed)
+) : anim(texture, imageCount, switchTime)
+  , mSpeed(speed)
 {
   body.setSize(size);
   body.setOrigin(size / 2.0f);
   body.setTexture(texture);
   body.setPosition(position);
+
+  dieTexture.loadFromFile("assets/Enemy/spr_blob_big_death.png");
+  dieAnim = Animation(&dieTexture, sf::Vector2u(4, 1), 0.25f);
 }
 
 Enemy::~Enemy()
 {
-
+  
 }
 
 void Enemy::Draw(sf::RenderWindow& window)
@@ -27,6 +31,26 @@ void Enemy::Draw(sf::RenderWindow& window)
 }
 
 void Enemy::Update(float deltaTime)
+{
+  if (isAlive)
+    updateAlive(deltaTime);
+  else
+    updateDie(deltaTime);
+}
+
+void Enemy::SetTarget(sf::Transformable* target)
+{
+  mTargetRef = target;
+}
+
+void Enemy::kill()
+{
+  return;
+  isAlive = false;
+  body.setTexture(&dieTexture);
+}
+
+void Enemy::updateAlive(float deltaTime)
 {
   sf::Vector2f movement{ 0, 0 };
 
@@ -64,7 +88,9 @@ void Enemy::Update(float deltaTime)
   body.setTextureRect(anim.uvRect);
 }
 
-void Enemy::SetTarget(sf::Transformable* target)
+void Enemy::updateDie(float deltaTime)
 {
-  mTargetRef = target;
+  std::cout << "Died\n";
+  dieAnim.Update(0, deltaTime, 0);
+  body.setTextureRect(sf::IntRect(0, 0, 32, 32));
 }

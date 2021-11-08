@@ -149,12 +149,9 @@ int main()
         {
           delete bullets.at(i);
 
-          if (1)
-          {
-            cherrys.emplace_back(new sf::Sprite(cherryTexture));
-            cherrys.back()->setPosition(enemies.at(j).GetPosition());
-            cherrys.back()->setScale(3.0f, 3.0f);
-          }
+          cherrys.emplace_back(new sf::Sprite(cherryTexture));
+          cherrys.back()->setPosition(enemies.at(j).GetPosition());
+          cherrys.back()->setScale(3.0f, 3.0f);
 
           bullets.erase(bullets.begin() + i);
           enemies.erase(enemies.begin() + j);

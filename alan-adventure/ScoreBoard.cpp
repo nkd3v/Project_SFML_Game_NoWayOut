@@ -9,7 +9,7 @@ void ScoreBoard::addScore(const std::string& name, int score)
   std::fstream file("score.txt");
 
   if (!file.is_open()) std::cerr << "Opening file failed!";
-
+  
   for (const auto& score : scores)
     file << score.second << ' ' << score.first << '\n';
   file.close();

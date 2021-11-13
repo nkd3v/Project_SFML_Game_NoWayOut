@@ -2,7 +2,7 @@
 
 void Game::initWindow()
 {
-  window = new sf::RenderWindow(sf::VideoMode(800, 800), "Alan's Adventure");
+  window = new sf::RenderWindow(sf::VideoMode(1280, 720), "Alan's Adventure");
   window->setFramerateLimit(120);
   window->setVerticalSyncEnabled(false);
 }

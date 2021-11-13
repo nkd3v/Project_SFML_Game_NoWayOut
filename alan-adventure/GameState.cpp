@@ -9,16 +9,17 @@ GameState::~GameState()
 {
 }
 
-void GameState::checkForQuit()
+void GameState::initVariables()
+{
+
+}
+
+void GameState::update(const float& dt)
 {
 
 }
 
 void GameState::render(sf::RenderTarget* target)
 {
-}
-
-void GameState::update(const float& dt)
-{
-  std::cout << "Hello from Game state!\n";
+  player.Draw(*target);
 }

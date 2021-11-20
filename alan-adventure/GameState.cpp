@@ -30,6 +30,7 @@ void GameState::initView()
 {
   view.setSize(1280.f, 720.f);
   view.setCenter(1280.f / 2.f, 720.f / 2.f);
+  view.zoom(2.f);
 }
 
 void GameState::updateInput(const float& dt)
@@ -69,5 +70,8 @@ void GameState::update(const float& dt)
 
 void GameState::render(sf::RenderTarget* target)
 {
+  if (!target)
+    target = window;
+
   player->render(*target);
 }

@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "PlayerUI.h"
 
 PlayerUI::PlayerUI()
@@ -18,7 +19,7 @@ PlayerUI::~PlayerUI()
 
 }
 
-void PlayerUI::SetHeart(int health, sf::RenderWindow &window) const
+void PlayerUI::SetHeart(int health, sf::RenderTarget &window) const
 {
   sf::Vector2f firstHeartPos = window.mapPixelToCoords(sf::Vector2i(60, 60));
 

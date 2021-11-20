@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "MainMenuState.h"
 
 MainMenuState::MainMenuState(sf::RenderWindow* window) : State(window)

@@ -1,97 +1,83 @@
-#include <vector>
+#include "stdafx.h"
 #include "Player.h"
-#include "Bullet.h"
-#include <iostream>
 
-Player::Player(sf::Texture *texture, sf::Vector2u imageCount, float switchTime, float speed)
-  : anim(texture, imageCount, switchTime), speed(speed)
+void Player::initVariables()
 {
-  row = 0;
-  faceRight = true;
-  mHealth = 5;
-  faceAngle = 0.0f;
-  spawnPoint = sf::Vector2f(765.0f, 408.0f);
 
-  body.setSize(sf::Vector2f(100.0f, 100.0f));
-  body.setOrigin(body.getSize() / 2.0f);
-  body.setTexture(texture);
-  bulletTexture.loadFromFile("assets/bullet.png");
+}
 
-  weaponTexture.loadFromFile("assets/bullet.png");
+void Player::initComponents()
+{
 
-  weapon = Weapon(weaponTexture, bulletTexture, 0.1f);
+}
+
+void Player::initAnimations()
+{
+	this->animationComponent->addAnimation("IDLE", 15.f, 0, 0, 3, 0, 16, 32);
+	this->animationComponent->addAnimation("WALK_DOWN", 11.f, 0, 1, 3, 1, 16, 32);
+	this->animationComponent->addAnimation("WALK_LEFT", 11.f, 0, 1, 3, 1, 16, 32);
+	this->animationComponent->addAnimation("WALK_RIGHT", 11.f, 0, 2, 3, 1, 16, 32);
+	this->animationComponent->addAnimation("WALK_UP", 11.f, 0, 2, 3, 1, 16, 32);
+}
+
+Player::Player(float x, float y, sf::Texture& textureSheet)
+{
+	initVariables();
+
+	createHitboxComponent(sprite, 0.f, 0.f, 0.f, 0.f);
+	createMovementComponent(140.f, 1400.f, 1000.f);
+	createAnimationComponent(textureSheet);
+
+	setPosition(x, y);
+	initAnimations();
 }
 
 Player::~Player()
 {
 }
 
-void Player::Update(float deltaTime, sf::RenderTarget &window)
+void Player::loseHP(const int hp)
 {
-  sf::Vector2f movement(0.0f, 0.0f);
-
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-  {
-    movement.x -= speed * deltaTime;
-    faceAngle = 180;
-  }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-  {
-    movement.x += speed * deltaTime;
-    faceAngle = 0;
-  }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-  {
-    movement.y -= speed * deltaTime;
-    faceAngle = 90;
-  }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-  {
-    movement.y += speed * deltaTime;
-    faceAngle = 270;
-  }
-
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-  {
-    weapon.Shoot(body.getPosition(), faceAngle);
-  }
-
-  if (movement.x == 0)
-  {
-    row = 0;
-  }
-  else if (movement.x != 0)
-  {
-    row = 1;
-
-    if (movement.x > 0.0f)
-      faceRight = true;
-    else
-      faceRight = false;
-  }
-
-  if (mHealth <= 0)
-  {
-    died = true;
-    body.setPosition(sf::Vector2f(765.0f, 408.0f));
-    mHealth = 5;
-  }
-
-  anim.Update(row, deltaTime, faceRight);
-  body.setTextureRect(anim.uvRect);
-  body.move(movement);
-
-  weapon.Update(deltaTime);
 }
 
-void Player::Draw(sf::RenderWindow &window)
+void Player::gainHP(const int hp)
 {
-  window.draw(body);
-  weapon.Draw(window);
-  playerUI.SetHeart(mHealth, window);
 }
 
-void Player::TakeDamage(int dmg)
+void Player::updateAnimation(const float& dt)
 {
-  mHealth -= dmg;
+	if (this->movementComponent->getState(IDLE))
+	{
+		this->animationComponent->play("IDLE", dt);
+	}
+	else if (this->movementComponent->getState(MOVING_LEFT))
+	{
+		this->animationComponent->play("WALK_LEFT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());
+	}
+	else if (this->movementComponent->getState(MOVING_RIGHT))
+	{
+		this->animationComponent->play("WALK_RIGHT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());
+	}
+	else if (this->movementComponent->getState(MOVING_UP))
+	{
+		this->animationComponent->play("WALK_UP", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());
+	}
+	else if (this->movementComponent->getState(MOVING_DOWN))
+	{
+		this->animationComponent->play("WALK_DOWN", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());
+	}
+}
+
+void Player::update(const float& dt, sf::Vector2f& mousePosView, const sf::View& view)
+{
+	movementComponent->update(dt);
+
+	updateAnimation(dt);
+
+	hitboxComponent->update();
+}
+
+void Player::render(sf::RenderTarget& target)
+{
+	target.draw(sprite);
 }

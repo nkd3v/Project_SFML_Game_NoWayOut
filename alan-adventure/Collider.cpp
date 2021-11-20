@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Collider.h"
 
 Collider::Collider(sf::RectangleShape &body)

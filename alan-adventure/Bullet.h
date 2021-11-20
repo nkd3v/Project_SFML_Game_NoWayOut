@@ -8,8 +8,8 @@ public:
   Bullet(const sf::Texture &texture, sf::Vector2f pos, float speed, float angle, float lifeSpan = 1.0f);
   ~Bullet();
 
-  void Update(float deltaTime);
-  void Draw(sf::RenderTarget& target);
+  void update(float deltaTime);
+  void draw(sf::RenderTarget& target);
   bool EndOfLife();
 
   sf::Sprite& GetBody() { return mBody; }

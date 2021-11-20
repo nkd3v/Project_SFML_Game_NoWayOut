@@ -13,8 +13,8 @@ public:
 	~Weapon();
 
 	void Shoot(sf::Vector2f pos, float angle);
-	void Update(float deltaTime);
-	void Draw(sf::RenderTarget& target);
+	void update(float deltaTime);
+	void draw(sf::RenderTarget& target);
 	void ChangeCooldown(float delta) { m_ShootCooldown = 0.075; }
 	std::vector<Bullet*>& GetBullets();
 

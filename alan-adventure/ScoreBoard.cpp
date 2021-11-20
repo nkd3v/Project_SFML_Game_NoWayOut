@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "ScoreBoard.h"
 
 void ScoreBoard::addScore(const std::string& name, int score)

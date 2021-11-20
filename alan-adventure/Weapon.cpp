@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Weapon.h"
 #include <memory>
 #include <iostream>
@@ -20,7 +21,7 @@ void Weapon::Shoot(sf::Vector2f pos, float angle)
   }
 }
 
-void Weapon::Update(float deltaTime)
+void Weapon::update(float deltaTime)
 {
   for (auto itr = bullets.begin(); itr != bullets.end();)
   {
@@ -37,15 +38,15 @@ void Weapon::Update(float deltaTime)
 
   for (auto& bullet : bullets)
   {
-    bullet->Update(deltaTime);
+    bullet->update(deltaTime);
   }
 }
 
-void Weapon::Draw(sf::RenderTarget& target)
+void Weapon::draw(sf::RenderTarget& target)
 {
   for (auto& bullet : bullets)
   {
-    bullet->Draw(target);
+    bullet->draw(target);
   }
 }
 

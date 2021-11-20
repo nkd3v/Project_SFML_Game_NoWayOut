@@ -12,5 +12,5 @@ public:
   PlayerUI();
   ~PlayerUI();
 
-  void SetHeart(int health, sf::RenderWindow &window) const;
+  void SetHeart(int health, sf::RenderTarget &window) const;
 };

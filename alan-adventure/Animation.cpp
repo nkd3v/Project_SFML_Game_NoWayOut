@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Animation.h"
 
 Animation::Animation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime)
@@ -14,7 +15,7 @@ Animation::~Animation()
 {
 }
 
-void Animation::Update(int row, float deltaTime, bool faceRight)
+void Animation::update(int row, float deltaTime, bool faceRight)
 {
   m_currentImage.y = row;
   m_totalTime += deltaTime;

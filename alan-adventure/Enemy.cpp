@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Enemy.h"
 #include <iostream>
 
@@ -25,12 +26,12 @@ Enemy::~Enemy()
   
 }
 
-void Enemy::Draw(sf::RenderWindow& window)
+void Enemy::draw(sf::RenderWindow& window)
 {
   window.draw(body);
 }
 
-void Enemy::Update(float deltaTime)
+void Enemy::update(float deltaTime)
 {
   if (isAlive)
     updateAlive(deltaTime);
@@ -84,13 +85,13 @@ void Enemy::updateAlive(float deltaTime)
     row = 0;
   }
 
-  anim.Update(row, deltaTime, faceRight);
+  anim.update(row, deltaTime, faceRight);
   body.setTextureRect(anim.uvRect);
 }
 
 void Enemy::updateDie(float deltaTime)
 {
   std::cout << "Died\n";
-  dieAnim.Update(0, deltaTime, 0);
+  dieAnim.update(0, deltaTime, 0);
   body.setTextureRect(sf::IntRect(0, 0, 32, 32));
 }

@@ -1,8 +1,9 @@
-#define _USE_MATH_DEFINES
-
+#include "stdafx.h"
 #include "Bullet.h"
 #include <iostream>
 #include <math.h>
+
+#define PI 3.14159265358979
 
 Bullet::Bullet(const sf::Texture &texture, sf::Vector2f pos, float speed, float angle, float lifeSpan)
   : mPos(pos), mSpeed(speed), mAngle(angle), mLifeSpan(lifeSpan)
@@ -17,12 +18,12 @@ Bullet::~Bullet()
 {
 }
 
-void Bullet::Update(float deltaTime)
+void Bullet::update(float deltaTime)
 {
-  mBody.move(mSpeed * cos(mAngle * float(M_PI) / 180.0f) * deltaTime, -mSpeed * sin(mAngle * float(M_PI) / 180.0f) * deltaTime);
+  mBody.move(mSpeed * cos(mAngle * float(PI) / 180.0f) * deltaTime, -mSpeed * sin(mAngle * float(PI) / 180.0f) * deltaTime);
 }
 
-void Bullet::Draw(sf::RenderTarget& target)
+void Bullet::draw(sf::RenderTarget& target)
 {
   target.draw(mBody);
 }

@@ -10,7 +10,7 @@ public:
   Animation() = default;
   ~Animation();
 
-  void Update(int row, float deltaTime, bool faceRight);
+  void update(int row, float deltaTime, bool faceRight);
 
 private:
 

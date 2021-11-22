@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include "Entity.h"
+#include "Weapon.h"
 
 class Entity;
 
@@ -10,6 +11,8 @@ class Player :
 {
 private:
 	//Variables
+
+	Weapon* weapon;
 
 	bool initAttack;
 	bool attacking;
@@ -32,6 +35,7 @@ public:
 
 	//const std::string toStringCharacterTab() const;
 	const bool& getInitAttack() const;
+	const Weapon* getWeapon() const;
 
 	const bool getDamageTimer();
 
@@ -39,6 +43,7 @@ public:
 
 	//Modifier
 	void setInitAttack(const bool initAttack);
+	void attack(sf::Vector2f mousePos);
 
 	//Functions
 	void loseHP(const int hp);

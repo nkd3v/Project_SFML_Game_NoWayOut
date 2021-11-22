@@ -1,70 +1,65 @@
 #include "stdafx.h"
 #include "Weapon.h"
-#include <memory>
-#include <iostream>
 
-Weapon::Weapon(sf::Texture& weaponTexture, sf::Texture& bulletTexture, float shootCooldown)
-  : m_SBody(weaponTexture), m_SBullet(bulletTexture), m_ShootCooldown(shootCooldown)
+Weapon::Weapon()
 {
-  m_LastShootTime = m_ShootCooldown;
+  shootCooldown = .1f;
+  lastShootTime = .0f;
+  firstAttack = false;
 }
 
 Weapon::~Weapon()
 {
 }
 
-void Weapon::Shoot(sf::Vector2f pos, float angle)
+void Weapon::setCooldown(float cooldown)
 {
-  if (CanShoot())
-  {
-    bullets.emplace_back(new Bullet(*m_SBullet.getTexture(), pos, 1000.0f, angle));
-  }
+  shootCooldown = cooldown;
 }
 
-void Weapon::update(float deltaTime)
+void Weapon::shoot(sf::Vector2f pos, float angle)
 {
-  for (auto itr = bullets.begin(); itr != bullets.end();)
-  {
-    if ((*itr)->EndOfLife())
-    {
-      delete (*itr);
-      itr = bullets.erase(itr);
-    }
-    else
-    {
-      itr++;
-    }
-  }
-
-  for (auto& bullet : bullets)
-  {
-    bullet->update(deltaTime);
-  }
+  if (canShoot())
+    bullets.emplace_back(std::make_unique<Bullet>(pos, 1000.f, angle));
 }
 
-void Weapon::draw(sf::RenderTarget& target)
-{
-  for (auto& bullet : bullets)
-  {
-    bullet->draw(target);
-  }
-}
-
-std::vector<Bullet*>& Weapon::GetBullets()
+const std::vector<std::unique_ptr<Bullet>>& Weapon::getBullets() const
 {
   return bullets;
 }
 
-bool Weapon::CanShoot()
+bool Weapon::canShoot()
 {
-  m_LastShootTime = clock.getElapsedTime().asSeconds();
-  if (m_LastShootTime > m_ShootCooldown || firstAttack)
+  lastShootTime = clock.getElapsedTime().asSeconds();
+
+  if (lastShootTime > shootCooldown || firstAttack)
   {
     firstAttack = false;
-    m_LastShootTime = 0.0f;
+    lastShootTime = 0.0f;
     clock.restart();
+
     return true;
   }
 
   return false;
+}
+
+void Weapon::update(const float& dt)
+{
+  for (auto it = bullets.begin(); it != bullets.end();)
+  {
+    if ((*it)->endofLife())
+      it = bullets.erase(it);
+    else
+      it++;
+  }
+
+  for (auto& bullet : bullets)
+    bullet->update(dt);
+}
+
+void Weapon::render(sf::RenderTarget& target)
+{
+  for (auto& bullet : bullets)
+    bullet->render(target);
 }

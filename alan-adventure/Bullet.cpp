@@ -1,37 +1,57 @@
 #include "stdafx.h"
 #include "Bullet.h"
-#include <iostream>
-#include <math.h>
 
-#define PI 3.14159265358979
-
-Bullet::Bullet(const sf::Texture &texture, sf::Vector2f pos, float speed, float angle, float lifeSpan)
-  : mPos(pos), mSpeed(speed), mAngle(angle), mLifeSpan(lifeSpan)
+Bullet::Bullet(sf::Vector2f pos, float speed, float angle)
+  : speed(speed), angle(angle)
 {
-  mBody.setTexture(texture);
-  mBody.setPosition(mPos);
-  mBody.setTextureRect(sf::IntRect(0, 0, 8, 8));
-  mBody.scale(3.0f, 3.0f);
+  initVariables();
+  initTexture();
+
+  sprite.setPosition(pos);
+  sprite.setRotation(angle * 180.f / (float)M_PI);
 }
 
 Bullet::~Bullet()
 {
 }
 
-void Bullet::update(float deltaTime)
+void Bullet::initVariables()
 {
-  mBody.move(mSpeed * cos(mAngle * float(PI) / 180.0f) * deltaTime, -mSpeed * sin(mAngle * float(PI) / 180.0f) * deltaTime);
+  lifetime = 0.f;
+  lifespan = 1.f;
+  life = 1;
 }
 
-void Bullet::draw(sf::RenderTarget& target)
+void Bullet::initTexture()
 {
-  target.draw(mBody);
+  bulletTexture.loadFromFile("assets/Weapon/arrow.png");
+  sprite.setTexture(bulletTexture);
 }
 
-bool Bullet::EndOfLife()
+void Bullet::kill()
 {
-  mLifeTime = timer.getElapsedTime().asSeconds();
-  return mLifeTime > mLifeSpan;
+  life = 0;
+}
+
+const sf::FloatRect& Bullet::getGlobalBounds() const
+{
+  return sprite.getGlobalBounds();
+}
+
+bool Bullet::endofLife()
+{
+  lifetime = timer.getElapsedTime().asSeconds();
+  return lifetime > lifespan || life == 0;
+}
+
+void Bullet::update(float dt)
+{
+  sprite.move(speed * cos(angle) * dt, speed * sin(angle) * dt);
+}
+
+void Bullet::render(sf::RenderTarget& target)
+{
+  target.draw(sprite);
 }
 
 

@@ -24,6 +24,8 @@ public:
 	int defence;
 	int luck;
 
+	int score;
+
 	//Con / Des
 	AttributeComponent(int level);
 	virtual ~AttributeComponent();

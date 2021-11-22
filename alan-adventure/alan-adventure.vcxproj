@@ -22,11 +22,10 @@
     <ClCompile Include="AIComponent.cpp" />
     <ClCompile Include="AIFollow.cpp" />
     <ClCompile Include="AIOption.cpp" />
-    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationComponent.cpp" />
     <ClCompile Include="AttributeComponent.cpp" />
+    <ClCompile Include="BigDemon.cpp" />
     <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemySpawnerTile.cpp" />
     <ClCompile Include="EnemySystem.cpp" />
@@ -37,9 +36,9 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
+    <ClCompile Include="OrcWarrior.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerGUI.cpp" />
-    <ClCompile Include="PlayerUI.cpp" />
     <ClCompile Include="RegularTile.cpp" />
     <ClCompile Include="ScoreBoard.cpp" />
     <ClCompile Include="ScoreboardState.cpp" />
@@ -58,11 +57,10 @@
     <ClInclude Include="AIComponent.h" />
     <ClInclude Include="AIFollow.h" />
     <ClInclude Include="AIOption.h" />
-    <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationComponent.h" />
     <ClInclude Include="AttributeComponent.h" />
+    <ClInclude Include="BigDemon.h" />
     <ClInclude Include="Bullet.h" />
-    <ClInclude Include="Collider.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemySpawnerTile.h" />
     <ClInclude Include="EnemySystem.h" />
@@ -72,9 +70,9 @@
     <ClInclude Include="HitboxComponent.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="MovementComponent.h" />
+    <ClInclude Include="OrcWarrior.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerGUI.h" />
-    <ClInclude Include="PlayerUI.h" />
     <ClInclude Include="RegularTile.h" />
     <ClInclude Include="ScoreBoard.h" />
     <ClInclude Include="ScoreboardState.h" />

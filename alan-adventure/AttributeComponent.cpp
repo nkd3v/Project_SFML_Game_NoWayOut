@@ -14,6 +14,8 @@ AttributeComponent::AttributeComponent(int level)
 	this->agility = 1;
 	this->intelligence = 1;
 
+	score = 0;
+
 	this->updateLevel();
 	this->updateStats(true);
 }

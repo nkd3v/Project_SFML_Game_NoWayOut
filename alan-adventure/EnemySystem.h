@@ -3,8 +3,10 @@
 
 #include "EnemySpawnerTile.h"
 #include "Skelet.h"
+#include "BigDemon.h"
+#include "OrcWarrior.h"
 
-enum EnemyTypes { SKELET };
+enum EnemyTypes { SKELET, BIG_DEMON, ORC_WARRIOR };
 
 class EnemySystem
 {
@@ -23,7 +25,7 @@ public:
 	//Modifiers
 
 	//Functions
-	void createEnemy(const short type, const float xPos, const float yPos, EnemySpawnerTile& enemy_spawner_tile);
+	void createEnemy(const short type, const float xPos, const float yPos);
 	void removeEnemy(const int index);
 
 	void update(const float& dt);

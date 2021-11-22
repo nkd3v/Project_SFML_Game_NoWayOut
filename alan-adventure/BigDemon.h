@@ -1,9 +1,9 @@
-#ifndef SKELET_H
-#define SKELET_H
+#ifndef BIG_DEMON_H
+#define BIG_DEMON_H
 
 #include "Enemy.h"
 
-class Skelet :
+class BigDemon :
 	public Enemy
 {
 private:
@@ -17,8 +17,8 @@ private:
 	AIFollow* follow;
 
 public:
-	Skelet(float x, float y, sf::Texture& texture_sheet, Entity& player);
-	virtual ~Skelet();
+	BigDemon(float x, float y, sf::Texture& texture_sheet, Entity& player);
+	virtual ~BigDemon();
 
 	//Functions
 	void updateAnimation(const float& dt);
@@ -27,4 +27,4 @@ public:
 	void render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vector2f light_position, const bool show_hitbox);
 };
 
-#endif // !SKELET_H
+#endif // !BIG_DEMON_H

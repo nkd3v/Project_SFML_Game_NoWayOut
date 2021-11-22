@@ -1,26 +1,33 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-
 class Bullet
 {
+private:
+  sf::Sprite sprite;
+  sf::Texture bulletTexture;
+
+  sf::Clock timer;
+
+  float speed;
+  float angle;
+  float lifespan;
+  float lifetime;
+
+  int life;
+
 public:
-  Bullet(const sf::Texture &texture, sf::Vector2f pos, float speed, float angle, float lifeSpan = 1.0f);
+  Bullet(sf::Vector2f pos, float speed, float angle);
   ~Bullet();
 
-  void update(float deltaTime);
-  void draw(sf::RenderTarget& target);
-  bool EndOfLife();
+  void initVariables();
+  void initTexture();
 
-  sf::Sprite& GetBody() { return mBody; }
+  void kill();
 
-private:
-  sf::Sprite mBody;
-  sf::Vector2f mPos;
-  sf::Clock timer;
-  float mSpeed;
-  float mAngle;
-  float mLifeSpan{};
-  float mLifeTime{};
+  const sf::FloatRect& getGlobalBounds() const;
+  bool endofLife();
+
+  void update(float dt);
+  void render(sf::RenderTarget& target);
 };
 

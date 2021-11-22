@@ -48,13 +48,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Animation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Bullet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Collider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
@@ -77,9 +71,6 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerUI.cpp">
-      <Filter>GUI</Filter>
     </ClCompile>
     <ClCompile Include="HitboxComponent.cpp">
       <Filter>Components</Filter>
@@ -144,15 +135,15 @@
     <ClCompile Include="VectorMath.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="BigDemon.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="OrcWarrior.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Animation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Bullet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Collider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Weapon.h">
@@ -172,9 +163,6 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerUI.h">
-      <Filter>GUI</Filter>
     </ClInclude>
     <ClInclude Include="MovementComponent.h">
       <Filter>Components</Filter>
@@ -238,6 +226,12 @@
     </ClInclude>
     <ClInclude Include="VectorMath.h">
       <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BigDemon.h">
+      <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="OrcWarrior.h">
+      <Filter>Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

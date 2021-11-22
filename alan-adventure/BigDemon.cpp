@@ -1,28 +1,28 @@
 #include "stdafx.h"
-#include "Skelet.h"
+#include "BigDemon.h"
 
 //Initializer functions
-void Skelet::initVariables()
+void BigDemon::initVariables()
 {
 
 }
 
-void Skelet::initAnimations()
+void BigDemon::initAnimations()
 {
-	this->animationComponent->addAnimation("IDLE",       25.f, 0, 0, 3, 0, 32, 32);
-	this->animationComponent->addAnimation("WALK_DOWN",  11.f, 0, 1, 3, 1, 32, 32);
-	this->animationComponent->addAnimation("WALK_LEFT",  11.f, 0, 1, 3, 1, 32, 32);
-	this->animationComponent->addAnimation("WALK_RIGHT", 11.f, 0, 2, 3, 2, 32, 32);
-	this->animationComponent->addAnimation("WALK_UP",    11.f, 0, 2, 3, 2, 32, 32);
+	this->animationComponent->addAnimation("IDLE",       25.f, 0, 0, 3, 0, 64, 64);
+	this->animationComponent->addAnimation("WALK_DOWN",  11.f, 0, 1, 3, 1, 64, 64);
+	this->animationComponent->addAnimation("WALK_LEFT",  11.f, 0, 1, 3, 1, 64, 64);
+	this->animationComponent->addAnimation("WALK_RIGHT", 11.f, 0, 2, 3, 2, 64, 64);
+	this->animationComponent->addAnimation("WALK_UP",    11.f, 0, 2, 3, 2, 64, 64);
 	//this->animationComponent->addAnimation("ATTACK",      5.f, 0, 2, 1, 2, 60, 64);
 }
 
-void Skelet::initAI()
+void BigDemon::initAI()
 {
 
 }
 
-void Skelet::initGUI()
+void BigDemon::initGUI()
 {
 	this->hpBar.setFillColor(sf::Color::Red);
 	this->hpBar.setSize(sf::Vector2f(60.f, 10.f));
@@ -30,7 +30,7 @@ void Skelet::initGUI()
 }
 
 //Constructors / Destructors
-Skelet::Skelet(float x, float y, sf::Texture& texture_sheet, Entity& player)
+BigDemon::BigDemon(float x, float y, sf::Texture& texture_sheet, Entity& player)
 {
 	this->initVariables();
 	this->initGUI();
@@ -49,12 +49,12 @@ Skelet::Skelet(float x, float y, sf::Texture& texture_sheet, Entity& player)
 }
 
 
-Skelet::~Skelet()
+BigDemon::~BigDemon()
 {
 	delete this->follow;
 }
 
-void Skelet::updateAnimation(const float& dt)
+void BigDemon::updateAnimation(const float& dt)
 {
 	if (this->movementComponent->getState(IDLE))
 	{
@@ -85,7 +85,7 @@ void Skelet::updateAnimation(const float& dt)
 	//	this->sprite.setColor(sf::Color::White);
 }
 
-void Skelet::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view)
+void BigDemon::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view)
 {
 	Enemy::update(dt, mouse_pos_view, view);
 
@@ -104,7 +104,7 @@ void Skelet::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::Vie
 	this->follow->update(dt);
 }
 
-void Skelet::render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vector2f light_position, const bool show_hitbox)
+void BigDemon::render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vector2f light_position, const bool show_hitbox)
 {
 	target.draw(this->sprite);
 

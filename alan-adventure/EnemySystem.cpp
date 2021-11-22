@@ -13,13 +13,18 @@ EnemySystem::~EnemySystem()
 
 }
 
-void EnemySystem::createEnemy(const short type, const float xPos, const float yPos, EnemySpawnerTile& enemy_spawner_tile)
+void EnemySystem::createEnemy(const short type, const float xPos, const float yPos)
 {
 	switch (type)
 	{
 	case EnemyTypes::SKELET:
-		this->activeEnemies.push_back(new Skelet(xPos, yPos, this->textures["RAT1_SHEET"], enemy_spawner_tile, this->player));
-		enemy_spawner_tile.increaseEnemyCounter();
+		this->activeEnemies.push_back(new Skelet(xPos, yPos, this->textures["SKELET"], this->player));
+		break;
+	case EnemyTypes::BIG_DEMON:
+		this->activeEnemies.push_back(new BigDemon(xPos, yPos, this->textures["BIG_DEMON"], this->player));
+		break;
+	case EnemyTypes::ORC_WARRIOR:
+		this->activeEnemies.push_back(new OrcWarrior(xPos, yPos, this->textures["ORC_WARRIOR"], this->player));
 		break;
 	default:
 		std::cout << "ERROR::ENEMYSYSTEM::CREATEENEMY::TYPE DOES NOT EXIST" << "\n";
@@ -29,7 +34,6 @@ void EnemySystem::createEnemy(const short type, const float xPos, const float yP
 
 void EnemySystem::removeEnemy(const int index)
 {
-	this->activeEnemies[index]->getEnemySpawnerTile().decreaseEnemyCounter();
 	delete this->activeEnemies[index];
 	this->activeEnemies.erase(this->activeEnemies.begin() + index);
 }

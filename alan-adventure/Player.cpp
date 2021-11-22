@@ -9,6 +9,8 @@ void Player::initVariables()
 	this->attacking = false;
 
 	this->damageTimerMax = 500;
+
+	weapon = new Weapon();
 }
 
 void Player::initComponents()
@@ -56,6 +58,11 @@ const bool& Player::getInitAttack() const
 	return this->initAttack;
 }
 
+const Weapon* Player::getWeapon() const
+{
+	return weapon;
+}
+
 const bool Player::getDamageTimer()
 {
 	if (this->damageTimer.getElapsedTime().asMilliseconds() >= this->damageTimerMax)
@@ -70,6 +77,11 @@ const bool Player::getDamageTimer()
 void Player::setInitAttack(const bool initAttack)
 {
 	this->initAttack = initAttack;
+}
+
+void Player::attack(sf::Vector2f mousePos)
+{
+	weapon->shoot(getPosition(), atan2(mousePos.y - getPosition().y, mousePos.x - getPosition().x));
 }
 
 //Functions
@@ -128,6 +140,8 @@ void Player::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::Vie
 	this->updateAnimation(dt);
 
 	this->hitboxComponent->update();
+
+	weapon->update(dt);
 }
 
 void Player::render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vector2f light_position, const bool show_hitbox)
@@ -145,6 +159,8 @@ void Player::render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vect
 	{
 		target.draw(this->sprite);
 	}
+
+	weapon->render(target);
 
 	if (show_hitbox)
 		this->hitboxComponent->render(target);

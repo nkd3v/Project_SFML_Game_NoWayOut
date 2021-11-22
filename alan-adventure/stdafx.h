@@ -2,6 +2,8 @@
 #ifndef HEADER_H
 #define HEADER_H
 
+#define _USE_MATH_DEFINES
+
 //Core
 #include <algorithm>
 #include <deque>

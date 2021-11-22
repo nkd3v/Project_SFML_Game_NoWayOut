@@ -1,9 +1,9 @@
-#ifndef SKELET_H
-#define SKELET_H
+#ifndef ORC_WARRIOR_H
+#define ORC_WARRIOR_H
 
 #include "Enemy.h"
 
-class Skelet :
+class OrcWarrior :
 	public Enemy
 {
 private:
@@ -17,8 +17,8 @@ private:
 	AIFollow* follow;
 
 public:
-	Skelet(float x, float y, sf::Texture& texture_sheet, Entity& player);
-	virtual ~Skelet();
+	OrcWarrior(float x, float y, sf::Texture& texture_sheet, Entity& player);
+	virtual ~OrcWarrior();
 
 	//Functions
 	void updateAnimation(const float& dt);
@@ -27,4 +27,4 @@ public:
 	void render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vector2f light_position, const bool show_hitbox);
 };
 
-#endif // !SKELET_H
+#endif // !ORC_WARRIOR_H

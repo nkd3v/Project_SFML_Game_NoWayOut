@@ -26,5 +26,7 @@
 #include <SFML\Audio.hpp>
 #include <SFML\Network.hpp>
 
+#include "VectorMath.h"
+
 #endif
 

@@ -25,6 +25,27 @@
     <Filter Include="Components">
       <UniqueIdentifier>{1ed287b5-2874-4c8a-8857-2de21e06abf0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AI">
+      <UniqueIdentifier>{e4125825-06d0-4207-b5af-15234d5268aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI\Options">
+      <UniqueIdentifier>{fc828f1a-3547-457d-9a07-ad0cb57fb3db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Enemies">
+      <UniqueIdentifier>{d1f7f621-8301-4638-81c2-1f02a8b9c852}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{8bbbfa2f-be74-4a61-b825-524bc4287215}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\Tile">
+      <UniqueIdentifier>{2f23a97f-4a61-4b84-8f40-3edadb581984}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Item">
+      <UniqueIdentifier>{84f59aba-bdc3-4a66-8219-17b1b68535d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Item\Weapons">
+      <UniqueIdentifier>{93d4af8d-1127-48b1-a8d7-c21e5ebfbd2b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -57,9 +78,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerUI.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
@@ -86,6 +104,45 @@
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AIOption.cpp">
+      <Filter>AI</Filter>
+    </ClCompile>
+    <ClCompile Include="AIFollow.cpp">
+      <Filter>AI\Options</Filter>
+    </ClCompile>
+    <ClCompile Include="AIComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySystem.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Skelet.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySpawnerTile.cpp">
+      <Filter>Map\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="RegularTile.cpp">
+      <Filter>Map\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Map\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="AttributeComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="VectorMath.cpp">
+      <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -116,9 +173,6 @@
     <ClInclude Include="Player.h">
       <Filter>Entities</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerUI.h">
       <Filter>GUI</Filter>
     </ClInclude>
@@ -145,6 +199,45 @@
     </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AIFollow.h">
+      <Filter>AI\Options</Filter>
+    </ClInclude>
+    <ClInclude Include="AIOption.h">
+      <Filter>AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AIComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySystem.h">
+      <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Skelet.h">
+      <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySpawnerTile.h">
+      <Filter>Map\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="RegularTile.h">
+      <Filter>Map\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Map\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="AttributeComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorMath.h">
+      <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

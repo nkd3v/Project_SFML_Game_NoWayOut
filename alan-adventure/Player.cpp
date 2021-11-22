@@ -1,9 +1,14 @@
 #include "stdafx.h"
+
 #include "Player.h"
 
+//Initializer functions
 void Player::initVariables()
 {
+	this->initAttack = false;
+	this->attacking = false;
 
+	this->damageTimerMax = 500;
 }
 
 void Player::initComponents()
@@ -18,71 +23,129 @@ void Player::initAnimations()
 	this->animationComponent->addAnimation("WALK_LEFT",  11.f, 0, 1, 3, 1, 32, 64);
 	this->animationComponent->addAnimation("WALK_RIGHT", 11.f, 0, 2, 3, 2, 32, 64);
 	this->animationComponent->addAnimation("WALK_UP",    11.f, 0, 2, 3, 2, 32, 64);
+	//this->animationComponent->addAnimation("ATTACK", 5.f, 0, 2, 1, 2, 64, 64);
 }
 
-Player::Player(float x, float y, sf::Texture& textureSheet)
+//Constructors / Destructors
+Player::Player(float x, float y, sf::Texture& texture_sheet)
 {
-	initVariables();
+	this->initVariables();
 
-	createHitboxComponent(sprite, 0.f, 0.f, 0.f, 0.f);
-	createMovementComponent(140.f, 1400.f, 1000.f);
-	createAnimationComponent(textureSheet);
+	this->createHitboxComponent(this->sprite, 16.f, 26.f, 32.f, 38.f);
+	this->createMovementComponent(140.f, 1400.f, 1000.f);
+	this->createAnimationComponent(texture_sheet);
+	this->createAttributeComponent(1);
+	this->createSkillComponent();
 
-	setPosition(x, y);
-	initAnimations();
+	this->setPosition(x, y);
+	this->initAnimations();
 }
 
 Player::~Player()
 {
 }
 
+//Accessors
+AttributeComponent* Player::getAttributeComponent()
+{
+	return this->attributeComponent;
+}
+
+const bool& Player::getInitAttack() const
+{
+	return this->initAttack;
+}
+
+const bool Player::getDamageTimer()
+{
+	if (this->damageTimer.getElapsedTime().asMilliseconds() >= this->damageTimerMax)
+	{
+		this->damageTimer.restart();
+		return true;
+	}
+
+	return false;
+}
+
+void Player::setInitAttack(const bool initAttack)
+{
+	this->initAttack = initAttack;
+}
+
+//Functions
 void Player::loseHP(const int hp)
 {
+	this->attributeComponent->loseHP(hp);
 }
 
 void Player::gainHP(const int hp)
 {
+	this->attributeComponent->gainHP(hp);
+}
+
+void Player::loseEXP(const int exp)
+{
+	this->attributeComponent->loseEXP(exp);
+}
+
+void Player::gainEXP(const int exp)
+{
+	this->attributeComponent->gainExp(exp);
 }
 
 void Player::updateAnimation(const float& dt)
 {
+	if (this->attacking)
+	{
+
+	}
 	if (this->movementComponent->getState(IDLE))
 	{
 		this->animationComponent->play("IDLE", dt);
-		std::cout << "IDLE\n";
 	}
 	else if (this->movementComponent->getState(MOVING_LEFT))
 	{
 		this->animationComponent->play("WALK_LEFT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());
-		std::cout << "WALK_LEFT\n";
 	}
 	else if (this->movementComponent->getState(MOVING_RIGHT))
 	{
 		this->animationComponent->play("WALK_RIGHT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());
-		std::cout << "WALK_RIGHT\n";
 	}
 	else if (this->movementComponent->getState(MOVING_UP))
 	{
 		this->animationComponent->play("WALK_UP", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());
-		std::cout << "WALK_UP\n";
 	}
 	else if (this->movementComponent->getState(MOVING_DOWN))
 	{
 		this->animationComponent->play("WALK_DOWN", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());
-		std::cout << "WALK_DOWN\n";
 	}
 }
 
-void Player::update(const float& dt, sf::Vector2f& mousePosView, const sf::View& view)
+void Player::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view)
 {
-	movementComponent->update(dt);
+	this->movementComponent->update(dt);
 
-	updateAnimation(dt);
+	this->updateAnimation(dt);
 
-	hitboxComponent->update();
+	this->hitboxComponent->update();
 }
 
-void Player::render(sf::RenderTarget& target)
+void Player::render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vector2f light_position, const bool show_hitbox)
 {
-	target.draw(sprite);
+	if (shader)
+	{
+		shader->setUniform("hasTexture", true);
+		shader->setUniform("lightPos", light_position);
+		target.draw(this->sprite, shader);
+
+		shader->setUniform("hasTexture", true);
+		shader->setUniform("lightPos", light_position);
+	}
+	else
+	{
+		target.draw(this->sprite);
+	}
+
+	if (show_hitbox)
+		this->hitboxComponent->render(target);
 }

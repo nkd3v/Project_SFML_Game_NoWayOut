@@ -1,44 +1,51 @@
-#pragma once
-#include <SFML/Graphics.hpp>
-#include "Collider.h"
-#include "Animation.h"
+#ifndef ENEMY_H
+#define ENEMY_H
 
-class Enemy
+#include "Entity.h"
+#include "EnemySpawnerTile.h"
+#include "AIFollow.h"
+
+class Enemy :
+	public Entity
 {
+protected:
+	//Variables
+	EnemySpawnerTile& enemySpawnerTile;
+	unsigned gainExp;
+	sf::Clock damageTimer;
+	sf::Int32 damageTimerMax;
+	sf::Clock despawnTimer;
+	sf::Int32 despawnTimerMax;
+
+	//Initializer functions
+	virtual void initVariables() = 0;
+	virtual void initAnimations() = 0;
+
 public:
-  Enemy(
-    sf::Texture* texture,
-    sf::Vector2u imageCount,
-    float switchTime,
-    float speed,
-    sf::Vector2f size,
-    sf::Vector2f position
-  );
-  ~Enemy();
+	Enemy(EnemySpawnerTile& enemy_spawner_tile);
+	virtual ~Enemy();
 
-  void draw(sf::RenderWindow &window);
-  void update(float deltaTime);
-  void SetTarget(sf::Transformable* target);
-  sf::Vector2f GetPosition() { return body.getPosition(); }
-  Collider GetCollider() { return Collider(body); }
-  sf::RectangleShape& GetBody() { return body; }
+	//Accessors
+	const unsigned& getGainExp() const;
+	EnemySpawnerTile& getEnemySpawnerTile();
+	const bool getDamageTimerDone() const;
+	const bool getDespawnTimerDone() const;
 
-  void kill();
+	//Modifiers
+	void resetDamageTimer();
 
-private:
-  void updateAlive(float dt);
-  void updateDie(float dt);
+	//Functions
+	virtual void generateAttributes(const unsigned level);
 
-  sf::RectangleShape body;
-  Animation anim;
-  unsigned int row{};
-  float mSpeed;
-  sf::Transformable* mTargetRef{};
-  bool faceRight{};
-  int hp;
+	virtual void loseHP(const int hp);
+	virtual const bool isDead() const;
 
-  sf::Texture bodyTexture;
-  Animation dieAnim;
-  sf::Texture dieTexture;
-  bool isAlive = true;
+	virtual const AttributeComponent* getAttributeComp() const;
+
+	virtual void updateAnimation(const float& dt) = 0;
+
+	virtual void update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view) = 0;
+	virtual void render(sf::RenderTarget& target, sf::Shader* shader = NULL, const sf::Vector2f light_position = sf::Vector2f(), const bool show_hitbox = false) = 0;
 };
+
+#endif //!ENEMY_H

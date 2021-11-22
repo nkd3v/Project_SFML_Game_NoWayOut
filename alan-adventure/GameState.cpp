@@ -5,6 +5,9 @@ GameState::GameState(sf::RenderWindow* window)
   : State(window)
 {
   initTextures();
+  initEnemySystem();
+  initView();
+
   initPlayers();
 }
 
@@ -19,11 +22,20 @@ void GameState::initTextures()
   {
     throw "Error: Loading Player texture failed!";
   }
+  if (!textures["SKELET"].loadFromFile("assets/Enemy/skelet.png"))
+  {
+    throw "Error: Loading Skelet texture failed!";
+  }
 }
 
 void GameState::initPlayers()
 {
   player = new Player(50, 50, textures["PLAYER_SHEET"]);
+}
+
+void GameState::initEnemySystem()
+{
+  this->enemySystem = new EnemySystem(this->activeEnemies, this->textures, *this->player);
 }
 
 void GameState::initView()

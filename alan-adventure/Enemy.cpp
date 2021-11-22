@@ -1,97 +1,93 @@
 #include "stdafx.h"
 #include "Enemy.h"
-#include <iostream>
 
-Enemy::Enemy(
-  sf::Texture* texture,
-  sf::Vector2u imageCount,
-  float switchTime,
-  float speed,
-  sf::Vector2f size,
-  sf::Vector2f position
-) : anim(texture, imageCount, switchTime)
-  , mSpeed(speed)
+//Initializer functions
+void Enemy::initVariables()
 {
-  body.setSize(size);
-  body.setOrigin(size / 2.0f);
-  body.setTexture(texture);
-  body.setPosition(position);
+	this->gainExp = 10;
+	this->damageTimerMax = 1000;
+	this->despawnTimerMax = 1000;
+}
 
-  dieTexture.loadFromFile("assets/Enemy/spr_blob_big_death.png");
-  dieAnim = Animation(&dieTexture, sf::Vector2u(4, 1), 0.25f);
+void Enemy::initAnimations()
+{
+
+}
+
+//Constructors / Destructors
+Enemy::Enemy(EnemySpawnerTile& enemy_spawner_tile)
+	: enemySpawnerTile(enemy_spawner_tile)
+{
+	this->initVariables();
+	this->initAnimations();
 }
 
 Enemy::~Enemy()
 {
-  
+
 }
 
-void Enemy::draw(sf::RenderWindow& window)
+const unsigned& Enemy::getGainExp() const
 {
-  window.draw(body);
+	return this->gainExp;
 }
 
-void Enemy::update(float deltaTime)
+EnemySpawnerTile& Enemy::getEnemySpawnerTile()
 {
-  if (isAlive)
-    updateAlive(deltaTime);
-  else
-    updateDie(deltaTime);
+	return this->enemySpawnerTile;
 }
 
-void Enemy::SetTarget(sf::Transformable* target)
+const bool Enemy::getDamageTimerDone() const
 {
-  mTargetRef = target;
+	return this->damageTimer.getElapsedTime().asMilliseconds() >= this->damageTimerMax;
 }
 
-void Enemy::kill()
+const bool Enemy::getDespawnTimerDone() const
 {
-  return;
-  isAlive = false;
-  body.setTexture(&dieTexture);
+	return this->despawnTimer.getElapsedTime().asMilliseconds() >= this->despawnTimerMax;
 }
 
-void Enemy::updateAlive(float deltaTime)
+void Enemy::resetDamageTimer()
 {
-  sf::Vector2f movement{ 0, 0 };
-
-  if (mTargetRef != nullptr)
-  {
-    sf::Vector2f delta = mTargetRef->getPosition() - body.getPosition();
-
-    if (abs(delta.x) > 1.0f || abs(delta.y) > 1.0f)
-    {
-      float angle = atan2(delta.y, delta.x);
-      movement = sf::Vector2f(mSpeed * cos(angle) * deltaTime, mSpeed * sin(angle) * deltaTime);
-      body.move(movement);
-    }
-  }
-
-  if (movement.x != 0 && movement.y != 0)
-  {
-    row = 1;
-
-    if (movement.x > 0)
-    {
-      faceRight = true;
-    }
-    else if (movement.x < 0)
-    {
-      faceRight = false;
-    }
-  }
-  else
-  {
-    row = 0;
-  }
-
-  anim.update(row, deltaTime, faceRight);
-  body.setTextureRect(anim.uvRect);
+	this->damageTimer.restart();
 }
 
-void Enemy::updateDie(float deltaTime)
+void Enemy::generateAttributes(const unsigned level)
 {
-  std::cout << "Died\n";
-  dieAnim.update(0, deltaTime, 0);
-  body.setTextureRect(sf::IntRect(0, 0, 32, 32));
+	this->gainExp = level * (rand() % 5 + 1);
+}
+
+void Enemy::loseHP(const int hp)
+{
+	if (this->attributeComponent)
+	{
+		this->attributeComponent->loseHP(hp);
+	}
+}
+
+const bool Enemy::isDead() const
+{
+	if (this->attributeComponent)
+	{
+		return this->attributeComponent->isDead();
+	}
+
+	return false;
+}
+
+const AttributeComponent* Enemy::getAttributeComp() const
+{
+	if (this->attributeComponent)
+		return this->attributeComponent;
+	else
+	{
+		std::cout << "ERROR::ENEMY::ATTRIBUTECOMPONENT IS NOT INITIALIZED" << "\n";
+		return nullptr;
+	}
+}
+
+void Enemy::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view)
+{
+	if (vectorDistance(this->getPosition(), view.getCenter()) < 1500.f)
+		this->despawnTimer.restart();
 }

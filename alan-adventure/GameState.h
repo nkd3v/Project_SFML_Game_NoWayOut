@@ -8,6 +8,7 @@
 #include "ScoreBoard.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "EnemySystem.h"
 
 class GameState :
     public State
@@ -28,11 +29,16 @@ private:
   Player *player;
   sf::Texture texture;
 
+  std::vector<Enemy*> activeEnemies;
+  EnemySystem* enemySystem;
+
   std::map<std::string, sf::Texture> textures;
 
   void initTextures();
-  void initPlayers();
   void initView();
+
+  void initPlayers();
+  void initEnemySystem();
 
 public:
   GameState(sf::RenderWindow* window);

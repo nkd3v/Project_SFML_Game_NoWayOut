@@ -21,6 +21,7 @@ public:
 	virtual ~EnemySystem();
 
 	//Accessors
+	int getEnemyCount();
 
 	//Modifiers
 

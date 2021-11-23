@@ -17,12 +17,13 @@ private:
   sf::Texture heartTexture;
 
   sf::Font font;
+  sf::Text scoreText;
 
   sf::Vector2f HPBarPos;
   sf::Vector2f scorePos;
 
   void initHPBar();
-  void initScore();
+  void initScorePanel();
 
   void updateHPBar();
   void updateScorePanel();

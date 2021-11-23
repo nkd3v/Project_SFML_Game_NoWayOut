@@ -16,6 +16,7 @@
 class State
 {
 protected:
+  std::stack<std::unique_ptr<State>>& states;
   sf::RenderWindow* window;
   std::vector<sf::Texture*> textures;
 
@@ -23,16 +24,18 @@ protected:
   sf::Vector2i mousePosWindow;
   sf::Vector2f mousePosView;
   sf::Vector2i mousePosGrid;
-  
+
+  std::unique_ptr<State> newState;
   bool quit = false;
   bool paused;
   float keytime;
   float keytimeMax;
 
 public:
-  State(sf::RenderWindow* window);
+  State(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states);
   virtual ~State();
 
+  std::unique_ptr<State>& getNewState();
   const bool& getQuit() const { return quit; }
 
   void endState();

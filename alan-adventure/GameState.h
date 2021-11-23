@@ -9,8 +9,12 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "EnemySystem.h"
+#include "EnemySpawner.h"
 #include "TileMap.h"
 #include "PlayerGUI.h"
+#include "HealthPotion.h"
+#include "MainMenuState.h"
+#include "ScoreboardState.h"
 
 class GameState :
     public State
@@ -20,6 +24,8 @@ private:
   sf::Vector2i viewGridPosition;
   sf::RenderTexture renderTexture;
   sf::Sprite renderSprite;
+
+  HealthPotion* healthPotion;
 
   sf::Font font;
   
@@ -33,6 +39,7 @@ private:
 
   std::vector<Enemy*> activeEnemies;
   EnemySystem* enemySystem;
+  EnemySpawner* enemySpawner;
 
   TileMap* tileMap;
 
@@ -49,11 +56,12 @@ private:
   void initPlayers();
   void initPlayerGUI();
   void initEnemySystem();
+  void initEnemySpawner();
   void initTileMap();
   void initMap();
 
 public:
-  GameState(sf::RenderWindow* window);
+  GameState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states);
   virtual ~GameState();
 
   void updateInput(const float& dt);
@@ -61,6 +69,7 @@ public:
   void updatePlayer(const float& dt);
   void updateCombatAndEnemies(const float& dt);
   void updateCombat(Enemy* enemy, const int index, const float& dt);
+  void updateEnemySpawner(const float& dt);
   void update(const float& dt);
 
   void render(sf::RenderTarget* target = nullptr);

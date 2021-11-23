@@ -13,6 +13,11 @@ EnemySystem::~EnemySystem()
 
 }
 
+int EnemySystem::getEnemyCount()
+{
+	return activeEnemies.size();
+}
+
 void EnemySystem::createEnemy(const short type, const float xPos, const float yPos)
 {
 	switch (type)

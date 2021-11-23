@@ -5,7 +5,7 @@ PlayerGUI::PlayerGUI(Player *player)
   : player(player)
 {
   initHPBar();
-  initScore();
+  initScorePanel();
 }
 
 PlayerGUI::~PlayerGUI()
@@ -27,9 +27,10 @@ void PlayerGUI::initHPBar()
   emptyHeartRect = sf::IntRect(64, 0, 32, 32);
 }
 
-void PlayerGUI::initScore()
+void PlayerGUI::initScorePanel()
 {
   font.loadFromFile("assets/Fonts/dpcomic.ttf");
+  scoreText.setFont(font);
 }
 
 void PlayerGUI::updateHPBar()
@@ -38,6 +39,7 @@ void PlayerGUI::updateHPBar()
 
 void PlayerGUI::updateScorePanel()
 {
+  scoreText.setString(std::to_string(player->getAttributeComponent()->exp));
 }
 
 void PlayerGUI::update()
@@ -52,8 +54,6 @@ void PlayerGUI::renderHPBar(sf::RenderTarget* target)
 
   int hpMax = player->getAttributeComponent()->hpMax;
   int hp = player->getAttributeComponent()->hp;
-
-  std::cout << hpMax << ' ' << hp << '\n';
 
   heartSprite.setTextureRect(fullHeartRect);
   int i = 0;
@@ -81,9 +81,10 @@ void PlayerGUI::renderHPBar(sf::RenderTarget* target)
 
 void PlayerGUI::renderScorePanel(sf::RenderTarget* target)
 {
-  sf::Text text(std::to_string(player->getAttributeComponent()->score), font);
-  text.setPosition(target->mapPixelToCoords(sf::Vector2i(60, 60)));
-  target->draw(text);
+  sf::Vector2f scorePos = target->mapPixelToCoords(sf::Vector2i(750, 10));
+  scoreText.setPosition(scorePos);
+
+  target->draw(scoreText);
 }
 
 void PlayerGUI::render(sf::RenderTarget* target)

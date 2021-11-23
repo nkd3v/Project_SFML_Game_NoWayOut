@@ -10,7 +10,7 @@ void Game::initWindow()
 
 void Game::initStates()
 {
-  states.emplace(std::make_unique<GameState>(window));
+  states.emplace(std::make_unique<GameState>(window, states));
 }
 
 Game::Game()
@@ -33,8 +33,29 @@ void Game::update()
 {
   updateSFMLEvents();
 
-  if (!states.empty())
-    states.top()->update(dt);
+  if (!this->states.empty())
+  {
+    if (this->window->hasFocus())
+    {
+      this->states.top()->update(this->dt);
+
+      if (this->states.top()->getQuit())
+      {
+        std::unique_ptr<State> newState;
+        if (states.top()->getNewState() != NULL)
+          newState = std::move(states.top()->getNewState());
+
+        states.top()->endState();
+        states.pop();
+
+        states.push(std::move(newState));
+      }
+    }
+  }
+  else
+  {
+    window->close();
+  }
 }
 
 void Game::updateDt()

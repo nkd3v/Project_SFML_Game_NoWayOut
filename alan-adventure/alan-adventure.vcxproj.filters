@@ -40,21 +40,15 @@
     <Filter Include="Map\Tile">
       <UniqueIdentifier>{2f23a97f-4a61-4b84-8f40-3edadb581984}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Item">
-      <UniqueIdentifier>{84f59aba-bdc3-4a66-8219-17b1b68535d8}</UniqueIdentifier>
+    <Filter Include="Weapons">
+      <UniqueIdentifier>{181c8430-2ec3-46d3-aa51-7a606c80a012}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Item\Weapons">
-      <UniqueIdentifier>{93d4af8d-1127-48b1-a8d7-c21e5ebfbd2b}</UniqueIdentifier>
+    <Filter Include="Items">
+      <UniqueIdentifier>{84f59aba-bdc3-4a66-8219-17b1b68535d8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Weapon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
@@ -141,14 +135,23 @@
     <ClCompile Include="OrcWarrior.cpp">
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthPotion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySpawner.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bullet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -231,6 +234,21 @@
       <Filter>Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="OrcWarrior.h">
+      <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthPotion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySpawner.h">
       <Filter>Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>

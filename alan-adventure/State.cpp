@@ -1,9 +1,10 @@
 #include "stdafx.h"
 #include "State.h"
 
-State::State(sf::RenderWindow* window)
-  : window(window)
+State::State(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states)
+  : window(window), states(states)
 {
+  newState = NULL;
   quit = false;
   paused = false;
   keytime = 0.f;
@@ -12,6 +13,11 @@ State::State(sf::RenderWindow* window)
 
 State::~State()
 {
+}
+
+std::unique_ptr<State>& State::getNewState()
+{
+  return newState;
 }
 
 void State::endState()

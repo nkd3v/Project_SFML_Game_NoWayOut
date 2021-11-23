@@ -1,14 +1,15 @@
 #include "stdafx.h"
 #include "GameState.h"
 
-GameState::GameState(sf::RenderWindow* window)
-  : State(window)
+GameState::GameState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states)
+  : State(window, states)
 {
   initTextures();
   initMap();
   initPlayers();
   initPlayerGUI();
   initEnemySystem();
+  initEnemySpawner();
   initView();
 }
 
@@ -45,6 +46,7 @@ void GameState::initTextures()
 void GameState::initPlayers()
 {
   player = new Player(50, 50, textures["PLAYER_SHEET"]);
+  healthPotion = new HealthPotion(200, 200);
 }
 
 void GameState::initPlayerGUI()
@@ -55,9 +57,15 @@ void GameState::initPlayerGUI()
 void GameState::initEnemySystem()
 {
   enemySystem = new EnemySystem(this->activeEnemies, this->textures, *this->player);
-  enemySystem->createEnemy(SKELET, 100, 100);
-  enemySystem->createEnemy(BIG_DEMON, 100, 100);
-  enemySystem->createEnemy(ORC_WARRIOR, 200, 100);
+}
+
+void GameState::initEnemySpawner()
+{
+  enemySpawner = new EnemySpawner(*enemySystem);
+
+  enemySpawner->addSpawner(sf::Vector2f(110, 159), 2, 10);
+  enemySpawner->addSpawner(sf::Vector2f(561, 125), 2, 10);
+  enemySpawner->addSpawner(sf::Vector2f(174, 448), 2, 10);
 }
 
 void GameState::initTileMap()
@@ -86,10 +94,12 @@ void GameState::updateInput(const float& dt)
 void GameState::updatePlayer(const float& dt)
 {
   player->update(dt, mousePosView, view);
+  healthPotion->update(dt);
 }
 
 void GameState::updateCombatAndEnemies(const float& dt)
 {
+  std::cout << mousePosView.x << ' ' << mousePosView.y << '\n';
   if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
   {
     player->attack(mousePosView);
@@ -116,6 +126,12 @@ void GameState::updateCombatAndEnemies(const float& dt)
 
     ++index;
   }
+
+  if (player->getAttributeComponent()->hp <= 0)
+  {
+    newState = std::make_unique<ScoreboardState>(window, states);
+    quit = true;
+  }
 }
 
 void GameState::updateCombat(Enemy* enemy, const int index, const float& dt)
@@ -128,6 +144,7 @@ void GameState::updateCombat(Enemy* enemy, const int index, const float& dt)
       enemy->loseHP(dmg);
       enemy->resetDamageTimer();
       bullet->kill();
+      continue;
     }
   }
 
@@ -136,6 +153,11 @@ void GameState::updateCombat(Enemy* enemy, const int index, const float& dt)
     int dmg = enemy->getAttributeComp()->damageMax;
     player->loseHP(dmg);
   }
+}
+
+void GameState::updateEnemySpawner(const float& dt)
+{
+  enemySpawner->update(dt);
 }
 
 void GameState::updatePlayerInput(const float& dt)
@@ -161,6 +183,7 @@ void GameState::update(const float& dt)
     updatePlayer(dt);
     updatePlayerInput(dt);
     updateCombatAndEnemies(dt);
+    updateEnemySpawner(dt);
     playerGUI->update();
   }
 }
@@ -175,6 +198,7 @@ void GameState::render(sf::RenderTarget* target)
   target->draw(map);
 
   playerGUI->render(target);
+  healthPotion->render(*target);
 
   for (auto* enemy : activeEnemies)
   {

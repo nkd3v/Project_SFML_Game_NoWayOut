@@ -59,10 +59,34 @@ void MainMenuState::updateInput(const float& dt)
     if (selectedOption >= 1)
       --selectedOption;
   }
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+  {
+    switch (selectedOption)
+    {
+      case 0:
+      {
+        newState = std::make_unique<GameState>(window, states);
+        break;
+      }
+
+      case 1:
+      {
+        newState = std::make_unique<ScoreboardState>(window, states);
+        break;
+      }
+
+      case 2:
+      {
+        break;
+      }
+    }
+    quit = true;
+  }
 }
 
 void MainMenuState::update(const float& dt, sf::RenderTarget* target)
 {
+  updateSFMLEvents(target);
   updateKeytime(dt);
   updateInput(dt);
   updateMenu();

@@ -46,6 +46,9 @@
     <Filter Include="Items">
       <UniqueIdentifier>{84f59aba-bdc3-4a66-8219-17b1b68535d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{37649191-10cc-4147-81ac-c0e9a080e5f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -102,9 +105,6 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="EnemySystem.cpp">
-      <Filter>Entities\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="Skelet.cpp">
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
@@ -144,12 +144,6 @@
     <ClCompile Include="Item.cpp">
       <Filter>Items</Filter>
     </ClCompile>
-    <ClCompile Include="HealthPotion.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemySpawner.cpp">
-      <Filter>Entities\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="TextBox.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
@@ -158,6 +152,27 @@
     </ClCompile>
     <ClCompile Include="EnterNameState.cpp">
       <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySpawner.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySystem.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthPotion.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="InvisiblePotion.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="RapidFirePotion.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="SwiftPotion.cpp">
+      <Filter>Items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -212,9 +227,6 @@
     <ClInclude Include="Enemy.h">
       <Filter>Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="EnemySystem.h">
-      <Filter>Entities\Enemies</Filter>
-    </ClInclude>
     <ClInclude Include="Skelet.h">
       <Filter>Entities\Enemies</Filter>
     </ClInclude>
@@ -254,12 +266,6 @@
     <ClInclude Include="Item.h">
       <Filter>Items</Filter>
     </ClInclude>
-    <ClInclude Include="HealthPotion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemySpawner.h">
-      <Filter>Entities\Enemies</Filter>
-    </ClInclude>
     <ClInclude Include="TextBox.h">
       <Filter>GUI</Filter>
     </ClInclude>
@@ -271,6 +277,27 @@
     </ClInclude>
     <ClInclude Include="States.h">
       <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySpawner.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySystem.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthPotion.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="InvisiblePotion.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="RapidFirePotion.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="SwiftPotion.h">
+      <Filter>Items</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

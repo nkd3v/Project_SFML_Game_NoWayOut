@@ -9,6 +9,7 @@ GameState::GameState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>
   initPlayers();
   initPlayerGUI();
   initEnemySystem();
+  initItemManager();
   initEnemySpawner();
   initView();
 }
@@ -16,6 +17,9 @@ GameState::GameState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>
 GameState::~GameState()
 {
   delete player;
+  delete enemySpawner;
+  delete enemySystem;
+  delete itemManager;
 
   for (size_t i = 0; i < this->activeEnemies.size(); i++)
   {
@@ -41,12 +45,28 @@ void GameState::initTextures()
   {
     throw "Error: Loading Orc Warrior texture failed!";
   }
+
+  if (!textures["HEALTH_POTION"].loadFromFile("assets/Items/potions.png"))
+  {
+    throw "Error: Loading health potion texture failed!";
+  }
+  if (!textures["RAPID_FIRE_POTION"].loadFromFile("assets/Items/potions.png"))
+  {
+    throw "Error: Loading fast shooting potion texture failed!";
+  }
+  if (!textures["SWIFT_POTION"].loadFromFile("assets/Items/potions.png"))
+  {
+    throw "Error: Loading speed potion texture failed!";
+  }
+  if (!textures["INVISIBLE_POTION"].loadFromFile("assets/Items/potions.png"))
+  {
+    throw "Error: Loading INVISIBLE potion texture failed!";
+  }
 }
 
 void GameState::initPlayers()
 {
   player = new Player(50, 50, textures["PLAYER_SHEET"]);
-  healthPotion = new HealthPotion(200, 200);
 }
 
 void GameState::initPlayerGUI()
@@ -56,7 +76,7 @@ void GameState::initPlayerGUI()
 
 void GameState::initEnemySystem()
 {
-  enemySystem = new EnemySystem(this->activeEnemies, this->textures, *this->player);
+  enemySystem = new EnemySystem(activeEnemies, textures, *player);
 }
 
 void GameState::initEnemySpawner()
@@ -66,6 +86,11 @@ void GameState::initEnemySpawner()
   enemySpawner->addSpawner(sf::Vector2f(110, 159), 2, 10);
   enemySpawner->addSpawner(sf::Vector2f(561, 125), 2, 10);
   enemySpawner->addSpawner(sf::Vector2f(174, 448), 2, 10);
+}
+
+void GameState::initItemManager()
+{
+  itemManager = new ItemManager(items, textures, *player);
 }
 
 void GameState::initTileMap()
@@ -94,7 +119,11 @@ void GameState::updateInput(const float& dt)
 void GameState::updatePlayer(const float& dt)
 {
   player->update(dt, mousePosView, view);
-  healthPotion->update(dt);
+}
+
+void GameState::updateItemsInteraction(const float& dt)
+{
+  itemManager->update(dt);
 }
 
 void GameState::updateCombatAndEnemies(const float& dt)
@@ -143,6 +172,7 @@ void GameState::updateCombat(Enemy* enemy, const int index, const float& dt)
       enemy->loseHP(dmg);
       enemy->resetDamageTimer();
       bullet->kill();
+      itemManager->createItem(rand() % 4, enemy->getPosition().x, enemy->getPosition().y);
       continue;
     }
   }
@@ -184,6 +214,7 @@ void GameState::update(const float& dt, sf::RenderTarget* target)
     updatePlayerInput(dt);
     updateCombatAndEnemies(dt);
     updateEnemySpawner(dt);
+    updateItemsInteraction(dt);
     playerGUI->update();
   }
 }
@@ -197,8 +228,9 @@ void GameState::render(sf::RenderTarget* target)
 
   target->draw(map);
 
+  itemManager->render(target);
+
   playerGUI->render(target);
-  healthPotion->render(*target);
 
   for (auto* enemy : activeEnemies)
   {

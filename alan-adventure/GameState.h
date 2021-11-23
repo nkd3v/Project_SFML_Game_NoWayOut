@@ -1,13 +1,13 @@
 #pragma once
 
 #include "States.h"
-#include "Player.h"
-#include "Enemy.h"
 #include "EnemySystem.h"
 #include "EnemySpawner.h"
+#include "ItemManager.h"
+#include "Player.h"
+#include "Enemy.h"
 #include "TileMap.h"
 #include "PlayerGUI.h"
-#include "HealthPotion.h"
 
 class GameState :
     public State
@@ -17,8 +17,6 @@ private:
   sf::Vector2i viewGridPosition;
   sf::RenderTexture renderTexture;
   sf::Sprite renderSprite;
-
-  HealthPotion* healthPotion;
 
   sf::Font font;
   
@@ -33,6 +31,9 @@ private:
   std::vector<Enemy*> activeEnemies;
   EnemySystem* enemySystem;
   EnemySpawner* enemySpawner;
+
+  std::vector<Item*> items;
+  ItemManager* itemManager;
 
   TileMap* tileMap;
 
@@ -50,6 +51,7 @@ private:
   void initPlayerGUI();
   void initEnemySystem();
   void initEnemySpawner();
+  void initItemManager();
   void initTileMap();
   void initMap();
 
@@ -60,6 +62,7 @@ public:
   void updateInput(const float& dt);
   void updatePlayerInput(const float& dt);
   void updatePlayer(const float& dt);
+  void updateItemsInteraction(const float& dt);
   void updateCombatAndEnemies(const float& dt);
   void updateCombat(Enemy* enemy, const int index, const float& dt);
   void updateEnemySpawner(const float& dt);

@@ -37,13 +37,16 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="HealthPotion.cpp" />
     <ClCompile Include="HitboxComponent.cpp" />
+    <ClCompile Include="InvisiblePotion.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="OrcWarrior.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerGUI.cpp" />
+    <ClCompile Include="RapidFirePotion.cpp" />
     <ClCompile Include="RegularTile.cpp" />
     <ClCompile Include="Scoreboard.cpp" />
     <ClCompile Include="ScoreboardState.cpp" />
@@ -53,6 +56,7 @@
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SwiftPotion.cpp" />
     <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileMap.cpp" />
@@ -78,12 +82,15 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="HealthPotion.h" />
     <ClInclude Include="HitboxComponent.h" />
+    <ClInclude Include="InvisiblePotion.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemManager.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="OrcWarrior.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerGUI.h" />
+    <ClInclude Include="RapidFirePotion.h" />
     <ClInclude Include="RegularTile.h" />
     <ClInclude Include="Scoreboard.h" />
     <ClInclude Include="ScoreboardState.h" />
@@ -92,6 +99,7 @@
     <ClInclude Include="State.h" />
     <ClInclude Include="States.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="SwiftPotion.h" />
     <ClInclude Include="TextBox.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileMap.h" />

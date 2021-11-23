@@ -7,13 +7,27 @@ TextBox::TextBox()
     throw("Error: Could not load font");
 
   text.setFont(font);
-  text.setPosition(200.f, 200.f);
 
-  textLimit = 10;
+  textLimit = 16;
 }
 
 TextBox::~TextBox()
 {
+}
+
+void TextBox::setPosition(float x, float y)
+{
+  text.setPosition(x, y);
+}
+
+void TextBox::setCharacterSize(unsigned int size)
+{
+  text.setCharacterSize(size);
+}
+
+std::string TextBox::getString()
+{
+  return str;
 }
 
 void TextBox::update(char c)

@@ -20,6 +20,17 @@ std::unique_ptr<State>& State::getNewState()
   return newState;
 }
 
+const bool State::getKeytime()
+{
+  if (this->keytime >= this->keytimeMax)
+  {
+    this->keytime = 0.f;
+    return true;
+  }
+
+  return false;
+}
+
 void State::endState()
 {
   quit = true;

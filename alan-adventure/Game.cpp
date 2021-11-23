@@ -3,14 +3,14 @@
 
 void Game::initWindow()
 {
-  window = new sf::RenderWindow(sf::VideoMode(800, 800), "Alan's Adventure");
+  window = new sf::RenderWindow(sf::VideoMode(800, 800), "Alan's Adventure", sf::Style::Close);
   window->setFramerateLimit(120);
   window->setVerticalSyncEnabled(false);
 }
 
 void Game::initStates()
 {
-  states.emplace(std::make_unique<GameState>(window, states));
+  states.emplace(std::make_unique<ScoreboardState>(window, states));
 }
 
 Game::Game()

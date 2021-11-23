@@ -12,7 +12,7 @@ public:
   virtual ~MainMenuState();
 
   void updateInput(const float& dt);
-  void update(const float& dt);
+  void update(const float& dt, sf::RenderTarget* target);
   void render(sf::RenderTarget* target);
 };
 

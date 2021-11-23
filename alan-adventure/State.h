@@ -24,6 +24,7 @@ public:
 
   std::unique_ptr<State>& getNewState();
   const bool& getQuit() const { return quit; }
+  const bool getKeytime();
 
   void endState();
   void pauseState();

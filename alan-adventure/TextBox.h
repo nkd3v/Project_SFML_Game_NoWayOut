@@ -17,6 +17,10 @@ public:
   TextBox();
   ~TextBox();
   
+  void setPosition(float x, float y);
+  void setCharacterSize(unsigned int size);
+  std::string getString();
+
   void update(char c);
   void render(sf::RenderTarget& target);
 };

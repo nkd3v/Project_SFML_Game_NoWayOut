@@ -19,9 +19,14 @@ private:
   Scoreboard scoreboard;
   std::vector<std::pair<int, std::string>> scores;
 
+  bool nameEntered;
+  std::string playerName;
+
 public:
   ScoreboardState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states);
   virtual ~ScoreboardState();
+
+  void saveScore();
 
   void updateInput(const float& dt);
   void updateSFMLEvents(sf::RenderTarget* target);

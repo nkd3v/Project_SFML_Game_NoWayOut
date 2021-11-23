@@ -7,6 +7,9 @@ class EnterNameState :
   public State
 {
 private:
+  sf::Sprite bg;
+  sf::Texture bgTexture;
+
   TextBox nameTextBox;
 
 public:

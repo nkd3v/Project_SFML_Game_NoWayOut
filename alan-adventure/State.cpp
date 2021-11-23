@@ -35,6 +35,18 @@ void State::unpauseState()
   paused = false;
 }
 
+void State::updateSFMLEvents(sf::RenderTarget* target)
+{
+  sf::Event e;
+  while (window->pollEvent(e))
+  {
+    if (e.type == sf::Event::Closed)
+    {
+      window->close();
+    }
+  }
+}
+
 void State::updateMousePositions(sf::View* view)
 {
   mousePosScreen = sf::Mouse::getPosition();

@@ -31,13 +31,11 @@ Game::~Game()
 
 void Game::update()
 {
-  updateSFMLEvents();
-
   if (!this->states.empty())
   {
     if (this->window->hasFocus())
     {
-      this->states.top()->update(this->dt);
+      this->states.top()->update(this->dt, window);
 
       if (this->states.top()->getQuit())
       {
@@ -61,17 +59,6 @@ void Game::update()
 void Game::updateDt()
 {
   dt = dtClock.restart().asSeconds();
-}
-
-void Game::updateSFMLEvents()
-{
-  while (window->pollEvent(sfEvent))
-  {
-    if (sfEvent.type == sf::Event::Closed)
-    {
-      window->close();
-    }
-  }
 }
 
 void Game::run()

@@ -1,6 +1,5 @@
-Player1 30
-Player5 29
-Player2 20
-Player3 14
-Player4 4
-abcdef 0
+- 0
+- 0
+- 0
+- 0
+- 0

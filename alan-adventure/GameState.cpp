@@ -83,7 +83,7 @@ void GameState::initView()
 {
   view.setSize(800.f, 800.f);
   view.setCenter(320.f, 311.f);
-  view.zoom(.8f);
+  view.zoom(.9f);
 }
 
 void GameState::updateInput(const float& dt)
@@ -99,7 +99,6 @@ void GameState::updatePlayer(const float& dt)
 
 void GameState::updateCombatAndEnemies(const float& dt)
 {
-  std::cout << mousePosView.x << ' ' << mousePosView.y << '\n';
   if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
   {
     player->attack(mousePosView);
@@ -172,8 +171,9 @@ void GameState::updatePlayerInput(const float& dt)
     player->move(0.f, 1.f, dt);
 }
 
-void GameState::update(const float& dt)
+void GameState::update(const float& dt, sf::RenderTarget* target)
 {
+  updateSFMLEvents(target);
   updateMousePositions(&view);
   updateKeytime(dt);
   updateInput(dt);

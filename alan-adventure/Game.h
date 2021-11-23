@@ -26,7 +26,6 @@ public:
 	// Methods
 	void update();
 	void updateDt();
-	void updateSFMLEvents();
 	void run();
 	void render();
 };

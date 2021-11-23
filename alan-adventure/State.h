@@ -1,18 +1,5 @@
 #pragma once
 
-#include <iostream>
-#include <ctime>
-#include <cstdlib>
-#include <vector>
-#include <memory>
-#include <map>
-#include <stack>
-
-#include "SFML/Graphics.hpp"
-#include "SFML/Audio.hpp"
-#include "SFML/Window.hpp"
-#include "SFML/System.hpp"
-
 class State
 {
 protected:
@@ -44,8 +31,9 @@ public:
 
   virtual void updateMousePositions(sf::View* view = NULL);
   virtual void updateKeytime(const float& dt);
+  virtual void updateSFMLEvents(sf::RenderTarget* target);
   virtual void updateInput(const float& dt) = 0;
-  virtual void update(const float& dt) = 0;
+  virtual void update(const float& dt, sf::RenderTarget* target) = 0;
   virtual void render(sf::RenderTarget* target = nullptr) = 0;
 };
 

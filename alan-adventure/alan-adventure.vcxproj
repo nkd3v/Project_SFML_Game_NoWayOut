@@ -26,10 +26,12 @@
     <ClCompile Include="AttributeComponent.cpp" />
     <ClCompile Include="BigDemon.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemySpawner.cpp" />
     <ClCompile Include="EnemySpawnerTile.cpp" />
     <ClCompile Include="EnemySystem.cpp" />
+    <ClCompile Include="EnterNameState.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
@@ -43,7 +45,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerGUI.cpp" />
     <ClCompile Include="RegularTile.cpp" />
-    <ClCompile Include="ScoreBoard.cpp" />
+    <ClCompile Include="Scoreboard.cpp" />
     <ClCompile Include="ScoreboardState.cpp" />
     <ClCompile Include="Skelet.cpp" />
     <ClCompile Include="SkillComponent.cpp" />
@@ -51,6 +53,7 @@
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="VectorMath.cpp" />
@@ -64,10 +67,12 @@
     <ClInclude Include="AttributeComponent.h" />
     <ClInclude Include="BigDemon.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemySpawner.h" />
     <ClInclude Include="EnemySpawnerTile.h" />
     <ClInclude Include="EnemySystem.h" />
+    <ClInclude Include="EnterNameState.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
@@ -80,12 +85,14 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerGUI.h" />
     <ClInclude Include="RegularTile.h" />
-    <ClInclude Include="ScoreBoard.h" />
+    <ClInclude Include="Scoreboard.h" />
     <ClInclude Include="ScoreboardState.h" />
     <ClInclude Include="Skelet.h" />
     <ClInclude Include="SkillComponent.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="States.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TextBox.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="VectorMath.h" />

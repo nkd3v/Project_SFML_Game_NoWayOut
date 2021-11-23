@@ -1,11 +1,6 @@
 #pragma once
 
-#include <vector>
-#include <string>
-#include <map>
-
-#include "State.h"
-#include "ScoreBoard.h"
+#include "States.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "EnemySystem.h"
@@ -13,8 +8,6 @@
 #include "TileMap.h"
 #include "PlayerGUI.h"
 #include "HealthPotion.h"
-#include "MainMenuState.h"
-#include "ScoreboardState.h"
 
 class GameState :
     public State
@@ -70,7 +63,7 @@ public:
   void updateCombatAndEnemies(const float& dt);
   void updateCombat(Enemy* enemy, const int index, const float& dt);
   void updateEnemySpawner(const float& dt);
-  void update(const float& dt);
+  void update(const float& dt, sf::RenderTarget* target);
 
   void render(sf::RenderTarget* target = nullptr);
 };

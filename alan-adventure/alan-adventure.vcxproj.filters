@@ -81,7 +81,7 @@
     <ClCompile Include="PlayerGUI.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
-    <ClCompile Include="ScoreBoard.cpp">
+    <ClCompile Include="Scoreboard.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
@@ -150,6 +150,15 @@
     <ClCompile Include="EnemySpawner.cpp">
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="TextBox.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EnterNameState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -182,7 +191,7 @@
     <ClInclude Include="PlayerGUI.h">
       <Filter>GUI</Filter>
     </ClInclude>
-    <ClInclude Include="ScoreBoard.h">
+    <ClInclude Include="Scoreboard.h">
       <Filter>GUI</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
@@ -250,6 +259,18 @@
     </ClInclude>
     <ClInclude Include="EnemySpawner.h">
       <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="TextBox.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EnterNameState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="States.h">
+      <Filter>States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

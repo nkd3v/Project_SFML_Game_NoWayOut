@@ -23,7 +23,7 @@ private:
   std::string playerName;
 
 public:
-  ScoreboardState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states);
+  ScoreboardState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states, int code = 0);
   virtual ~ScoreboardState();
 
   void saveScore();

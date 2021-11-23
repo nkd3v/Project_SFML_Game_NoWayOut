@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "State.h"
 
-State::State(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states)
-  : window(window), states(states)
+State::State(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states, int code)
+  : window(window), states(states), code(code)
 {
   newState = NULL;
   quit = false;

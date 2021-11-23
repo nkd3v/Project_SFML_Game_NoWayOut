@@ -46,14 +46,14 @@ void Game::update()
         states.top()->endState();
         states.pop();
 
-        states.push(std::move(newState));
+        if (newState != NULL)
+          states.push(std::move(newState));
       }
     }
   }
-  else
-  {
+
+  if (states.empty())
     window->close();
-  }
 }
 
 void Game::updateDt()

@@ -12,6 +12,8 @@ protected:
   sf::Vector2f mousePosView;
   sf::Vector2i mousePosGrid;
 
+  int code;
+
   std::unique_ptr<State> newState;
   bool quit = false;
   bool paused;
@@ -19,7 +21,7 @@ protected:
   float keytimeMax;
 
 public:
-  State(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states);
+  State(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states, int code = 0);
   virtual ~State();
 
   std::unique_ptr<State>& getNewState();

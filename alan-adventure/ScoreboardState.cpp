@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "ScoreboardState.h"
 
-ScoreboardState::ScoreboardState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states)
-  : State(window, states)
+ScoreboardState::ScoreboardState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states, int code)
+  : State(window, states, code)
 {
   if (!font.loadFromFile("assets/Fonts/dpcomic.ttf"))
     throw "Error: Could not load font";
@@ -14,7 +14,16 @@ ScoreboardState::ScoreboardState(sf::RenderWindow* window, std::stack<std::uniqu
 
   text.setFont(font);
 
-  nameEntered = false;
+  if (code == 1)
+  {
+    nameEntered = false;
+  }
+  else
+  {
+    nameEntered = true;
+    scores = std::move(scoreboard.getScores());
+  }
+
   nameTextBox.setPosition(300, 200);
   nameTextBox.setCharacterSize(42);
 }
@@ -31,6 +40,12 @@ void ScoreboardState::saveScore()
 void ScoreboardState::updateInput(const float& dt)
 {
   if (!getKeytime()) return;
+
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+  {
+    newState = std::make_unique<MainMenuState>(window, states);
+    quit = true;
+  }
 
   if (!nameEntered)
   {

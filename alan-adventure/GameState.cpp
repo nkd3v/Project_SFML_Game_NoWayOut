@@ -146,18 +146,13 @@ void GameState::updateCombatAndEnemies(const float& dt)
       enemySystem->removeEnemy(index);
       continue;
     }
-    //else if (enemy->getDamageTimerDone())
-    //{
-    //  this->enemySystem->removeEnemy(index);
-    //  continue;
-    //}
 
     ++index;
   }
 
   if (player->getAttributeComponent()->hp <= 0)
   {
-    newState = std::make_unique<ScoreboardState>(window, states);
+    newState = std::make_unique<ScoreboardState>(window, states, 1);
     quit = true;
   }
 }

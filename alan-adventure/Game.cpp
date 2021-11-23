@@ -10,7 +10,7 @@ void Game::initWindow()
 
 void Game::initStates()
 {
-  states.emplace(std::make_unique<ScoreboardState>(window, states));
+  states.emplace(std::make_unique<MainMenuState>(window, states));
 }
 
 Game::Game()

@@ -139,6 +139,30 @@ void GameState::updatePlayer(const float& dt)
   player->update(dt);
 }
 
+void GameState::updateSFMLEvents(sf::RenderTarget* target)
+{
+  sf::Event e;
+
+  while (window->pollEvent(e))
+  {
+    if (e.type == sf::Event::Closed)
+    {
+      window->close();
+    }
+    if (e.type == sf::Event::KeyPressed)
+    {
+      if (e.key.code == sf::Keyboard::Escape)
+      {
+        window->close();
+      }
+      if (e.key.code == sf::Keyboard::P)
+      {
+        paused = !paused;
+      }
+    }
+  }
+}
+
 void GameState::updateItemsInteraction(const float& dt)
 {
   itemManager->update(dt);

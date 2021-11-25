@@ -10,3 +10,5 @@ add sound
 
 add sound
 potion make effect
+
+ใส่เลือด

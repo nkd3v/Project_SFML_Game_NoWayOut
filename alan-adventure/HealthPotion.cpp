@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "HealthPotion.h"
 
-HealthPotion::HealthPotion(float x, float y, sf::Texture& texture, Entity& player)
+HealthPotion::HealthPotion(float x, float y, sf::Texture& texture, Player& player)
   : Item(x, y, texture, player)
 {
   sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));

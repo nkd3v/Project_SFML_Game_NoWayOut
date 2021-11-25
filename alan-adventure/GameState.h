@@ -71,6 +71,7 @@ public:
   void updateInput(const float& dt);
   void updatePlayerInput(const float& dt);
   void updatePlayer(const float& dt);
+  void updateSFMLEvents(sf::RenderTarget* target);
   void updateItemsInteraction(const float& dt);
   void updateCombatAndEnemies(const float& dt);
   void updateCombat(Enemy* enemy, const int index, const float& dt);

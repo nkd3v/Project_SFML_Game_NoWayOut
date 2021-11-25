@@ -9,10 +9,10 @@ protected:
   sf::Sprite sprite;
   sf::Vector2f pos;
   sf::Texture texture;
-  Entity& player;
+  Player& player;
 
 public:
-  Item(float x, float y, sf::Texture& texture, Entity& player);
+  Item(float x, float y, sf::Texture& texture, Player& player);
   virtual ~Item();
 
   const sf::FloatRect& getGlobalBounds() const;

@@ -8,7 +8,7 @@ class InvisiblePotion
 private:
 
 public:
-  InvisiblePotion(float x, float y, sf::Texture &texture, Entity &player);
+  InvisiblePotion(float x, float y, sf::Texture &texture, Player &player);
   ~InvisiblePotion();
 
   void activate();

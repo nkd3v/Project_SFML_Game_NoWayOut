@@ -39,32 +39,6 @@ void ScoreboardState::saveScore()
 
 void ScoreboardState::updateInput(const float& dt)
 {
-  if (!getKeytime()) return;
-
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-  {
-    newState = std::make_unique<MainMenuState>(window, states);
-    quit = true;
-  }
-
-  if (!nameEntered)
-  {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
-    {
-      playerName = std::move(nameTextBox.getString());
-      nameEntered = true;
-      saveScore();
-      scores = std::move(scoreboard.getScores());
-    }
-  }
-  else
-  {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
-    {
-      newState = std::make_unique<MainMenuState>(window, states);
-      quit = true;
-    }
-  }
 }
 
 void ScoreboardState::updateSFMLEvents(sf::RenderTarget* target)
@@ -75,9 +49,39 @@ void ScoreboardState::updateSFMLEvents(sf::RenderTarget* target)
     if (e.type == sf::Event::Closed)
       window->close();
 
+    if (e.type == sf::Event::KeyPressed)
+    {
+      if (e.key.code == sf::Keyboard::Escape)
+      {
+        newState = std::make_unique<MainMenuState>(window, states);
+        endState();
+      }
+
+      if (!nameEntered)
+      {
+        if (e.key.code == sf::Keyboard::Enter)
+        {
+          playerName = std::move(nameTextBox.getString());
+          nameEntered = true;
+          saveScore();
+          scores = std::move(scoreboard.getScores());
+        }
+      }
+      else
+      {
+        if (e.key.code == sf::Keyboard::Enter)
+        {
+          newState = std::make_unique<MainMenuState>(window, states);
+          endState();
+        }
+      }
+    }
+
     if (!nameEntered)
+    {
       if (e.type == sf::Event::TextEntered)
         nameTextBox.update(e.text.unicode);
+    }
   }
 }
 

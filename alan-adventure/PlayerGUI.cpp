@@ -81,7 +81,7 @@ void PlayerGUI::renderHPBar(sf::RenderTarget* target)
 
 void PlayerGUI::renderScorePanel(sf::RenderTarget* target)
 {
-  sf::Vector2f scorePos = target->mapPixelToCoords(sf::Vector2i(750, 10));
+  sf::Vector2f scorePos = target->mapPixelToCoords(sf::Vector2i(700, 10));
   scoreText.setPosition(scorePos);
 
   target->draw(scoreText);

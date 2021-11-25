@@ -8,7 +8,7 @@ class HealthPotion
 private:
 
 public:
-  HealthPotion(float x, float y, sf::Texture &texture, Entity &player);
+  HealthPotion(float x, float y, sf::Texture &texture, Player &player);
   ~HealthPotion();
 
   void activate();

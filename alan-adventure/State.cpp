@@ -50,6 +50,7 @@ void State::unpauseState()
 void State::updateSFMLEvents(sf::RenderTarget* target)
 {
   sf::Event e;
+
   while (window->pollEvent(e))
   {
     if (e.type == sf::Event::Closed)
@@ -61,10 +62,6 @@ void State::updateSFMLEvents(sf::RenderTarget* target)
       if (e.key.code == sf::Keyboard::Escape)
       {
         window->close();
-      }
-      if (e.key.code == sf::Keyboard::P)
-      {
-        paused = !paused;
       }
     }
   }

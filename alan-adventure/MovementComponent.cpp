@@ -17,6 +17,11 @@ MovementComponent::~MovementComponent()
 {
 }
 
+void MovementComponent::setMaxVelocity(float newVelocity)
+{
+	maxVelocity = newVelocity;
+}
+
 const float& MovementComponent::getMaxVelocity() const
 {
   return maxVelocity;

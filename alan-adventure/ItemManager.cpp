@@ -2,7 +2,7 @@
 #include "ItemManager.h"
 
 ItemManager::ItemManager(std::vector<Item*>& items,
-	std::map<std::string, sf::Texture>& textures, Entity& player)
+	std::map<std::string, sf::Texture>& textures, Player& player)
 	: textures(textures), items(items), player(player)
 {
 	if (!itemPickBuffer.loadFromFile("assets/Sounds/item-pick.wav"))

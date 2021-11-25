@@ -5,7 +5,7 @@ Weapon::Weapon()
 {
   shootCooldown = .5f;
   defaultCooldown = .5f;
-  rapidCooldown = .2f;
+  rapidCooldown = .1f;
   rapidFireCountdown = 0.f;
   lastShootTime = .0f;
   firstAttack = false;
@@ -47,9 +47,9 @@ bool Weapon::canShoot()
   lastShootTime = clock.getElapsedTime().asSeconds();
 
   if (rapidFireCountdown > .0f)
-    shootCooldown = defaultCooldown;
-  else
     shootCooldown = rapidCooldown;
+  else
+    shootCooldown = defaultCooldown;
 
   if (lastShootTime > shootCooldown || firstAttack)
   {

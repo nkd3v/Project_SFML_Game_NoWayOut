@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Item.h"
 
-Item::Item(float x, float y, sf::Texture& texture, Entity& player)
+Item::Item(float x, float y, sf::Texture& texture, Player& player)
   : pos(sf::Vector2f(x, y)), player(player)
 {
   sprite.setPosition(pos.x, pos.y);

@@ -1,5 +1,5 @@
-abctest 300
-lucky 3
-aaaaaaaaaaaa 1
---- 0
---- 0
+Player1 2050
+Stevee 300
+M 50
+A 50
+GG 0

@@ -8,7 +8,7 @@ class SwiftPotion
 private:
 
 public:
-  SwiftPotion(float x, float y, sf::Texture &texture, Entity &player);
+  SwiftPotion(float x, float y, sf::Texture &texture, Player &player);
   ~SwiftPotion();
 
   void activate();

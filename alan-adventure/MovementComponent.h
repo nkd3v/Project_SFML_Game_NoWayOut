@@ -26,6 +26,8 @@ public:
     float maxVelocity, float acceleration, float deceleration);
   virtual ~MovementComponent();
 
+  void setMaxVelocity(float newVelocity);
+
   const float& getMaxVelocity() const;
   const sf::Vector2f& getVelocity() const;
 

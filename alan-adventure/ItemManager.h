@@ -12,14 +12,14 @@ class ItemManager
 private:
 	std::map<std::string, sf::Texture>& textures;
 	std::vector<Item*>& items;
-	Entity& player;
+	Player& player;
 
 	sf::SoundBuffer itemPickBuffer;
 	sf::Sound itemPickSound;
 
 public:
 	ItemManager(std::vector<Item*>& items,
-		std::map<std::string, sf::Texture>& textures, Entity& player);
+		std::map<std::string, sf::Texture>& textures, Player& player);
 	virtual ~ItemManager();
 
 	int getItemCount();

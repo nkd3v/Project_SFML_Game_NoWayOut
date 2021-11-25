@@ -3,7 +3,7 @@
 
 void OrcWarrior::initVariables()
 {
-
+	gainScore = 100;
 }
 
 void OrcWarrior::initAnimations()

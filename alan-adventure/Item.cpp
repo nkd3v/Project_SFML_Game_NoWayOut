@@ -19,7 +19,7 @@ const sf::FloatRect& Item::getGlobalBounds() const
 
 void Item::update(const float& dt)
 {
-  sprite.setPosition(pos.x, pos.y + sin(dt));
+  sprite.setPosition(pos.x, pos.y + 2*sin(dt));
 }
 
 void Item::render(sf::RenderTarget& target)

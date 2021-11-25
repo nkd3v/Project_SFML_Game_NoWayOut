@@ -62,6 +62,10 @@ void State::updateSFMLEvents(sf::RenderTarget* target)
       {
         window->close();
       }
+      if (e.key.code == sf::Keyboard::P)
+      {
+        paused = !paused;
+      }
     }
   }
 }

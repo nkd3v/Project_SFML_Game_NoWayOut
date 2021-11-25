@@ -61,6 +61,7 @@ void ItemManager::update(const float& dt)
 		if ((*it)->getGlobalBounds().intersects(player.getGlobalBounds()))
 		{
 			itemPickSound.play();
+			player.getAttributeComponent()->score += 20;
 			(*it)->activate();
 			it = items.erase(it);
 		}

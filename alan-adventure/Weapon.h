@@ -5,6 +5,8 @@
 class Weapon
 {
 private:
+	float defaultCooldown;
+	float rapidCooldown;
 	float shootCooldown;
 	float lastShootTime;
 	bool firstAttack;
@@ -15,6 +17,8 @@ private:
 	sf::SoundBuffer shootArrowBuffer;
 	sf::Sound shootArrowSound;
 
+	float rapidFireCountdown;
+
 	bool canShoot();
 
 public:
@@ -24,6 +28,7 @@ public:
 	const std::vector<std::unique_ptr<Bullet>>& getBullets() const;
 
 	void setCooldown(float cooldown);
+	void activateRapidFire(float time);
 	void shoot(sf::Vector2f pos, float angle);
 
 	void update(const float& dt);

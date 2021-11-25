@@ -10,7 +10,6 @@ class Player :
 	public Entity
 {
 private:
-	Weapon* weapon;
 
 	sf::Clock damageTimer;
 	sf::Int32 damageTimerMax;
@@ -24,7 +23,8 @@ public:
 
 	AttributeComponent* getAttributeComponent();
 
-	const Weapon* getWeapon() const;
+	Weapon* weapon;
+	Weapon* getWeapon();
 
 	const bool getDamageTimer();
 

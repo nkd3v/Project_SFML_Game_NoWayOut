@@ -3,7 +3,7 @@
 
 void BigDemon::initVariables()
 {
-
+	gainScore = 200;
 }
 
 void BigDemon::initAnimations()

@@ -8,7 +8,7 @@ class Enemy :
 	public Entity
 {
 protected:
-	unsigned gainExp;
+	unsigned gainScore;
 	sf::Clock damageTimer;
 	sf::Int32 damageTimerMax;
 
@@ -19,7 +19,7 @@ public:
 	Enemy();
 	virtual ~Enemy();
 
-	const unsigned& getGainExp() const;
+	const unsigned& getGainScore() const;
 	const bool getDamageTimerDone() const;
 
 	void resetDamageTimer();

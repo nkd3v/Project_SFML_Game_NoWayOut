@@ -3,6 +3,7 @@
 
 void Skelet::initVariables()
 {
+	gainScore = 50;
 }
 
 void Skelet::initAnimations()

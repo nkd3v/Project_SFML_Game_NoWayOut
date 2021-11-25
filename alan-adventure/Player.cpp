@@ -40,7 +40,7 @@ AttributeComponent* Player::getAttributeComponent()
 	return this->attributeComponent;
 }
 
-const Weapon* Player::getWeapon() const
+Weapon* Player::getWeapon()
 {
 	return weapon;
 }

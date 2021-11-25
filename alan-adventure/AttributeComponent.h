@@ -19,6 +19,9 @@ public:
 	void loseHP(const int hp);
 	void gainHP(const int hp);
 
+	void setScore(int score);
+	int getScore();
+
 	const bool isDead() const;
 
 	void update();

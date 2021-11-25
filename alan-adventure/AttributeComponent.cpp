@@ -33,6 +33,16 @@ const bool AttributeComponent::isDead() const
 	return this->hp <= 0;
 }
 
+void AttributeComponent::setScore(int score)
+{
+	this->score = score;
+}
+
+int AttributeComponent::getScore()
+{
+	return score;
+}
+
 void AttributeComponent::update()
 {
 }

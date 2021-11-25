@@ -4,6 +4,9 @@
 Weapon::Weapon()
 {
   shootCooldown = .5f;
+  defaultCooldown = .5f;
+  rapidCooldown = .2f;
+  rapidFireCountdown = 0.f;
   lastShootTime = .0f;
   firstAttack = false;
 
@@ -18,6 +21,11 @@ Weapon::~Weapon()
 void Weapon::setCooldown(float cooldown)
 {
   shootCooldown = cooldown;
+}
+
+void Weapon::activateRapidFire(float time)
+{
+  rapidFireCountdown = time;
 }
 
 void Weapon::shoot(sf::Vector2f pos, float angle)
@@ -38,6 +46,11 @@ bool Weapon::canShoot()
 {
   lastShootTime = clock.getElapsedTime().asSeconds();
 
+  if (rapidFireCountdown > .0f)
+    shootCooldown = defaultCooldown;
+  else
+    shootCooldown = rapidCooldown;
+
   if (lastShootTime > shootCooldown || firstAttack)
   {
     firstAttack = false;
@@ -52,6 +65,10 @@ bool Weapon::canShoot()
 
 void Weapon::update(const float& dt)
 {
+  rapidFireCountdown -= dt;
+  if (rapidFireCountdown < 0.f)
+    rapidFireCountdown = 0.f;
+
   for (auto it = bullets.begin(); it != bullets.end();)
   {
     if ((*it)->endofLife())

@@ -3,7 +3,7 @@
 
 void Enemy::initVariables()
 {
-	this->gainExp = 10;
+	this->gainScore = 10;
 	this->damageTimerMax = 1000;
 }
 
@@ -23,9 +23,9 @@ Enemy::~Enemy()
 
 }
 
-const unsigned& Enemy::getGainExp() const
+const unsigned& Enemy::getGainScore() const
 {
-	return this->gainExp;
+	return this->gainScore;
 }
 
 const bool Enemy::getDamageTimerDone() const
@@ -61,10 +61,7 @@ const AttributeComponent* Enemy::getAttributeComp() const
 	if (this->attributeComponent)
 		return this->attributeComponent;
 	else
-	{
-		std::cout << "ERROR::ENEMY::ATTRIBUTECOMPONENT IS NOT INITIALIZED" << "\n";
 		return nullptr;
-	}
 }
 
 void Enemy::update(const float& dt)

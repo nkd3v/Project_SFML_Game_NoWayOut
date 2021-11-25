@@ -164,7 +164,7 @@ void GameState::updateCombatAndEnemies(const float& dt)
         itemManager->createItem(rand() % 4, enemy->getPosition().x, enemy->getPosition().y);
 
       enemyKillSound.play();
-      player->getAttributeComponent()->score++;
+      player->getAttributeComponent()->score += enemy->getGainScore();
       enemySystem->removeEnemy(index);
       continue;
     }
@@ -204,20 +204,18 @@ void GameState::updateCombat(Enemy* enemy, const int index, const float& dt)
 
 void GameState::updateEnemySpawner(const float& dt)
 {
-  std::cout << mousePosView.x << ' ' << mousePosView.y << '\n';
-
   int score = player->getAttributeComponent()->score;
   enemySpawner->update(dt);
 
-  if (score >= 0 && score < 10)
+  if (score >= 0 && score < 300)
     enemySpawner->allowEnemies = { SKELET };
-  else if (score >= 10 && score < 20)
+  else if (score >= 300 && score < 2000)
     enemySpawner->allowEnemies = { SKELET, ORC_WARRIOR };
-  else if (score >= 30)
+  else if (score >= 2000)
     enemySpawner->allowEnemies = { SKELET, ORC_WARRIOR, BIG_DEMON };
 
-  if (1.f - score / 100.f >= 0.2f)
-    enemySpawner->spawnFactor = 1.f - score / 100.f;
+  if (1.f - score / 10000.f >= 0.2f)
+    enemySpawner->spawnFactor = 1.f - score / 10000.f;
   else
     enemySpawner->spawnFactor = 0.2f;
 }

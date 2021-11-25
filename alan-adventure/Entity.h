@@ -6,11 +6,6 @@
 #include "AnimationComponent.h"
 #include "AttributeComponent.h"
 
-class HitboxComponent;
-class MovementComponent;
-class AnimationComponent;
-class AttributeComponent;
-
 class Entity
 {
 private:
@@ -36,7 +31,6 @@ public:
 	void createMovementComponent(const float maxVelocity, const float acceleration, const float deceleration);
 	void createAnimationComponent(sf::Texture& texture_sheet);
 	void createAttributeComponent(int hpMax = 4, int damageMin = 1, int damageMax = 2, int moveSpeed = 1, int shootSpeed = 1);
-	void createAIComponent();
 
 	virtual MovementComponent* getMovementComponent();
 	virtual AnimationComponent* getAnimationComponent();

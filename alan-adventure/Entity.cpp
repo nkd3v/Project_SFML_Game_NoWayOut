@@ -49,11 +49,6 @@ void Entity::createAttributeComponent(int hpMax, int damageMin, int damageMax, i
 	this->attributeComponent = new AttributeComponent(hpMax, damageMin, damageMax, moveSpeed, shootSpeed);
 }
 
-void Entity::createAIComponent()
-{
-
-}
-
 MovementComponent* Entity::getMovementComponent()
 {
 	return this->movementComponent;

@@ -141,7 +141,7 @@
     <ClCompile Include="SwiftPotion.cpp">
       <Filter>Items</Filter>
     </ClCompile>
-    <ClCompile Include="AIFollow.cpp">
+    <ClCompile Include="AI.cpp">
       <Filter>AI</Filter>
     </ClCompile>
   </ItemGroup>
@@ -245,7 +245,7 @@
     <ClInclude Include="SwiftPotion.h">
       <Filter>Items</Filter>
     </ClInclude>
-    <ClInclude Include="AIFollow.h">
+    <ClInclude Include="AI.h">
       <Filter>AI</Filter>
     </ClInclude>
   </ItemGroup>

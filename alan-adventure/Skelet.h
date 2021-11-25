@@ -10,7 +10,7 @@ private:
 	void initVariables();
 	void initAnimations();
 
-	AIFollow* follow;
+	AI* follow;
 
 public:
 	Skelet(float x, float y, sf::Texture& texture_sheet, Entity& player);

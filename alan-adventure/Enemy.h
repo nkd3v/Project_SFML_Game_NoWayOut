@@ -2,7 +2,7 @@
 #define ENEMY_H
 
 #include "Entity.h"
-#include "AIFollow.h"
+#include "AI.h"
 
 class Enemy :
 	public Entity

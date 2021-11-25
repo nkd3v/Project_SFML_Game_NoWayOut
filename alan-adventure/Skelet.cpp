@@ -26,7 +26,7 @@ Skelet::Skelet(float x, float y, sf::Texture& texture_sheet, Entity& player)
 	this->setPosition(x, y);
 	this->initAnimations();
 
-	this->follow = new AIFollow(*this, player);
+	this->follow = new AI(*this, player);
 }
 
 Skelet::~Skelet()

@@ -27,7 +27,7 @@ OrcWarrior::OrcWarrior(float x, float y, sf::Texture& texture_sheet, Entity& pla
 	this->setPosition(x, y);
 	this->initAnimations();
 
-	this->follow = new AIFollow(*this, player);
+	this->follow = new AI(*this, player);
 }
 
 

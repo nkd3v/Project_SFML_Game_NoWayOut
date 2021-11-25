@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AIComponent.cpp" />
-    <ClCompile Include="AIFollow.cpp" />
+    <ClCompile Include="AI.cpp" />
     <ClCompile Include="AnimationComponent.cpp" />
     <ClCompile Include="AttributeComponent.cpp" />
     <ClCompile Include="BigDemon.cpp" />
@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AIComponent.h" />
-    <ClInclude Include="AIFollow.h" />
+    <ClInclude Include="AI.h" />
     <ClInclude Include="AnimationComponent.h" />
     <ClInclude Include="AttributeComponent.h" />
     <ClInclude Include="BigDemon.h" />

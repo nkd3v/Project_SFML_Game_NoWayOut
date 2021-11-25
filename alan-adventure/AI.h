@@ -2,15 +2,15 @@
 
 #include "Enemy.h"
 
-class AIFollow
+class AI
 {
 private:
   Entity& self;
   Entity& entity;
 
 public:
-  AIFollow(Entity& self, Entity& entity);
-  ~AIFollow();
+  AI(Entity& self, Entity& entity);
+  ~AI();
 
   void update(const float& dt);
 };

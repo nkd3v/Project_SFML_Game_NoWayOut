@@ -12,7 +12,7 @@ private:
 
 	sf::RectangleShape hpBar;
 
-	AIFollow* follow;
+	AI* follow;
 
 public:
 	OrcWarrior(float x, float y, sf::Texture& texture_sheet, Entity& player);

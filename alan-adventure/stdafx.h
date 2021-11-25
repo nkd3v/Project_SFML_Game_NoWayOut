@@ -29,6 +29,7 @@
 #include <SFML\Network.hpp>
 
 #include "VectorMath.h"
+#include "AssetManager.h"
 
 #endif
 

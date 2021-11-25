@@ -18,7 +18,6 @@ private:
   unsigned int selectedOption;
   int maxOptions;
 
-  sf::SoundBuffer bgMusicBuffer;
   sf::Sound bgMusic;
 
 public:

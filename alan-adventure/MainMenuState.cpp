@@ -4,28 +4,22 @@
 MainMenuState::MainMenuState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states)
   : State(window, states)
 {
-  if (!font.loadFromFile("assets/Fonts/dpcomic.ttf"))
-    throw("Error: Could not load font");
-
   if (!bgTexture.loadFromFile("assets/Background/main-menu-bg.png"))
     throw("Error: Could not load background");
 
-  if (!bgMusicBuffer.loadFromFile("assets/Sounds/Music/title-screen.wav"))
-    throw "Error: Could not load title screen music.";
-
-  bgMusic.setBuffer(bgMusicBuffer);
+  bgMusic.setBuffer(am.getSoundBuffer("TITLE_SCREEN"));
   bgMusic.play();
 
   bg.setTexture(bgTexture);
 
-  titleText.setFont(font);
+  titleText.setFont(am.getFont("DPCOMIC"));
   titleText.setFillColor(sf::Color::Black);
   titleText.setOutlineThickness(2.f);
   titleText.setOutlineColor(sf::Color::White);
   titleText.setCharacterSize(96);
   titleText.setPosition(170.f, 60.f);
 
-  nameText.setFont(font);
+  nameText.setFont(am.getFont("DPCOMIC"));
   nameText.setFillColor(sf::Color::Black);
   nameText.setOutlineThickness(2.f);
   nameText.setOutlineColor(sf::Color::White);
@@ -47,7 +41,7 @@ void MainMenuState::initMenu()
 
   for (auto& elm : menu)
   {
-    elm.setFont(font);
+    elm.setFont(am.getFont("DPCOMIC"));
     elm.setCharacterSize(42);
   }
 

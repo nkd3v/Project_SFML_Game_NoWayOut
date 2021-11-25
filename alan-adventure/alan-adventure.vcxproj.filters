@@ -138,6 +138,9 @@
     <ClCompile Include="AI.cpp">
       <Filter>AI</Filter>
     </ClCompile>
+    <ClCompile Include="AssetManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -235,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="AI.h">
       <Filter>AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetManager.h">
+      <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -17,6 +17,7 @@ private:
 	// Initialization
 	void initWindow();
 	void initStates();
+	void initResources();
 
 public:
 	// Constructor and destructor

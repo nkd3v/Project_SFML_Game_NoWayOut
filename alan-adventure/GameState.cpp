@@ -67,24 +67,12 @@ void GameState::initTextures()
 
 void GameState::initSound()
 {
-  if (!bgMusicBuffer.loadFromFile("assets/Sounds/Music/overworld-night.wav"))
-    throw "Error: Could not load title screen music.";
-
-  if (!enemyHitBuffer.loadFromFile("assets/Sounds/enemy-hit.wav"))
-    throw "Error: Could not load title screen music.";
-
-  if (!enemyKillBuffer.loadFromFile("assets/Sounds/enemy-kill.wav"))
-    throw "Error: Could not load title screen music.";
-
-  if (!playerHitBuffer.loadFromFile("assets/Sounds/player-hit.wav"))
-    throw "Error: Could not load title screen music.";
-
-  bgMusic.setBuffer(bgMusicBuffer);
+  bgMusic.setBuffer(am.getSoundBuffer("OVERWORLD_NIGHT"));
   bgMusic.play();
 
-  enemyHitSound.setBuffer(enemyHitBuffer);
-  enemyKillSound.setBuffer(enemyKillBuffer);
-  playerHitSound.setBuffer(playerHitBuffer);
+  enemyHitSound.setBuffer(am.getSoundBuffer("ENEMY_HIT"));
+  enemyKillSound.setBuffer(am.getSoundBuffer("ENEMY_KILL"));
+  playerHitSound.setBuffer(am.getSoundBuffer("PLAYER_HIT"));
 }
 
 void GameState::initPlayers()

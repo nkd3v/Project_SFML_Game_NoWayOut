@@ -5,7 +5,10 @@ ItemManager::ItemManager(std::vector<Item*>& items,
 	std::map<std::string, sf::Texture>& textures, Entity& player)
 	: textures(textures), items(items), player(player)
 {
+	if (!itemPickBuffer.loadFromFile("assets/Sounds/item-pick.wav"))
+		throw "Error: Could not load title screen music.";
 
+	itemPickSound.setBuffer(itemPickBuffer);
 }
 
 ItemManager::~ItemManager()
@@ -57,6 +60,7 @@ void ItemManager::update(const float& dt)
 	{
 		if ((*it)->getGlobalBounds().intersects(player.getGlobalBounds()))
 		{
+			itemPickSound.play();
 			(*it)->activate();
 			it = items.erase(it);
 		}

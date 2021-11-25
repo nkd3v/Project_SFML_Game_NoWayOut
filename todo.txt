@@ -7,3 +7,6 @@ enemy attack in many ways
 fix button
 pause menu
 add sound
+
+add sound
+potion make effect

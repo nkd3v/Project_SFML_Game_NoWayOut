@@ -41,9 +41,22 @@ private:
   sf::Sprite map;
   sf::Texture mapTexture;
 
+  sf::SoundBuffer bgMusicBuffer;
+  sf::Sound bgMusic;
+
+  sf::SoundBuffer enemyHitBuffer;
+  sf::Sound enemyHitSound;
+
+  sf::SoundBuffer enemyKillBuffer;
+  sf::Sound enemyKillSound;
+
+  sf::SoundBuffer playerHitBuffer;
+  sf::Sound playerHitSound;
+
   void initTextures();
   void initView();
 
+  void initSound();
   void initPlayers();
   void initPlayerGUI();
   void initEnemySystem();

@@ -26,13 +26,17 @@ private:
 	std::vector<std::unique_ptr<SpawnPoint>> spawnPoints;
 
 	sf::Clock clock;
-	int spawnMax;
 
 public:
 	EnemySpawner(EnemySystem& enemySystem);
 	~EnemySpawner();
 
+	int spawnMax;
+	std::vector<EnemyTypes> allowEnemies;
+	float spawnFactor;
+
 	void addSpawner(sf::Vector2f pos, float minTime, float maxTime);
+	void changeDifficulty(int spawnMax, std::vector<EnemyTypes> allowEnemies, float spawnFactor);
 	void update(const float& dt);
 };
 

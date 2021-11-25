@@ -17,6 +17,9 @@ private:
   unsigned int selectedOption;
   int maxOptions;
 
+  sf::SoundBuffer bgMusicBuffer;
+  sf::Sound bgMusic;
+
 public:
   MainMenuState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states);
   virtual ~MainMenuState();

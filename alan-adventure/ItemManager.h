@@ -14,17 +14,16 @@ private:
 	std::vector<Item*>& items;
 	Entity& player;
 
+	sf::SoundBuffer itemPickBuffer;
+	sf::Sound itemPickSound;
+
 public:
 	ItemManager(std::vector<Item*>& items,
 		std::map<std::string, sf::Texture>& textures, Entity& player);
 	virtual ~ItemManager();
 
-	//Accessors
 	int getItemCount();
 
-	//Modifiers
-
-	//Functions
 	void createItem(const short type, const float xPos, const float yPos);
 	void removeItem(const int index);
 

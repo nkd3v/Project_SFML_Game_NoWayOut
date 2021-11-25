@@ -12,6 +12,9 @@ private:
 	sf::Clock clock;
 	std::vector<std::unique_ptr<Bullet>> bullets;
 
+	sf::SoundBuffer shootArrowBuffer;
+	sf::Sound shootArrowSound;
+
 	bool canShoot();
 
 public:

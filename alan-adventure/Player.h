@@ -10,41 +10,26 @@ class Player :
 	public Entity
 {
 private:
-	//Variables
-
 	Weapon* weapon;
-
-	bool initAttack;
-	bool attacking;
 
 	sf::Clock damageTimer;
 	sf::Int32 damageTimerMax;
 
-	//Initializer functions
 	void initVariables();
 	void initAnimations();
-	//void initInventory();
 
 public:
 	Player(float x, float y, sf::Texture& texture_sheet);
 	virtual ~Player();
 
-	//Accessors
 	AttributeComponent* getAttributeComponent();
 
-	//const std::string toStringCharacterTab() const;
-	const bool& getInitAttack() const;
 	const Weapon* getWeapon() const;
 
 	const bool getDamageTimer();
 
-	//const unsigned getDamage() const;
-
-	//Modifier
-	void setInitAttack(const bool initAttack);
 	void attack(sf::Vector2f mousePos);
 
-	//Functions
 	void loseHP(const int hp);
 	void gainHP(const int hp);
 

@@ -16,28 +16,15 @@ void BigDemon::initAnimations()
 	this->animationComponent->addAnimation("WALK_UP",    11.f, 0, 2, 3, 2, 64, 64);
 }
 
-void BigDemon::initAI()
-{
-
-}
-
-void BigDemon::initGUI()
-{
-	this->hpBar.setFillColor(sf::Color::Red);
-	this->hpBar.setSize(sf::Vector2f(60.f, 10.f));
-	this->hpBar.setPosition(this->sprite.getPosition());
-}
-
 //Constructors / Destructors
 BigDemon::BigDemon(float x, float y, sf::Texture& texture_sheet, Entity& player)
 {
 	this->initVariables();
-	this->initGUI();
 
 	this->createHitboxComponent(this->sprite, 8.f, 0.f, 48.f, 64.f);
 	this->createMovementComponent(70.f, 800.f, 500.f);
 	this->createAnimationComponent(texture_sheet);
-	this->createAttributeComponent(1);
+	this->createAttributeComponent(10);
 
 	this->setPosition(x, y);
 	this->initAnimations();

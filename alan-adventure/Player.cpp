@@ -2,12 +2,8 @@
 
 #include "Player.h"
 
-//Initializer functions
 void Player::initVariables()
 {
-	this->initAttack = false;
-	this->attacking = false;
-
 	this->damageTimerMax = 500;
 
 	weapon = new Weapon();
@@ -22,7 +18,6 @@ void Player::initAnimations()
 	this->animationComponent->addAnimation("WALK_UP",    11.f, 0, 2, 3, 2, 32, 64);
 }
 
-//Constructors / Destructors
 Player::Player(float x, float y, sf::Texture& texture_sheet)
 {
 	initVariables();
@@ -31,7 +26,6 @@ Player::Player(float x, float y, sf::Texture& texture_sheet)
 	createMovementComponent(140.f, 1400.f, 1000.f);
 	createAnimationComponent(texture_sheet);
 	createAttributeComponent(8, 1, 2, 1, 1);
-	createSkillComponent();
 
 	setPosition(x, y);
 	initAnimations();
@@ -41,15 +35,9 @@ Player::~Player()
 {
 }
 
-//Accessors
 AttributeComponent* Player::getAttributeComponent()
 {
 	return this->attributeComponent;
-}
-
-const bool& Player::getInitAttack() const
-{
-	return this->initAttack;
 }
 
 const Weapon* Player::getWeapon() const
@@ -68,17 +56,11 @@ const bool Player::getDamageTimer()
 	return false;
 }
 
-void Player::setInitAttack(const bool initAttack)
-{
-	this->initAttack = initAttack;
-}
-
 void Player::attack(sf::Vector2f mousePos)
 {
 	weapon->shoot(getPosition(), atan2(mousePos.y - getPosition().y, mousePos.x - getPosition().x));
 }
 
-//Functions
 void Player::loseHP(const int hp)
 {
 	this->attributeComponent->loseHP(hp);
@@ -91,10 +73,6 @@ void Player::gainHP(const int hp)
 
 void Player::updateAnimation(const float& dt)
 {
-	if (this->attacking)
-	{
-
-	}
 	if (this->movementComponent->getState(IDLE))
 	{
 		this->animationComponent->play("IDLE", dt);

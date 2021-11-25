@@ -4,6 +4,7 @@
 GameState::GameState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states)
   : State(window, states)
 {
+  initSound();
   initTextures();
   initMap();
   initPlayers();
@@ -62,6 +63,28 @@ void GameState::initTextures()
   {
     throw "Error: Loading INVISIBLE potion texture failed!";
   }
+}
+
+void GameState::initSound()
+{
+  if (!bgMusicBuffer.loadFromFile("assets/Sounds/Music/overworld-night.wav"))
+    throw "Error: Could not load title screen music.";
+
+  if (!enemyHitBuffer.loadFromFile("assets/Sounds/enemy-hit.wav"))
+    throw "Error: Could not load title screen music.";
+
+  if (!enemyKillBuffer.loadFromFile("assets/Sounds/enemy-kill.wav"))
+    throw "Error: Could not load title screen music.";
+
+  if (!playerHitBuffer.loadFromFile("assets/Sounds/player-hit.wav"))
+    throw "Error: Could not load title screen music.";
+
+  bgMusic.setBuffer(bgMusicBuffer);
+  bgMusic.play();
+
+  enemyHitSound.setBuffer(enemyHitBuffer);
+  enemyKillSound.setBuffer(enemyKillBuffer);
+  playerHitSound.setBuffer(playerHitBuffer);
 }
 
 void GameState::initPlayers()
@@ -137,6 +160,10 @@ void GameState::updateCombatAndEnemies(const float& dt)
 
     if (enemy->isDead())
     {
+      if (rand() % 100 < 30)
+        itemManager->createItem(rand() % 4, enemy->getPosition().x, enemy->getPosition().y);
+
+      enemyKillSound.play();
       player->getAttributeComponent()->score++;
       enemySystem->removeEnemy(index);
       continue;
@@ -158,17 +185,18 @@ void GameState::updateCombat(Enemy* enemy, const int index, const float& dt)
   {
     if (bullet->getGlobalBounds().intersects(enemy->getGlobalBounds()))
     {
+      enemyHitSound.play();
       int dmg = 1;
       enemy->loseHP(dmg);
       enemy->resetDamageTimer();
       bullet->kill();
-      itemManager->createItem(rand() % 4, enemy->getPosition().x, enemy->getPosition().y);
       continue;
     }
   }
 
   if (enemy->getGlobalBounds().intersects(player->getGlobalBounds()) && player->getDamageTimer())
   {
+    playerHitSound.play();
     int dmg = enemy->getAttributeComp()->damageMax;
     player->loseHP(dmg);
   }
@@ -176,18 +204,33 @@ void GameState::updateCombat(Enemy* enemy, const int index, const float& dt)
 
 void GameState::updateEnemySpawner(const float& dt)
 {
+  std::cout << mousePosView.x << ' ' << mousePosView.y << '\n';
+
+  int score = player->getAttributeComponent()->score;
   enemySpawner->update(dt);
+
+  if (score >= 0 && score < 10)
+    enemySpawner->allowEnemies = { SKELET };
+  else if (score >= 10 && score < 20)
+    enemySpawner->allowEnemies = { SKELET, ORC_WARRIOR };
+  else if (score >= 30)
+    enemySpawner->allowEnemies = { SKELET, ORC_WARRIOR, BIG_DEMON };
+
+  if (1.f - score / 100.f >= 0.2f)
+    enemySpawner->spawnFactor = 1.f - score / 100.f;
+  else
+    enemySpawner->spawnFactor = 0.2f;
 }
 
 void GameState::updatePlayerInput(const float& dt)
 {
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && player->getPosition().x > 15)
     player->move(-1.f, 0.f, dt);
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player->getPosition().x < 584)
     player->move(1.f, 0.f, dt);
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && player->getPosition().y > 65)
     player->move(0.f, -1.f, dt);
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && player->getPosition().y < 508)
     player->move(0.f, 1.f, dt);
 }
 

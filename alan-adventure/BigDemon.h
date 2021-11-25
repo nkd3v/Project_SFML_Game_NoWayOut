@@ -9,8 +9,6 @@ class BigDemon :
 private:
 	void initVariables();
 	void initAnimations();
-	void initAI();
-	void initGUI();
 
 	sf::RectangleShape hpBar;
 

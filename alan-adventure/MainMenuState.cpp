@@ -10,6 +10,12 @@ MainMenuState::MainMenuState(sf::RenderWindow* window, std::stack<std::unique_pt
   if (!bgTexture.loadFromFile("assets/Background/main-menu-bg.png"))
     throw("Error: Could not load background");
 
+  if (!bgMusicBuffer.loadFromFile("assets/Sounds/Music/title-screen.wav"))
+    throw "Error: Could not load title screen music.";
+
+  bgMusic.setBuffer(bgMusicBuffer);
+  bgMusic.play();
+
   bg.setTexture(bgTexture);
 
   titleText.setFont(font);

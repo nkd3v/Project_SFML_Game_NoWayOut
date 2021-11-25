@@ -34,12 +34,6 @@
     <Filter Include="Entities\Enemies">
       <UniqueIdentifier>{d1f7f621-8301-4638-81c2-1f02a8b9c852}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Map">
-      <UniqueIdentifier>{8bbbfa2f-be74-4a61-b825-524bc4287215}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Map\Tile">
-      <UniqueIdentifier>{2f23a97f-4a61-4b84-8f40-3edadb581984}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Weapons">
       <UniqueIdentifier>{181c8430-2ec3-46d3-aa51-7a606c80a012}</UniqueIdentifier>
     </Filter>
@@ -109,9 +103,6 @@
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="AttributeComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="SkillComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="VectorMath.cpp">
@@ -216,9 +207,6 @@
       <Filter>Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="AttributeComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="SkillComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="VectorMath.h">

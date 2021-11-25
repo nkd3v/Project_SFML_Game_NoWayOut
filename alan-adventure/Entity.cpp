@@ -7,7 +7,6 @@ void Entity::initVariables()
 	this->movementComponent = NULL;
 	this->animationComponent = NULL;
 	this->attributeComponent = NULL;
-	this->skillComponent = NULL;
 }
 
 Entity::Entity()
@@ -21,7 +20,6 @@ Entity::~Entity()
 	delete this->movementComponent;
 	delete this->animationComponent;
 	delete this->attributeComponent;
-	delete this->skillComponent;
 }
 
 //Component functions
@@ -52,11 +50,6 @@ void Entity::createAttributeComponent(int hpMax, int damageMin, int damageMax, i
 	this->attributeComponent = new AttributeComponent(hpMax, damageMin, damageMax, moveSpeed, shootSpeed);
 }
 
-void Entity::createSkillComponent()
-{
-	this->skillComponent = new SkillComponent();
-}
-
 void Entity::createAIComponent()
 {
 
@@ -75,11 +68,6 @@ AnimationComponent* Entity::getAnimationComponent()
 AttributeComponent* Entity::getAttributeComponent()
 {
 	return this->attributeComponent;
-}
-
-SkillComponent* Entity::getSkillComponent()
-{
-	return this->skillComponent;
 }
 
 const sf::Vector2f& Entity::getPosition() const
@@ -167,13 +155,7 @@ void Entity::setPosition(const float x, const float y)
 void Entity::move(const float dir_x, const float dir_y, const float& dt)
 {
 	if (this->movementComponent)
-		this->movementComponent->move(dir_x, dir_y, dt); //Sets velocity
-
-	if (this->skillComponent)
-	{
-		this->skillComponent->gainExp(SKILLS::ENDURANCE, 1);
-		//std::cout <<this->skillComponent->getSkill(SKILLS::ENDURANCE) << "\n";
-	}
+		this->movementComponent->move(dir_x, dir_y, dt);
 }
 
 void Entity::stopVelocity()

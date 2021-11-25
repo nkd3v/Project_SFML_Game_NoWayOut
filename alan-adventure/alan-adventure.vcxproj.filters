@@ -28,9 +28,6 @@
     <Filter Include="AI">
       <UniqueIdentifier>{e4125825-06d0-4207-b5af-15234d5268aa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="AI\Options">
-      <UniqueIdentifier>{fc828f1a-3547-457d-9a07-ad0cb57fb3db}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Entities\Enemies">
       <UniqueIdentifier>{d1f7f621-8301-4638-81c2-1f02a8b9c852}</UniqueIdentifier>
     </Filter>
@@ -86,12 +83,6 @@
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AIOption.cpp">
-      <Filter>AI</Filter>
-    </ClCompile>
-    <ClCompile Include="AIFollow.cpp">
-      <Filter>AI\Options</Filter>
     </ClCompile>
     <ClCompile Include="AIComponent.cpp">
       <Filter>Components</Filter>
@@ -150,6 +141,9 @@
     <ClCompile Include="SwiftPotion.cpp">
       <Filter>Items</Filter>
     </ClCompile>
+    <ClCompile Include="AIFollow.cpp">
+      <Filter>AI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -190,12 +184,6 @@
     </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AIFollow.h">
-      <Filter>AI\Options</Filter>
-    </ClInclude>
-    <ClInclude Include="AIOption.h">
-      <Filter>AI</Filter>
     </ClInclude>
     <ClInclude Include="AIComponent.h">
       <Filter>Components</Filter>
@@ -256,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="SwiftPotion.h">
       <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="AIFollow.h">
+      <Filter>AI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

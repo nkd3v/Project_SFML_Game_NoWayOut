@@ -2,7 +2,7 @@
 #include "AIFollow.h"
 
 AIFollow::AIFollow(Entity& self, Entity& entity)
-  : AIOption(self, entity)
+  : self(self), entity(entity)
 {
 }
 

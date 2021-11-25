@@ -1,11 +1,12 @@
 #pragma once
 
-#include "AIOption.h"
+#include "Enemy.h"
 
-class AIFollow :
-  public AIOption
+class AIFollow
 {
 private:
+  Entity& self;
+  Entity& entity;
 
 public:
   AIFollow(Entity& self, Entity& entity);

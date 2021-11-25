@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClCompile Include="AIComponent.cpp" />
     <ClCompile Include="AIFollow.cpp" />
-    <ClCompile Include="AIOption.cpp" />
     <ClCompile Include="AnimationComponent.cpp" />
     <ClCompile Include="AttributeComponent.cpp" />
     <ClCompile Include="BigDemon.cpp" />
@@ -60,7 +59,6 @@
   <ItemGroup>
     <ClInclude Include="AIComponent.h" />
     <ClInclude Include="AIFollow.h" />
-    <ClInclude Include="AIOption.h" />
     <ClInclude Include="AnimationComponent.h" />
     <ClInclude Include="AttributeComponent.h" />
     <ClInclude Include="BigDemon.h" />

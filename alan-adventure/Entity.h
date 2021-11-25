@@ -29,7 +29,6 @@ public:
 	Entity();
 	virtual ~Entity();
 
-	//Component functions
 	void setTexture(sf::Texture& texture);
 	void createHitboxComponent(sf::Sprite& sprite,
 		float offset_x, float offset_y,
@@ -39,18 +38,12 @@ public:
 	void createAttributeComponent(int hpMax = 4, int damageMin = 1, int damageMax = 2, int moveSpeed = 1, int shootSpeed = 1);
 	void createAIComponent();
 
-	//Accessors
 	virtual MovementComponent* getMovementComponent();
 	virtual AnimationComponent* getAnimationComponent();
 	virtual AttributeComponent* getAttributeComponent();
 
 	virtual const sf::Vector2f& getPosition() const;
-	virtual const sf::Vector2f& getSpritePosition() const;
-	virtual const sf::Vector2f getCenter() const;
-	virtual const sf::Vector2f getSpriteCenter() const;
-	virtual const sf::Vector2i getGridPosition(const int gridSizeI) const;
 	virtual const sf::FloatRect getGlobalBounds() const;
-	virtual const sf::FloatRect getNextPositionBounds(const float& dt) const;
 
 	virtual void setPosition(const float x, const float y);
 
@@ -59,11 +52,8 @@ public:
 	virtual void stopVelocityX();
 	virtual void stopVelocityY();
 
-	virtual const float getDistance(const Entity& entity) const;
-	virtual const float getSpriteDistance(const Entity& entity) const;
-
 	virtual void update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view) = 0;
-	virtual void render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vector2f light_position, const bool show_hitbox) = 0;
+	virtual void render(sf::RenderTarget& target) = 0;
 };
 
 #endif

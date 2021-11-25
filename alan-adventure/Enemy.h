@@ -8,14 +8,10 @@ class Enemy :
 	public Entity
 {
 protected:
-	//Variables
 	unsigned gainExp;
 	sf::Clock damageTimer;
 	sf::Int32 damageTimerMax;
-	sf::Clock despawnTimer;
-	sf::Int32 despawnTimerMax;
 
-	//Initializer functions
 	virtual void initVariables() = 0;
 	virtual void initAnimations() = 0;
 
@@ -23,12 +19,9 @@ public:
 	Enemy();
 	virtual ~Enemy();
 
-	//Accessors
 	const unsigned& getGainExp() const;
 	const bool getDamageTimerDone() const;
-	const bool getDespawnTimerDone() const;
 
-	//Modifiers
 	void resetDamageTimer();
 
 	virtual void loseHP(const int hp);
@@ -39,7 +32,7 @@ public:
 	virtual void updateAnimation(const float& dt) = 0;
 
 	virtual void update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view) = 0;
-	virtual void render(sf::RenderTarget& target, sf::Shader* shader = NULL, const sf::Vector2f light_position = sf::Vector2f(), const bool show_hitbox = true) = 0;
+	virtual void render(sf::RenderTarget& target) = 0;
 };
 
 #endif //!ENEMY_H

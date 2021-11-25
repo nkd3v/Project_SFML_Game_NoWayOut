@@ -106,24 +106,9 @@ void Player::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::Vie
 	weapon->update(dt);
 }
 
-void Player::render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vector2f light_position, const bool show_hitbox)
+void Player::render(sf::RenderTarget& target)
 {
-	if (shader)
-	{
-		shader->setUniform("hasTexture", true);
-		shader->setUniform("lightPos", light_position);
-		target.draw(this->sprite, shader);
-
-		shader->setUniform("hasTexture", true);
-		shader->setUniform("lightPos", light_position);
-	}
-	else
-	{
-		target.draw(this->sprite);
-	}
+	target.draw(this->sprite);
 
 	weapon->render(target);
-
-	if (show_hitbox)
-		this->hitboxComponent->render(target);
 }

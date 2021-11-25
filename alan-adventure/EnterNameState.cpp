@@ -41,7 +41,7 @@ void EnterNameState::update(const float& dt, sf::RenderTarget* target)
   updateSFMLEvents(target);
 }
 
-void EnterNameState::render(sf::RenderTarget* target = nullptr)
+void EnterNameState::render(sf::RenderTarget* target)
 {
   target->draw(bg);
   nameTextBox.render(*target);

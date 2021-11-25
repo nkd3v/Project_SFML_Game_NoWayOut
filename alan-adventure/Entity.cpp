@@ -22,7 +22,6 @@ Entity::~Entity()
 	delete this->attributeComponent;
 }
 
-//Component functions
 void Entity::setTexture(sf::Texture& texture)
 {
 	this->sprite.setTexture(texture);
@@ -78,55 +77,6 @@ const sf::Vector2f& Entity::getPosition() const
 	return this->sprite.getPosition();
 }
 
-const sf::Vector2f& Entity::getSpritePosition() const
-{
-	return this->sprite.getPosition();
-}
-
-const sf::Vector2f Entity::getCenter() const
-{
-	if (this->hitboxComponent)
-		return
-		this->hitboxComponent->getPosition() +
-		sf::Vector2f
-		(
-			this->hitboxComponent->getGlobalBounds().width / 2.f,
-			this->hitboxComponent->getGlobalBounds().height / 2.f
-		);
-
-	return
-		this->sprite.getPosition() +
-		sf::Vector2f
-		(
-			this->sprite.getGlobalBounds().width / 2.f,
-			this->sprite.getGlobalBounds().height / 2.f
-		);
-}
-
-const sf::Vector2f Entity::getSpriteCenter() const
-{
-	return this->sprite.getPosition() +
-		sf::Vector2f
-		(
-			this->sprite.getGlobalBounds().width / 2.f,
-			this->sprite.getGlobalBounds().height / 2.f
-		);;
-}
-
-const sf::Vector2i Entity::getGridPosition(const int gridSizeI) const
-{
-	if (this->hitboxComponent)
-		return sf::Vector2i(
-			static_cast<int>(this->hitboxComponent->getPosition().x) / gridSizeI,
-			static_cast<int>(this->hitboxComponent->getPosition().y) / gridSizeI
-		);
-
-	return sf::Vector2i(
-		static_cast<int>(this->sprite.getPosition().x) / gridSizeI,
-		static_cast<int>(this->sprite.getPosition().y) / gridSizeI
-	);
-}
-
 const sf::FloatRect Entity::getGlobalBounds() const
 {
 	if (this->hitboxComponent)
@@ -135,15 +85,6 @@ const sf::FloatRect Entity::getGlobalBounds() const
 	return this->sprite.getGlobalBounds();
 }
 
-const sf::FloatRect Entity::getNextPositionBounds(const float& dt) const
-{
-	if (this->hitboxComponent && this->movementComponent)
-		return this->hitboxComponent->getNextPosition(this->movementComponent->getVelocity() * dt);
-
-	return sf::FloatRect(-1.f, -1.f, -1.f, -1.f);
-}
-
-//Functions
 void Entity::setPosition(const float x, const float y)
 {
 	if (this->hitboxComponent)
@@ -162,7 +103,6 @@ void Entity::stopVelocity()
 {
 	if (this->movementComponent)
 		this->movementComponent->stopVelocity();
-
 }
 
 void Entity::stopVelocityX()
@@ -175,14 +115,4 @@ void Entity::stopVelocityY()
 {
 	if (this->movementComponent)
 		this->movementComponent->stopVelocityY();
-}
-
-const float Entity::getDistance(const Entity& entity) const
-{
-	return sqrt(pow(this->getCenter().x - entity.getCenter().x, 2) + pow(this->getCenter().y - entity.getCenter().y, 2));
-}
-
-const float Entity::getSpriteDistance(const Entity& entity) const
-{
-	return sqrt(pow(this->getSpriteCenter().x - entity.getSpriteCenter().x, 2) + pow(this->getSpriteCenter().y - entity.getSpriteCenter().y, 2));
 }

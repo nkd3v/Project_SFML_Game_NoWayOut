@@ -75,10 +75,7 @@ void BigDemon::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::V
 	this->follow->update(dt);
 }
 
-void BigDemon::render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vector2f light_position, const bool show_hitbox)
+void BigDemon::render(sf::RenderTarget& target)
 {
 	target.draw(this->sprite);
-
-	if (show_hitbox)
-		this->hitboxComponent->render(target);
 }

@@ -14,7 +14,6 @@ void Skelet::initAnimations()
 	this->animationComponent->addAnimation("WALK_UP",    11.f, 0, 2, 3, 2, 32, 32);
 }
 
-//Constructors / Destructors
 Skelet::Skelet(float x, float y, sf::Texture& texture_sheet, Entity& player)
 {
 	initVariables();
@@ -29,7 +28,6 @@ Skelet::Skelet(float x, float y, sf::Texture& texture_sheet, Entity& player)
 
 	this->follow = new AIFollow(*this, player);
 }
-
 
 Skelet::~Skelet()
 {
@@ -73,10 +71,7 @@ void Skelet::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::Vie
 	this->follow->update(dt);
 }
 
-void Skelet::render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vector2f light_position, const bool show_hitbox)
+void Skelet::render(sf::RenderTarget& target)
 {
 	target.draw(this->sprite);
-
-	if (show_hitbox)
-		this->hitboxComponent->render(target);
 }

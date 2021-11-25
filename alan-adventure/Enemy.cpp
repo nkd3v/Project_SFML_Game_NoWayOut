@@ -1,12 +1,10 @@
 #include "stdafx.h"
 #include "Enemy.h"
 
-//Initializer functions
 void Enemy::initVariables()
 {
 	this->gainExp = 10;
 	this->damageTimerMax = 1000;
-	this->despawnTimerMax = 1000;
 }
 
 void Enemy::initAnimations()
@@ -14,7 +12,6 @@ void Enemy::initAnimations()
 
 }
 
-//Constructors / Destructors
 Enemy::Enemy()
 {
 	this->initVariables();
@@ -34,11 +31,6 @@ const unsigned& Enemy::getGainExp() const
 const bool Enemy::getDamageTimerDone() const
 {
 	return this->damageTimer.getElapsedTime().asMilliseconds() >= this->damageTimerMax;
-}
-
-const bool Enemy::getDespawnTimerDone() const
-{
-	return this->despawnTimer.getElapsedTime().asMilliseconds() >= this->despawnTimerMax;
 }
 
 void Enemy::resetDamageTimer()
@@ -77,6 +69,4 @@ const AttributeComponent* Enemy::getAttributeComp() const
 
 void Enemy::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view)
 {
-	if (vectorDistance(this->getPosition(), view.getCenter()) < 5000.f)
-		this->despawnTimer.restart();
 }

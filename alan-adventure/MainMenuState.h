@@ -7,6 +7,7 @@ class MainMenuState :
 {
 private:
   sf::Text titleText;
+  sf::Text nameText;
 
   sf::Text menu[3];
   sf::Font font;

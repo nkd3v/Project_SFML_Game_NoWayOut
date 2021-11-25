@@ -56,6 +56,13 @@ void State::updateSFMLEvents(sf::RenderTarget* target)
     {
       window->close();
     }
+    if (e.type == sf::Event::KeyPressed)
+    {
+      if (e.key.code == sf::Keyboard::Escape)
+      {
+        window->close();
+      }
+    }
   }
 }
 

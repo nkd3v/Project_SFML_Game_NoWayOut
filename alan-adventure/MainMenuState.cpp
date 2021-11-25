@@ -25,6 +25,14 @@ MainMenuState::MainMenuState(sf::RenderWindow* window, std::stack<std::unique_pt
   titleText.setCharacterSize(96);
   titleText.setPosition(170.f, 60.f);
 
+  nameText.setFont(font);
+  nameText.setFillColor(sf::Color::Black);
+  nameText.setOutlineThickness(2.f);
+  nameText.setOutlineColor(sf::Color::White);
+  nameText.setCharacterSize(36);
+  nameText.setPosition(10.f, 750.f);
+  nameText.setString("Narongpol Kijrangsan | 64011106");
+
   initMenu();
 }
 
@@ -128,6 +136,8 @@ void MainMenuState::render(sf::RenderTarget* target = nullptr)
   target->clear(sf::Color(38, 43, 68));
 
   target->draw(bg);
+
+  target->draw(nameText);
 
   titleText.setString("NO WAY OUT");
   target->draw(titleText);

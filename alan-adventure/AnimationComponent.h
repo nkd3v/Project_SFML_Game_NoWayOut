@@ -21,50 +21,54 @@ private:
 		Animation(sf::Sprite& sprite, sf::Texture& textureSheet,
 			float animationTimer,
 			int startFrameX, int startFrameY, int framesX, int framesY, int width, int height)
-			: sprite(sprite), textureSheet(textureSheet),
-			animationTimer(animationTimer), timer(0.f), done(false),
-			width(width), height(height)
+			:
+			sprite(sprite), textureSheet(textureSheet),
+			animationTimer(animationTimer),
+			timer(0.f),
+			done(false),
+			width(width),
+			height(height)
 		{
-			this->startRect = sf::IntRect(startFrameX * width, startFrameY * height, width, height);
-			this->currentRect = this->startRect;
-			this->endRect = sf::IntRect(framesX * width, framesY * height, width, height);
+			startRect = sf::IntRect(startFrameX * width, startFrameY * height, width, height);
+			currentRect = startRect;
+			endRect = sf::IntRect(framesX * width, framesY * height, width, height);
 
-			this->sprite.setTexture(this->textureSheet, true);
-			this->sprite.setTextureRect(this->startRect);
+			sprite.setTexture(textureSheet, true);
+			sprite.setTextureRect(startRect);
 		}
 
 		//Accessor
 		const bool& isDone() const
 		{
-			return this->done;
+			return done;
 		}
 
 		//Functions
 		const bool& play(const float& dt)
 		{
 			//Update timer
-			this->done = false;
-			this->timer += 100.f * dt;
-			if (this->timer >= this->animationTimer)
+			done = false;
+			timer += 100.f * dt;
+			if (timer >= animationTimer)
 			{
 				//reset timer
-				this->timer = 0.f;
+				timer = 0.f;
 
 				//Animate
-				if (this->currentRect != this->endRect)
+				if (currentRect != endRect)
 				{
-					this->currentRect.left += this->width;
+					currentRect.left += width;
 				}
 				else //Reset
 				{
-					this->currentRect.left = this->startRect.left;
-					this->done = true;
+					currentRect.left = startRect.left;
+					done = true;
 				}
 
-				this->sprite.setTextureRect(this->currentRect);
+				sprite.setTextureRect(currentRect);
 			}
 
-			return this->done;
+			return done;
 		}
 
 		const bool& play(const float& dt, float mod_percent)
@@ -73,34 +77,34 @@ private:
 			if (mod_percent < 0.5f)
 				mod_percent = 0.5f;
 
-			this->done = false;
-			this->timer += mod_percent * 100.f * dt;
-			if (this->timer >= this->animationTimer)
+			done = false;
+			timer += mod_percent * 100.f * dt;
+			if (timer >= animationTimer)
 			{
 				//reset timer
-				this->timer = 0.f;
+				timer = 0.f;
 
 				//Animate
-				if (this->currentRect != this->endRect)
+				if (currentRect != endRect)
 				{
-					this->currentRect.left += this->width;
+					currentRect.left += width;
 				}
 				else
 				{
-					this->currentRect.left = this->startRect.left;
-					this->done = true;
+					currentRect.left = startRect.left;
+					done = true;
 				}
 
-				this->sprite.setTextureRect(this->currentRect);
+				sprite.setTextureRect(currentRect);
 			}
 
-			return this->done;
+			return done;
 		}
 
 		void reset()
 		{
-			this->timer = this->animationTimer;
-			this->currentRect = this->startRect;
+			timer = animationTimer;
+			currentRect = startRect;
 		}
 	};
 
@@ -111,7 +115,7 @@ private:
 	Animation* priorityAnimation;
 
 public:
-	AnimationComponent(sf::Sprite& sprite, sf::Texture& texture_sheet);
+	AnimationComponent(sf::Sprite& sprite, sf::Texture& textureSheet);
 	virtual ~AnimationComponent();
 
 	//Accessor
@@ -119,8 +123,8 @@ public:
 
 	//Functions
 	void addAnimation(const std::string key,
-		float animation_timer,
-		int start_frame_x, int start_frame_y, int frames_x, int frames_y, int width, int height);
+		float animationTimer,
+		int startFrameX, int startFrameY, int framesX, int framesY, int width, int height);
 
 	const bool& play(const std::string key, const float& dt, const bool priority = false);
 	const bool& play(const std::string key, const float& dt, const float& modifier, const float& modifier_max, const bool priority = false);

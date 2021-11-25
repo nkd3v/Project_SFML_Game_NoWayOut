@@ -31,7 +31,7 @@ public:
 
 	virtual void updateAnimation(const float& dt) = 0;
 
-	virtual void update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view) = 0;
+	virtual void update(const float& dt) = 0;
 	virtual void render(sf::RenderTarget& target) = 0;
 };
 

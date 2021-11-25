@@ -58,9 +58,9 @@ void Skelet::updateAnimation(const float& dt)
 	}
 }
 
-void Skelet::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view)
+void Skelet::update(const float& dt)
 {
-	Enemy::update(dt, mouse_pos_view, view);
+	Enemy::update(dt);
 
 	this->movementComponent->update(dt);
 

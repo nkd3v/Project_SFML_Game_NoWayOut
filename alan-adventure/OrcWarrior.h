@@ -19,7 +19,7 @@ public:
 	virtual ~OrcWarrior();
 
 	void updateAnimation(const float& dt);
-	void update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view);
+	void update(const float& dt);
 
 	void render(sf::RenderTarget& target);
 };

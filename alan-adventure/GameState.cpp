@@ -136,7 +136,7 @@ void GameState::updateInput(const float& dt)
 
 void GameState::updatePlayer(const float& dt)
 {
-  player->update(dt, mousePosView, view);
+  player->update(dt);
 }
 
 void GameState::updateItemsInteraction(const float& dt)
@@ -154,7 +154,7 @@ void GameState::updateCombatAndEnemies(const float& dt)
   unsigned index = 0;
   for (auto* enemy : activeEnemies)
   {
-    enemy->update(dt, mousePosView, view);
+    enemy->update(dt);
 
     updateCombat(enemy, index, dt);
 

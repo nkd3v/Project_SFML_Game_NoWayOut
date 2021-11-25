@@ -60,9 +60,9 @@ void BigDemon::updateAnimation(const float& dt)
 	}
 }
 
-void BigDemon::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view)
+void BigDemon::update(const float& dt)
 {
-	Enemy::update(dt, mouse_pos_view, view);
+	Enemy::update(dt);
 
 	this->movementComponent->update(dt);
 

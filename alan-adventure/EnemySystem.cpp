@@ -31,9 +31,6 @@ void EnemySystem::createEnemy(const short type, const float xPos, const float yP
 	case EnemyTypes::ORC_WARRIOR:
 		this->activeEnemies.push_back(new OrcWarrior(xPos, yPos, this->textures["ORC_WARRIOR"], this->player));
 		break;
-	default:
-		std::cout << "ERROR::ENEMYSYSTEM::CREATEENEMY::TYPE DOES NOT EXIST" << "\n";
-		break;
 	}
 }
 

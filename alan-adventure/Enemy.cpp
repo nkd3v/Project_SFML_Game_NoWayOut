@@ -67,6 +67,6 @@ const AttributeComponent* Enemy::getAttributeComp() const
 	}
 }
 
-void Enemy::update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view)
+void Enemy::update(const float& dt)
 {
 }

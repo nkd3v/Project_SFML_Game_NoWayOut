@@ -42,19 +42,19 @@ void Skelet::updateAnimation(const float& dt)
 	}
 	else if (this->movementComponent->getState(MOVING_LEFT))
 	{
-		this->animationComponent->play("WALK_LEFT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());
+		this->animationComponent->play("WALK_LEFT", dt);
 	}
 	else if (this->movementComponent->getState(MOVING_RIGHT))
 	{
-		this->animationComponent->play("WALK_RIGHT", dt, this->movementComponent->getVelocity().x, this->movementComponent->getMaxVelocity());
+		this->animationComponent->play("WALK_RIGHT", dt);
 	}
 	else if (this->movementComponent->getState(MOVING_UP))
 	{
-		this->animationComponent->play("WALK_UP", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());
+		this->animationComponent->play("WALK_UP", dt);
 	}
 	else if (this->movementComponent->getState(MOVING_DOWN))
 	{
-		this->animationComponent->play("WALK_DOWN", dt, this->movementComponent->getVelocity().y, this->movementComponent->getMaxVelocity());
+		this->animationComponent->play("WALK_DOWN", dt);
 	}
 }
 

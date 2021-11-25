@@ -13,7 +13,7 @@ RapidFirePotion::~RapidFirePotion()
 
 void RapidFirePotion::activate()
 {
-  player.getAttributeComponent()->hp += 2;
+  player.getAttributeComponent()->gainHP(2);
 }
 
 

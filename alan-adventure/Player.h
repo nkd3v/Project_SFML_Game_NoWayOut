@@ -22,7 +22,6 @@ private:
 
 	//Initializer functions
 	void initVariables();
-	void initComponents();
 	void initAnimations();
 	//void initInventory();
 
@@ -48,8 +47,6 @@ public:
 	//Functions
 	void loseHP(const int hp);
 	void gainHP(const int hp);
-	void loseEXP(const int exp);
-	void gainEXP(const int exp);
 
 	void updateAnimation(const float& dt);
 	void update(const float& dt, sf::Vector2f& mouse_pos_view, const sf::View& view);

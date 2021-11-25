@@ -1,0 +1,9 @@
+fix score
+add many weapons
+add bomb
+add more enemies
+animated map
+enemy attack in many ways
+fix button
+pause menu
+add sound

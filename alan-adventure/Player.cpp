@@ -13,11 +13,6 @@ void Player::initVariables()
 	weapon = new Weapon();
 }
 
-void Player::initComponents()
-{
-
-}
-
 void Player::initAnimations()
 {
 	this->animationComponent->addAnimation("IDLE",       15.f, 0, 0, 3, 0, 32, 64);
@@ -25,22 +20,21 @@ void Player::initAnimations()
 	this->animationComponent->addAnimation("WALK_LEFT",  11.f, 0, 1, 3, 1, 32, 64);
 	this->animationComponent->addAnimation("WALK_RIGHT", 11.f, 0, 2, 3, 2, 32, 64);
 	this->animationComponent->addAnimation("WALK_UP",    11.f, 0, 2, 3, 2, 32, 64);
-	//this->animationComponent->addAnimation("ATTACK", 5.f, 0, 2, 1, 2, 64, 64);
 }
 
 //Constructors / Destructors
 Player::Player(float x, float y, sf::Texture& texture_sheet)
 {
-	this->initVariables();
+	initVariables();
 
-	this->createHitboxComponent(this->sprite, 16.f, 26.f, 32.f, 38.f);
-	this->createMovementComponent(140.f, 1400.f, 1000.f);
-	this->createAnimationComponent(texture_sheet);
-	this->createAttributeComponent(1);
-	this->createSkillComponent();
+	createHitboxComponent(this->sprite, 0.f, 32.f, 32.f, 32.f);
+	createMovementComponent(140.f, 1400.f, 1000.f);
+	createAnimationComponent(texture_sheet);
+	createAttributeComponent(8, 1, 2, 1, 1);
+	createSkillComponent();
 
-	this->setPosition(x, y);
-	this->initAnimations();
+	setPosition(x, y);
+	initAnimations();
 }
 
 Player::~Player()
@@ -93,16 +87,6 @@ void Player::loseHP(const int hp)
 void Player::gainHP(const int hp)
 {
 	this->attributeComponent->gainHP(hp);
-}
-
-void Player::loseEXP(const int exp)
-{
-	this->attributeComponent->loseEXP(exp);
-}
-
-void Player::gainEXP(const int exp)
-{
-	this->attributeComponent->gainExp(exp);
 }
 
 void Player::updateAnimation(const float& dt)

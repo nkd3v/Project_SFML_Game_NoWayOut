@@ -47,9 +47,9 @@ void Entity::createAnimationComponent(sf::Texture& texture_sheet)
 	this->animationComponent = new AnimationComponent(this->sprite, texture_sheet);
 }
 
-void Entity::createAttributeComponent(const unsigned level)
+void Entity::createAttributeComponent(int hpMax, int damageMin, int damageMax, int moveSpeed, int shootSpeed)
 {
-	this->attributeComponent = new AttributeComponent(level);
+	this->attributeComponent = new AttributeComponent(hpMax, damageMin, damageMax, moveSpeed, shootSpeed);
 }
 
 void Entity::createSkillComponent()

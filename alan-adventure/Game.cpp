@@ -3,7 +3,7 @@
 
 void Game::initWindow()
 {
-  window = new sf::RenderWindow(sf::VideoMode(800, 800), "Alan's Adventure", sf::Style::Close);
+  window = new sf::RenderWindow(sf::VideoMode(800, 800), "No Way Out", sf::Style::Close);
   window->setFramerateLimit(120);
   window->setVerticalSyncEnabled(false);
 }

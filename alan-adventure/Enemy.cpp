@@ -46,11 +46,6 @@ void Enemy::resetDamageTimer()
 	this->damageTimer.restart();
 }
 
-void Enemy::generateAttributes(const unsigned level)
-{
-	this->gainExp = level * (rand() % 5 + 1);
-}
-
 void Enemy::loseHP(const int hp)
 {
 	if (this->attributeComponent)

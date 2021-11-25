@@ -13,7 +13,7 @@ HealthPotion::~HealthPotion()
 
 void HealthPotion::activate()
 {
-  player.getAttributeComponent()->hp += 2;
+  player.getAttributeComponent()->gainHP(2);
 }
 
 

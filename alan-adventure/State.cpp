@@ -9,6 +9,7 @@ State::State(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& state
   paused = false;
   keytime = 0.f;
   keytimeMax = 10.f;
+  pressed = false;
 }
 
 State::~State()

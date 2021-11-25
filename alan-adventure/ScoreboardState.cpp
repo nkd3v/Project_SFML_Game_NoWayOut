@@ -14,7 +14,7 @@ ScoreboardState::ScoreboardState(sf::RenderWindow* window, std::stack<std::uniqu
 
   text.setFont(font);
 
-  if (code == 1)
+  if (code > 0)
   {
     nameEntered = false;
   }
@@ -34,7 +34,7 @@ ScoreboardState::~ScoreboardState()
 
 void ScoreboardState::saveScore()
 {
-  scoreboard.addScore(playerName, 69);
+  scoreboard.addScore(playerName, code);
 }
 
 void ScoreboardState::updateInput(const float& dt)

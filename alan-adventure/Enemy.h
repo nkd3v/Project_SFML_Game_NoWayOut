@@ -2,7 +2,6 @@
 #define ENEMY_H
 
 #include "Entity.h"
-#include "EnemySpawnerTile.h"
 #include "AIFollow.h"
 
 class Enemy :
@@ -31,9 +30,6 @@ public:
 
 	//Modifiers
 	void resetDamageTimer();
-
-	//Functions
-	virtual void generateAttributes(const unsigned level);
 
 	virtual void loseHP(const int hp);
 	virtual const bool isDead() const;

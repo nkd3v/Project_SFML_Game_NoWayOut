@@ -6,7 +6,6 @@
 #include "ItemManager.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "TileMap.h"
 #include "PlayerGUI.h"
 
 class GameState :
@@ -35,8 +34,6 @@ private:
   std::vector<Item*> items;
   ItemManager* itemManager;
 
-  TileMap* tileMap;
-
   PlayerGUI* playerGUI;
 
   std::map<std::string, sf::Texture> textures;
@@ -52,7 +49,6 @@ private:
   void initEnemySystem();
   void initEnemySpawner();
   void initItemManager();
-  void initTileMap();
   void initMap();
 
 public:

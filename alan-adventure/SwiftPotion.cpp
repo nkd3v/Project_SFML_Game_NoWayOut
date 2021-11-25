@@ -13,7 +13,7 @@ SwiftPotion::~SwiftPotion()
 
 void SwiftPotion::activate()
 {
-  player.getAttributeComponent()->hp += 2;
+  player.getAttributeComponent()->gainHP(2);
 }
 
 

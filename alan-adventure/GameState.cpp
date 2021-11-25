@@ -93,11 +93,6 @@ void GameState::initItemManager()
   itemManager = new ItemManager(items, textures, *player);
 }
 
-void GameState::initTileMap()
-{
-
-}
-
 void GameState::initMap()
 {
   mapTexture.loadFromFile("assets/Maps/stage.png");
@@ -142,7 +137,7 @@ void GameState::updateCombatAndEnemies(const float& dt)
 
     if (enemy->isDead())
     {
-      player->gainEXP(enemy->getGainExp());
+      player->getAttributeComponent()->score++;
       enemySystem->removeEnemy(index);
       continue;
     }
@@ -150,9 +145,9 @@ void GameState::updateCombatAndEnemies(const float& dt)
     ++index;
   }
 
-  if (player->getAttributeComponent()->hp <= 0)
+  if (player->getAttributeComponent()->isDead())
   {
-    newState = std::make_unique<ScoreboardState>(window, states, 1);
+    newState = std::make_unique<ScoreboardState>(window, states, player->getAttributeComponent()->score);
     quit = true;
   }
 }

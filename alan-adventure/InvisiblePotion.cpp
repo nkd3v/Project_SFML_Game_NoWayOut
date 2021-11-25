@@ -13,7 +13,7 @@ InvisiblePotion::~InvisiblePotion()
 
 void InvisiblePotion::activate()
 {
-  player.getAttributeComponent()->hp += 2;
+  player.getAttributeComponent()->gainHP(2);
 }
 
 

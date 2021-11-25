@@ -7,6 +7,18 @@ MainMenuState::MainMenuState(sf::RenderWindow* window, std::stack<std::unique_pt
   if (!font.loadFromFile("assets/Fonts/dpcomic.ttf"))
     throw("Error: Could not load font");
 
+  if (!bgTexture.loadFromFile("assets/Background/main-menu-bg.png"))
+    throw("Error: Could not load background");
+
+  bg.setTexture(bgTexture);
+
+  titleText.setFont(font);
+  titleText.setFillColor(sf::Color::Black);
+  titleText.setOutlineThickness(2.f);
+  titleText.setOutlineColor(sf::Color::White);
+  titleText.setCharacterSize(96);
+  titleText.setPosition(170.f, 60.f);
+
   initMenu();
 }
 
@@ -25,11 +37,11 @@ void MainMenuState::initMenu()
     elm.setCharacterSize(42);
   }
 
-  menu[0].setPosition(20.f, 50.f);
-  menu[1].setPosition(20.f, 125.f);
-  menu[2].setPosition(20.f, 200.f);
+  menu[0].setPosition(350.f, 300.f);
+  menu[1].setPosition(310.f, 375.f);
+  menu[2].setPosition(360.f, 450.f);
 
-  menu[0].setString("Play");
+  menu[0].setString("Start");
   menu[1].setString("Scoreboard");
   menu[2].setString("Quit");
 }
@@ -45,43 +57,56 @@ void MainMenuState::updateMenu()
   }
 }
 
-void MainMenuState::updateInput(const float& dt)
+void MainMenuState::updateSFMLEvents(sf::RenderTarget* target)
 {
-  if (!getKeytime()) return;
+  sf::Event e;
 
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+  while (window->pollEvent(e))
   {
-    if (selectedOption <= 1)
-      ++selectedOption;
-  }
-  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-  {
-    if (selectedOption >= 1)
-      --selectedOption;
-  }
-  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
-  {
-    switch (selectedOption)
+    if (e.type == sf::Event::Closed)
     {
-      case 0:
+      window->close();
+    }
+    if (e.type == sf::Event::KeyPressed)
+    {
+      switch (e.key.code)
       {
-        newState = std::make_unique<GameState>(window, states);
+      case sf::Keyboard::W:
+        selectedOption = (selectedOption + 2) % maxOptions;
         break;
-      }
 
-      case 1:
-      {
-        newState = std::make_unique<ScoreboardState>(window, states);
+      case sf::Keyboard::S:
+        selectedOption = (selectedOption + 1) % maxOptions;
         break;
-      }
 
-      case 2:
-      {
-        break;
+      case sf::Keyboard::Enter:
+        changeState();
       }
     }
-    quit = true;
   }
+}
+
+void MainMenuState::updateInput(const float& dt)
+{
+}
+
+void MainMenuState::changeState()
+{
+  switch (selectedOption)
+  {
+  case 0:
+    newState = std::make_unique<GameState>(window, states);
+    break;
+
+  case 1:
+    newState = std::make_unique<ScoreboardState>(window, states);
+    break;
+
+  case 2:
+    break;
+  }
+
+  quit = true;
 }
 
 void MainMenuState::update(const float& dt, sf::RenderTarget* target)
@@ -94,10 +119,13 @@ void MainMenuState::update(const float& dt, sf::RenderTarget* target)
 
 void MainMenuState::render(sf::RenderTarget* target = nullptr)
 {
-  target->clear(sf::Color(58, 68, 102));
+  target->clear(sf::Color(38, 43, 68));
+
+  target->draw(bg);
+
+  titleText.setString("NO WAY OUT");
+  target->draw(titleText);
 
   for (int i = 0; i < maxOptions; i++)
-  {
     target->draw(menu[i]);
-  }
 }

@@ -39,7 +39,7 @@ void PlayerGUI::updateHPBar()
 
 void PlayerGUI::updateScorePanel()
 {
-  scoreText.setString(std::to_string(player->getAttributeComponent()->exp));
+  scoreText.setString(std::to_string(player->getAttributeComponent()->score));
 }
 
 void PlayerGUI::update()

@@ -1,7 +1,6 @@
 #ifndef ENEMYSYSTEM_H
 #define ENEMYSYSTEM_H
 
-#include "EnemySpawnerTile.h"
 #include "Skelet.h"
 #include "BigDemon.h"
 #include "OrcWarrior.h"

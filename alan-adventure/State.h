@@ -20,6 +20,8 @@ protected:
   float keytime;
   float keytimeMax;
 
+  bool pressed;
+
 public:
   State(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states, int code = 0);
   virtual ~State();

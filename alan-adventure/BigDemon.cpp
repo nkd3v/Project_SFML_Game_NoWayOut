@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "BigDemon.h"
 
-//Initializer functions
 void BigDemon::initVariables()
 {
 
@@ -16,7 +15,6 @@ void BigDemon::initAnimations()
 	this->animationComponent->addAnimation("WALK_UP",    11.f, 0, 2, 3, 2, 64, 64);
 }
 
-//Constructors / Destructors
 BigDemon::BigDemon(float x, float y, sf::Texture& texture_sheet, Entity& player)
 {
 	this->initVariables();

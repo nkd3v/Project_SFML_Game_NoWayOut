@@ -37,6 +37,7 @@ public:
 	virtual AttributeComponent* getAttributeComponent();
 
 	virtual const sf::Vector2f& getPosition() const;
+	virtual sf::Vector2f getCenter() const;
 	virtual const sf::FloatRect getGlobalBounds() const;
 
 	virtual void setPosition(const float x, const float y);

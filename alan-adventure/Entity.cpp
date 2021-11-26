@@ -72,6 +72,17 @@ const sf::Vector2f& Entity::getPosition() const
 	return this->sprite.getPosition();
 }
 
+sf::Vector2f Entity::getCenter() const
+{
+	if (hitboxComponent)
+		return hitboxComponent->getCenter();
+
+	return sprite.getPosition() + sf::Vector2f(
+		sprite.getGlobalBounds().width / 2.f,
+		sprite.getGlobalBounds().height / 2.f
+	);
+}
+
 const sf::FloatRect Entity::getGlobalBounds() const
 {
 	if (this->hitboxComponent)

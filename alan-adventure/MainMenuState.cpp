@@ -18,6 +18,7 @@ MainMenuState::MainMenuState(sf::RenderWindow* window, std::stack<std::unique_pt
   titleText.setOutlineColor(sf::Color::White);
   titleText.setCharacterSize(96);
   titleText.setPosition(170.f, 60.f);
+  titleText.setString("NO WAY OUT");
 
   nameText.setFont(am.getFont("DPCOMIC"));
   nameText.setFillColor(sf::Color::Black);
@@ -59,9 +60,9 @@ void MainMenuState::updateMenu()
   for (int i = 0; i < maxOptions; i++)
   {
     if (i == selectedOption)
-      menu[i].setFillColor(sf::Color::White);
+      menu[i].setFillColor(sf::Color::Red);
     else
-      menu[i].setFillColor(sf::Color::Black);
+      menu[i].setFillColor(sf::Color::White);
   }
 }
 
@@ -133,7 +134,6 @@ void MainMenuState::render(sf::RenderTarget* target = nullptr)
 
   target->draw(nameText);
 
-  titleText.setString("NO WAY OUT");
   target->draw(titleText);
 
   for (int i = 0; i < maxOptions; i++)

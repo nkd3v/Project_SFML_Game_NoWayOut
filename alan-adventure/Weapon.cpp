@@ -10,8 +10,8 @@ Weapon::Weapon()
   lastShootTime = .0f;
   firstAttack = false;
 
-  if (!shootArrowBuffer.loadFromFile("assets/Sounds/shoot-arrow.wav"))
-    throw "Error: Could not load shoot arrow sound.";
+  shootArrowSound.setBuffer(am.getSoundBuffer("SHOOT_ARROW"));
+  shootArrowSound.setVolume(10);
 }
 
 Weapon::~Weapon()

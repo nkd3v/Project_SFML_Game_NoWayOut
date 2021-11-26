@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Entity.h"
-#include "Bow.h"
 
 class Weapon :
     public Entity
@@ -12,12 +11,13 @@ protected:
   float cooldown;
   float cooldownMax;
 
-  virtual bool canShoot(const float& dt);
+  virtual bool canShoot();
+  virtual void updateCooldown();
 
 public:
   Weapon(float cooldown);
   ~Weapon();
 
-  virtual void shoot(const sf::Vector2f& pos, const sf::Vector2f& mousePos) = 0;
+  virtual void shoot(const sf::Vector2f& pos, float angle) = 0;
 };
 

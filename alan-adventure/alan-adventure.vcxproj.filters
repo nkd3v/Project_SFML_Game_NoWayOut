@@ -257,6 +257,9 @@
     <ClInclude Include="Time.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Weapons.h">
+      <Filter>Weapons</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\favicon.png">

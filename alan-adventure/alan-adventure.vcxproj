@@ -94,6 +94,7 @@
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="Bow.h" />
     <ClInclude Include="Weapon.h" />
+    <ClInclude Include="Weapons.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\favicon.ico" />

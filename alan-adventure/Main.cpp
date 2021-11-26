@@ -3,7 +3,7 @@
 
 int main()
 {
-  srand(time(nullptr));
+  srand(static_cast<unsigned int>(time(nullptr)));
 
   Game game;
   game.run();

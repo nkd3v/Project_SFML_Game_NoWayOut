@@ -11,9 +11,8 @@ Weapon::~Weapon()
 {
 }
 
-bool Weapon::canShoot(const float& dt)
+bool Weapon::canShoot()
 {
-  cooldown -= dt;
   if (cooldown <= 0.f)
   {
     cooldown = cooldownMax;
@@ -21,4 +20,11 @@ bool Weapon::canShoot(const float& dt)
   }
 
   return false;
+}
+
+void Weapon::updateCooldown()
+{
+  cooldown -= Time.deltaTime;
+  if (cooldown <= 0.f)
+    cooldown = 0.f;
 }

@@ -1,25 +1,21 @@
 #pragma once
-
+#include "Weapon.h"
 #include "Bullet.h"
 
-class Bow
+class Bow :
+	public Weapon
 {
 private:
 	float defaultCooldown;
 	float rapidCooldown;
-	float shootCooldown;
-	float lastShootTime;
-	bool firstAttack;
-
-	sf::Clock clock;
-	std::vector<std::unique_ptr<Bullet>> bullets;
-
-	sf::SoundBuffer shootArrowBuffer;
-	sf::Sound shootArrowSound;
 
 	float rapidFireCountdown;
 
-	bool canShoot();
+	std::vector<std::unique_ptr<Bullet>> bullets;
+
+	sf::Sound shootArrowSound;
+
+	void updateCooldown();
 
 public:
 	Bow();
@@ -27,9 +23,8 @@ public:
 
 	const std::vector<std::unique_ptr<Bullet>>& getBullets() const;
 
-	void setCooldown(float cooldown);
 	void activateRapidFire(float time);
-	void shoot(sf::Vector2f pos, float angle);
+	void shoot(const sf::Vector2f& pos, float angle);
 
 	void update(const float& dt);
 	void render(sf::RenderTarget& target);

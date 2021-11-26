@@ -3,6 +3,7 @@
 
 #include "Entity.h"
 #include "Weapon.h"
+#include "Bow.h"
 
 class Entity;
 

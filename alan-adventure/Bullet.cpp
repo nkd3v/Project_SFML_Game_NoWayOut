@@ -33,6 +33,11 @@ void Bullet::kill()
   life = 0;
 }
 
+const sf::Vector2f Bullet::getPosition() const
+{
+  return sprite.getPosition();
+}
+
 const sf::FloatRect& Bullet::getGlobalBounds() const
 {
   return sprite.getGlobalBounds();

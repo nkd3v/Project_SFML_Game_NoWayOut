@@ -157,6 +157,16 @@ void GameState::updateItemsInteraction(const float& dt)
   itemManager->update(dt);
 }
 
+void GameState::updateWorldCollision(const float& dt)
+{
+  for (auto& it : player->getWeapon()->getBullets())
+  {
+    const sf::Vector2f& pos = it->getPosition();
+    if (!(pos.x > 15 && pos.x < 584 && pos.y > 65 && pos.y < 528))
+      it->kill();
+  }
+}
+
 void GameState::updateCombatAndEnemies(const float& dt)
 {
   if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
@@ -259,6 +269,7 @@ void GameState::update(const float& dt, sf::RenderTarget* target)
     updateCombatAndEnemies(dt);
     updateEnemySpawner(dt);
     updateItemsInteraction(dt);
+    updateWorldCollision(dt);
     playerGUI->update();
   }
 }

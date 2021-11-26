@@ -24,6 +24,7 @@ public:
 
   void kill();
 
+  const sf::Vector2f getPosition() const;
   const sf::FloatRect& getGlobalBounds() const;
   bool endofLife();
 

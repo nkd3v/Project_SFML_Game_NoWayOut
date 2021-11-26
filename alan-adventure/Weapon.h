@@ -1,37 +1,23 @@
 #pragma once
 
-#include "Bullet.h"
+#include "Entity.h"
+#include "Bow.h"
 
-class Weapon
+class Weapon :
+    public Entity
 {
 private:
-	float defaultCooldown;
-	float rapidCooldown;
-	float shootCooldown;
-	float lastShootTime;
-	bool firstAttack;
 
-	sf::Clock clock;
-	std::vector<std::unique_ptr<Bullet>> bullets;
+protected:
+  float cooldown;
+  float cooldownMax;
 
-	sf::SoundBuffer shootArrowBuffer;
-	sf::Sound shootArrowSound;
-
-	float rapidFireCountdown;
-
-	bool canShoot();
+  virtual bool canShoot(const float& dt);
 
 public:
-	Weapon();
-	~Weapon();
+  Weapon(float cooldown);
+  ~Weapon();
 
-	const std::vector<std::unique_ptr<Bullet>>& getBullets() const;
-
-	void setCooldown(float cooldown);
-	void activateRapidFire(float time);
-	void shoot(sf::Vector2f pos, float angle);
-
-	void update(const float& dt);
-	void render(sf::RenderTarget& target);
+  virtual void shoot(const sf::Vector2f& pos, const sf::Vector2f& mousePos) = 0;
 };
 

@@ -6,7 +6,7 @@ void Player::initVariables()
 {
 	this->damageTimerMax = 500;
 
-	weapon = new Weapon();
+	weapon = new Bow();
 }
 
 void Player::initAnimations()
@@ -40,7 +40,7 @@ AttributeComponent* Player::getAttributeComponent()
 	return this->attributeComponent;
 }
 
-Weapon* Player::getWeapon()
+Bow* Player::getWeapon()
 {
 	return weapon;
 }

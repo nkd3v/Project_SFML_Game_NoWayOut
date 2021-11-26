@@ -102,7 +102,7 @@
     <ClCompile Include="OrcWarrior.cpp">
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Weapon.cpp">
+    <ClCompile Include="Bow.cpp">
       <Filter>Weapons</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
@@ -140,6 +140,9 @@
     </ClCompile>
     <ClCompile Include="AssetManager.cpp">
       <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Weapons</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -200,7 +203,7 @@
     <ClInclude Include="OrcWarrior.h">
       <Filter>Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Weapon.h">
+    <ClInclude Include="Bow.h">
       <Filter>Weapons</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
@@ -244,6 +247,9 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Weapons</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

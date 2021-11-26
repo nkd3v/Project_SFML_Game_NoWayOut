@@ -23,8 +23,8 @@ public:
 
 	AttributeComponent* getAttributeComponent();
 
-	Weapon* weapon;
-	Weapon* getWeapon();
+	Bow* weapon;
+	Bow* getWeapon();
 
 	const bool getDamageTimer();
 

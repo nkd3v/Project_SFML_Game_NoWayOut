@@ -1,5 +1,5 @@
+ssssss 3460
+dddf 2790
 Player1 2050
 Stevee 300
-M 50
-A 50
-GG 0
+Test3 200

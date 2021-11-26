@@ -14,6 +14,8 @@ private:
 	sf::Clock dtClock;
 	float dt;
 
+	sf::Image icon;
+
 	// Initialization
 	void initWindow();
 	void initStates();

@@ -141,7 +141,8 @@ void GameState::updateSFMLEvents(sf::RenderTarget* target)
     {
       if (e.key.code == sf::Keyboard::Escape)
       {
-        window->close();
+        newState = std::make_unique<MainMenuState>(window, states);
+        endState();
       }
       if (e.key.code == sf::Keyboard::P)
       {

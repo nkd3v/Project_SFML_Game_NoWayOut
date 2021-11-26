@@ -79,6 +79,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerGUI.h" />
     <ClInclude Include="RapidFirePotion.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Scoreboard.h" />
     <ClInclude Include="ScoreboardState.h" />
     <ClInclude Include="Skelet.h" />
@@ -89,6 +90,10 @@
     <ClInclude Include="TextBox.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="Weapon.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\favicon.ico" />
+    <Image Include="assets\favicon.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

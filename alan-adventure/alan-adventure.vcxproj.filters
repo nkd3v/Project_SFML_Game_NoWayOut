@@ -242,5 +242,16 @@
     <ClInclude Include="AssetManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\favicon.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\favicon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

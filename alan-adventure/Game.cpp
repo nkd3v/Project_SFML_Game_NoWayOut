@@ -6,6 +6,10 @@ void Game::initWindow()
   window = new sf::RenderWindow(sf::VideoMode(800, 800), "No Way Out", sf::Style::Close);
   window->setFramerateLimit(120);
   window->setVerticalSyncEnabled(false);
+
+  icon = am.getImage("FAVICON");
+
+  window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 }
 
 void Game::initStates()
@@ -25,12 +29,14 @@ void Game::initResources()
   am.loadSoundBuffer("ITEM_PICK", "assets/Sounds/item-pick.wav");
   am.loadSoundBuffer("PLAYER_HIT", "assets/Sounds/player-hit.wav");
   am.loadSoundBuffer("SHOOT_ARROW", "assets/Sounds/shoot-arrow.wav");
+
+  am.loadImage("FAVICON", "assets/favicon.png");
 }
 
 Game::Game()
 {
-  initWindow();
   initResources();
+  initWindow();
   initStates();
 }
 
@@ -48,22 +54,19 @@ void Game::update()
 {
   if (!this->states.empty())
   {
-    if (this->window->hasFocus())
+    this->states.top()->update(this->dt, window);
+
+    if (this->states.top()->getQuit())
     {
-      this->states.top()->update(this->dt, window);
+      std::unique_ptr<State> newState;
+      if (states.top()->getNewState() != NULL)
+        newState = std::move(states.top()->getNewState());
 
-      if (this->states.top()->getQuit())
-      {
-        std::unique_ptr<State> newState;
-        if (states.top()->getNewState() != NULL)
-          newState = std::move(states.top()->getNewState());
+      states.top()->endState();
+      states.pop();
 
-        states.top()->endState();
-        states.pop();
-
-        if (newState != NULL)
-          states.push(std::move(newState));
-      }
+      if (newState != NULL)
+        states.push(std::move(newState));
     }
   }
 

@@ -28,6 +28,15 @@ void AssetManager::loadSoundBuffer(const std::string& key, const std::string& fi
     throw;
 }
 
+void AssetManager::loadImage(const std::string& key, const std::string& filename)
+{
+  if (images.find(key) != images.end())
+    return;
+
+  if (!images[key].loadFromFile(filename))
+    throw;
+}
+
 sf::Texture& AssetManager::getTexture(const std::string & key)
 {
   if (textures.find(key) == textures.end())
@@ -50,6 +59,14 @@ sf::SoundBuffer& AssetManager::getSoundBuffer(const std::string& key)
     throw;
 
   return soundBuffers[key];
+}
+
+sf::Image& AssetManager::getImage(const std::string& key)
+{
+  if (images.find(key) == images.end())
+    throw;
+
+  return images[key];
 }
 
 AssetManager am;

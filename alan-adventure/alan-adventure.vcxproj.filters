@@ -40,6 +40,9 @@
     <Filter Include="Managers">
       <UniqueIdentifier>{37649191-10cc-4147-81ac-c0e9a080e5f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Managers\Buff">
+      <UniqueIdentifier>{df86140d-9c95-4d7a-acb7-d4a95b6ed557}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -149,6 +152,15 @@
     </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="BuffManager.cpp">
+      <Filter>Managers\Buff</Filter>
+    </ClCompile>
+    <ClCompile Include="SwiftBuff.cpp">
+      <Filter>Managers\Buff</Filter>
+    </ClCompile>
+    <ClCompile Include="Buff.cpp">
+      <Filter>Managers\Buff</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -265,6 +277,15 @@
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="BuffManager.h">
+      <Filter>Managers\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="SwiftBuff.h">
+      <Filter>Managers\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="Buff.h">
+      <Filter>Managers\Buff</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

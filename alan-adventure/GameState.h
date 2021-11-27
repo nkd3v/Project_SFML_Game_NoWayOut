@@ -4,6 +4,7 @@
 #include "EnemySystem.h"
 #include "EnemySpawner.h"
 #include "ItemManager.h"
+#include "BuffManager.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "PlayerGUI.h"
@@ -34,6 +35,8 @@ private:
   std::vector<Item*> items;
   ItemManager* itemManager;
 
+  BuffManager* buffManager;
+
   PlayerGUI* playerGUI;
 
   std::map<std::string, sf::Texture> textures;
@@ -58,6 +61,7 @@ private:
   void initEnemySystem();
   void initEnemySpawner();
   void initItemManager();
+  void initBuffManager();
   void initMap();
 
 public:

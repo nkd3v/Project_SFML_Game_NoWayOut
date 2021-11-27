@@ -1,5 +1,6 @@
 #pragma once
 
+#include "BuffManager.h"
 #include "HealthPotion.h"
 #include "RapidFirePotion.h"
 #include "SwiftPotion.h"
@@ -13,13 +14,13 @@ private:
 	std::map<std::string, sf::Texture>& textures;
 	std::vector<Item*>& items;
 	Player& player;
+	BuffManager* buffManager;
 
-	sf::SoundBuffer itemPickBuffer;
 	sf::Sound itemPickSound;
 
 public:
 	ItemManager(std::vector<Item*>& items,
-		std::map<std::string, sf::Texture>& textures, Player& player);
+		std::map<std::string, sf::Texture>& textures, Player& player, BuffManager* buffManager);
 	virtual ~ItemManager();
 
 	int getItemCount();
@@ -27,7 +28,7 @@ public:
 	void createItem(const short type, const float xPos, const float yPos);
 	void removeItem(const int index);
 
-	void update(const float& dt);
+	void update(const float& dt, BuffManager* buffManager);
 	void render(sf::RenderTarget* target);
 };
 

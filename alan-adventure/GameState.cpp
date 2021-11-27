@@ -10,6 +10,7 @@ GameState::GameState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>
   initPlayers();
   initPlayerGUI();
   initEnemySystem();
+  initBuffManager();
   initItemManager();
   initEnemySpawner();
   initView();
@@ -17,6 +18,7 @@ GameState::GameState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>
 
 GameState::~GameState()
 {
+  delete buffManager;
   delete player;
   delete enemySpawner;
   delete enemySystem;
@@ -101,7 +103,12 @@ void GameState::initEnemySpawner()
 
 void GameState::initItemManager()
 {
-  itemManager = new ItemManager(items, textures, *player);
+  itemManager = new ItemManager(items, textures, *player, buffManager);
+}
+
+void GameState::initBuffManager()
+{
+  buffManager = new BuffManager(*player);
 }
 
 void GameState::initMap()
@@ -154,7 +161,7 @@ void GameState::updateSFMLEvents(sf::RenderTarget* target)
 
 void GameState::updateItemsInteraction(const float& dt)
 {
-  itemManager->update(dt);
+  itemManager->update(dt, buffManager);
 }
 
 void GameState::updateWorldCollision(const float& dt)
@@ -183,8 +190,8 @@ void GameState::updateCombatAndEnemies(const float& dt)
 
     if (enemy->isDead())
     {
-      if (rand() % 100 < 30)
-        itemManager->createItem(rand() % 4, enemy->getPosition().x, enemy->getPosition().y);
+      if (rand() % 100 < 100)
+        itemManager->createItem(SWIFT_POTION, enemy->getPosition().x, enemy->getPosition().y);
 
       enemyKillSound.play();
       player->getAttributeComponent()->score += enemy->getGainScore();
@@ -274,6 +281,7 @@ void GameState::update(const float& dt, sf::RenderTarget* target)
     updateItemsInteraction(dt);
     updateWorldCollision(dt);
     playerGUI->update();
+    buffManager->update();
   }
 }
 

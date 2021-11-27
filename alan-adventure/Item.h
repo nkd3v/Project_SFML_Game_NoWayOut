@@ -1,5 +1,6 @@
 #pragma once
 
+#include "BuffManager.h"
 #include "Player.h"
 #include "Entity.h"
 
@@ -10,9 +11,10 @@ protected:
   sf::Vector2f pos;
   sf::Texture texture;
   Player& player;
+  BuffManager* buffManager;
 
 public:
-  Item(float x, float y, sf::Texture& texture, Player& player);
+  Item(float x, float y, sf::Texture& texture, Player& player, BuffManager* buffManager = nullptr);
   virtual ~Item();
 
   const sf::FloatRect& getGlobalBounds() const;

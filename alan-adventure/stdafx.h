@@ -20,6 +20,7 @@
 #include <sstream>
 #include <fstream>
 #include <cmath>
+#include <typeinfo>
 
 //SFML
 #include <SFML/System.hpp>
@@ -29,7 +30,6 @@
 #include <SFML/Network.hpp>
 #include <SFML/Main.hpp>
 
-#include "Game.h"
 #include "VectorMath.h"
 #include "AssetManager.h"
 #include "Time.h"

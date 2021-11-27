@@ -24,6 +24,8 @@
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AttributeComponent.cpp" />
     <ClCompile Include="BigDemon.cpp" />
+    <ClCompile Include="Buff.cpp" />
+    <ClCompile Include="BuffManager.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemySpawner.cpp" />
@@ -51,6 +53,7 @@
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SwiftBuff.cpp" />
     <ClCompile Include="SwiftPotion.cpp" />
     <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="Time.cpp" />
@@ -64,6 +67,8 @@
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="AttributeComponent.h" />
     <ClInclude Include="BigDemon.h" />
+    <ClInclude Include="Buff.h" />
+    <ClInclude Include="BuffManager.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemySpawner.h" />
@@ -90,6 +95,7 @@
     <ClInclude Include="State.h" />
     <ClInclude Include="States.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="SwiftBuff.h" />
     <ClInclude Include="SwiftPotion.h" />
     <ClInclude Include="TextBox.h" />
     <ClInclude Include="Time.h" />

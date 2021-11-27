@@ -2,13 +2,10 @@
 #include "ItemManager.h"
 
 ItemManager::ItemManager(std::vector<Item*>& items,
-	std::map<std::string, sf::Texture>& textures, Player& player)
-	: textures(textures), items(items), player(player)
+	std::map<std::string, sf::Texture>& textures, Player& player, BuffManager *buffManager)
+	: textures(textures), items(items), player(player), buffManager(buffManager)
 {
-	if (!itemPickBuffer.loadFromFile("assets/Sounds/item-pick.wav"))
-		throw "Error: Could not load title screen music.";
-
-	itemPickSound.setBuffer(itemPickBuffer);
+	itemPickSound.setBuffer(am.getSoundBuffer("ITEM_PICK"));
 }
 
 ItemManager::~ItemManager()
@@ -32,7 +29,7 @@ void ItemManager::createItem(const short type, const float xPos, const float yPo
 		this->items.push_back(new RapidFirePotion(xPos, yPos, this->textures["RAPID_FIRE_POTION"], this->player));
 		break;
 	case ItemTypes::SWIFT_POTION:
-		this->items.push_back(new SwiftPotion(xPos, yPos, this->textures["SWIFT_POTION"], this->player));
+		this->items.push_back(new SwiftPotion(xPos, yPos, this->textures["SWIFT_POTION"], this->player, buffManager));
 		break;
 	case ItemTypes::INVISIBLE_POTION:
 		this->items.push_back(new InvisiblePotion(xPos, yPos, this->textures["INVISIBLE_POTION"], this->player));
@@ -49,7 +46,7 @@ void ItemManager::removeItem(const int index)
 	this->items.erase(this->items.begin() + index);
 }
 
-void ItemManager::update(const float& dt)
+void ItemManager::update(const float& dt, BuffManager* buffManager)
 {
 	for (auto& item : items)
 	{

@@ -208,6 +208,9 @@ void GameState::updateCombat(Enemy* enemy, const int index, const float& dt)
   {
     if (bullet->getGlobalBounds().intersects(enemy->getGlobalBounds()))
     {
+      float angle = vectorAngle(bullet->getCenter(), enemy->getCenter());
+      enemy->move(100.f * cos(angle), 100.f * sin(angle), dt);
+
       enemyHitSound.play();
       int dmg = 1;
       enemy->loseHP(dmg);

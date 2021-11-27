@@ -15,3 +15,9 @@ const float vectorDistance(sf::Vector2f vec1, sf::Vector2f vec2)
 
   return sqrt(pow(dVec.x, 2) + pow(dVec.y, 2));
 }
+
+const float vectorAngle(sf::Vector2f vec1, sf::Vector2f vec2)
+{
+  auto d(vec2 - vec1);
+  return atan2f(d.y, d.x);
+}

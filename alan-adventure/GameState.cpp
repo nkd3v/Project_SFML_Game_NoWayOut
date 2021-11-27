@@ -166,6 +166,27 @@ void GameState::updateItemsInteraction(const float& dt)
 
 void GameState::updateWorldCollision(const float& dt)
 {
+  if (player->getPosition().x < worldBound.getPosition().x)
+  {
+    player->setPosition(worldBound.getPosition().x, player->getPosition().y);
+    player->stopVelocityX();
+  }
+  else if (player->getPosition().x + player->getGlobalBounds().width > worldBound.getPosition().x + worldBound.getSize().x)
+  {
+    player->setPosition(worldBound.getPosition().x + worldBound.getSize().x - player->getGlobalBounds().width, player->getPosition().y);
+    player->stopVelocityX();
+  }
+  if (player->getPosition().y < worldBound.getPosition().y)
+  {
+    player->setPosition(player->getPosition().x, worldBound.getPosition().y);
+    player->stopVelocityY();
+  }
+  else if (player->getPosition().y + player->getGlobalBounds().height > worldBound.getPosition().y + worldBound.getSize().y)
+  {
+    player->setPosition(player->getPosition().x,  +worldBound.getPosition().y + worldBound.getSize().y - player->getGlobalBounds().height);
+    player->stopVelocityY();
+  }
+
   for (auto& it : player->getWeapon()->getBullets())
   {
     const sf::Vector2f& pos = it->getPosition();
@@ -304,4 +325,12 @@ void GameState::render(sf::RenderTarget* target)
   }
 
   player->render(*target);
+
+
+  worldBound.setPosition(sf::Vector2f(15.f, 65.f));
+  worldBound.setSize(sf::Vector2f(610.f, 485.f));
+  worldBound.setFillColor(sf::Color::Transparent);
+  worldBound.setOutlineColor(sf::Color::Green);
+  worldBound.setOutlineThickness(1.f);
+  target->draw(worldBound);
 }

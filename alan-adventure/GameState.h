@@ -45,12 +45,11 @@ private:
   sf::Texture mapTexture;
 
   sf::Sound bgMusic;
-
   sf::Sound enemyHitSound;
-
   sf::Sound enemyKillSound;
-
   sf::Sound playerHitSound;
+
+  sf::RectangleShape worldBound;
 
   void initTextures();
   void initView();

@@ -26,6 +26,8 @@ public:
 	Game();
 	virtual ~Game();
 
+	sf::RenderWindow& getWindow();
+
 	// Methods
 	void update();
 	void updateDt();
@@ -33,3 +35,4 @@ public:
 	void render();
 };
 
+extern Game game;

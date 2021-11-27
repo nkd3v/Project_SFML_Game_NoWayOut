@@ -33,6 +33,7 @@ void Weapon::updateCooldown()
 void Weapon::update(const float& dt)
 {
   sprite.setPosition(entity.getCenter());
+  updateCooldown();
 }
 
 void Weapon::render(sf::RenderTarget& target)

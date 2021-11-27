@@ -33,6 +33,7 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="HealthPotion.cpp" />
     <ClCompile Include="HitboxComponent.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="InvisiblePotion.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemManager.cpp" />
@@ -72,6 +73,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="HealthPotion.h" />
     <ClInclude Include="HitboxComponent.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="InvisiblePotion.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemManager.h" />

@@ -77,6 +77,10 @@ void State::updateMousePositions(sf::View* view)
 
   mousePosView = window->mapPixelToCoords(sf::Mouse::getPosition(*window));
 
+  Input.mousePosScreen = mousePosScreen;
+  Input.mousePosWindow = mousePosWindow;
+  Input.mousePosCoords = mousePosView;
+
   window->setView(window->getDefaultView());
 }
 

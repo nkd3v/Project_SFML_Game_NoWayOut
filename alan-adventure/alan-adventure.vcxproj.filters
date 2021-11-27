@@ -147,6 +147,9 @@
     <ClCompile Include="Time.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -259,6 +262,9 @@
     </ClInclude>
     <ClInclude Include="Weapons.h">
       <Filter>Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

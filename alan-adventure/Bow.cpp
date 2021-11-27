@@ -58,6 +58,10 @@ void Bow::update(const float& dt)
 {
   sprite.setPosition(entity.getCenter());
 
+  sf::Vector2f d = Input.mousePosCoords - entity.getPosition();
+  float angle = atan2f(d.y, d.x) * RAD2DEG;
+  sprite.setRotation(angle);
+
   updateCooldown();
 
   for (auto it = bullets.begin(); it != bullets.end();)

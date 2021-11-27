@@ -50,6 +50,11 @@ Game::~Game()
   }
 }
 
+sf::RenderWindow& Game::getWindow()
+{
+  return *window;
+}
+
 void Game::update()
 {
   if (!this->states.empty())

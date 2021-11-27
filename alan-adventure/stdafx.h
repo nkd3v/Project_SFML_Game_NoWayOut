@@ -29,9 +29,11 @@
 #include <SFML/Network.hpp>
 #include <SFML/Main.hpp>
 
+#include "Game.h"
 #include "VectorMath.h"
 #include "AssetManager.h"
 #include "Time.h"
+#include "Input.h"
 
 #endif
 

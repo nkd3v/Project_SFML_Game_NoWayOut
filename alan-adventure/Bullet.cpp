@@ -7,6 +7,7 @@ Bullet::Bullet(sf::Vector2f pos, float speed, float angle)
   initVariables();
   initTexture();
 
+  sprite.setTexture(bulletTexture);
   sprite.setPosition(pos);
   sprite.setRotation(angle * 180.f / (float)M_PI);
 }
@@ -25,22 +26,11 @@ void Bullet::initVariables()
 void Bullet::initTexture()
 {
   bulletTexture.loadFromFile("assets/Weapon/arrow.png");
-  sprite.setTexture(bulletTexture);
 }
 
 void Bullet::kill()
 {
   life = 0;
-}
-
-const sf::Vector2f Bullet::getPosition() const
-{
-  return sprite.getPosition();
-}
-
-const sf::FloatRect& Bullet::getGlobalBounds() const
-{
-  return sprite.getGlobalBounds();
 }
 
 bool Bullet::endofLife()
@@ -49,7 +39,7 @@ bool Bullet::endofLife()
   return lifetime > lifespan || life == 0;
 }
 
-void Bullet::update(float dt)
+void Bullet::update(const float& dt)
 {
   sprite.move(speed * cos(angle) * dt, speed * sin(angle) * dt);
 }

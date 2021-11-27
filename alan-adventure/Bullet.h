@@ -1,9 +1,11 @@
 #pragma once
 
+#include "Entity.h"
+
 class Bullet
+  : public Entity
 {
 private:
-  sf::Sprite sprite;
   sf::Texture bulletTexture;
 
   sf::Clock timer;
@@ -23,12 +25,9 @@ public:
   void initTexture();
 
   void kill();
-
-  const sf::Vector2f getPosition() const;
-  const sf::FloatRect& getGlobalBounds() const;
   bool endofLife();
 
-  void update(float dt);
+  void update(const float& dt);
   void render(sf::RenderTarget& target);
 };
 

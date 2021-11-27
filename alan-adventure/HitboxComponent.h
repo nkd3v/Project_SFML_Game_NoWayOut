@@ -18,6 +18,8 @@ public:
 
 	const sf::Vector2f& getPosition() const;
 	const sf::FloatRect getGlobalBounds() const;
+	sf::Vector2f getSize() const;
+	sf::Vector2f getCenter() const;
 
 	void setPosition(const sf::Vector2f& position);
 	void setPosition(const float x, const float y);

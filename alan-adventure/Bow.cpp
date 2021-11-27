@@ -35,7 +35,9 @@ void Bow::updateCooldown()
   else
     cooldownMax = defaultCooldown;
 
-  Weapon::updateCooldown();
+  cooldown -= Time.deltaTime;
+  if (cooldown <= 0.f)
+    cooldown = 0.f;
 }
 
 void Bow::activateRapidFire(float time)
@@ -54,7 +56,7 @@ void Bow::shoot(const sf::Vector2f& pos, float angle)
 
 void Bow::update(const float& dt)
 {
-
+  sprite.setPosition(entity.getCenter());
 
   updateCooldown();
 
@@ -72,6 +74,8 @@ void Bow::update(const float& dt)
 
 void Bow::render(sf::RenderTarget& target)
 {
+  Weapon::render(target);
+
   for (auto& bullet : bullets)
     bullet->render(target);
 }

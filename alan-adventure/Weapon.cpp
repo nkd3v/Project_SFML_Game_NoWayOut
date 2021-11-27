@@ -29,3 +29,13 @@ void Weapon::updateCooldown()
   if (cooldown <= 0.f)
     cooldown = 0.f;
 }
+
+void Weapon::update(const float& dt)
+{
+  sprite.setPosition(entity.getCenter());
+}
+
+void Weapon::render(sf::RenderTarget& target)
+{
+  target.draw(sprite);
+}

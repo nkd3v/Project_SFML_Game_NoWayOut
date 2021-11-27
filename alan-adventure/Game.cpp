@@ -77,6 +77,7 @@ void Game::update()
 void Game::updateDt()
 {
   dt = dtClock.restart().asSeconds();
+  Time.deltaTime = dt;
 }
 
 void Game::run()

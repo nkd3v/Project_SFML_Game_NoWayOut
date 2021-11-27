@@ -31,6 +31,7 @@
 
 #include "VectorMath.h"
 #include "AssetManager.h"
+#include "Time.h"
 
 #endif
 

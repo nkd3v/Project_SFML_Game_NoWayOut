@@ -52,6 +52,7 @@
     </ClCompile>
     <ClCompile Include="SwiftPotion.cpp" />
     <ClCompile Include="TextBox.cpp" />
+    <ClCompile Include="Time.cpp" />
     <ClCompile Include="VectorMath.cpp" />
     <ClCompile Include="Bow.cpp" />
     <ClCompile Include="Weapon.cpp" />
@@ -89,6 +90,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SwiftPotion.h" />
     <ClInclude Include="TextBox.h" />
+    <ClInclude Include="Time.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="Bow.h" />
     <ClInclude Include="Weapon.h" />

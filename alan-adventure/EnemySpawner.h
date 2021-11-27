@@ -32,11 +32,11 @@ public:
 	~EnemySpawner();
 
 	int spawnMax;
-	std::vector<EnemyTypes> allowEnemies;
+	std::vector<unsigned int> allowEnemies;
 	float spawnFactor;
 
 	void addSpawner(sf::Vector2f pos, float minTime, float maxTime);
-	void changeDifficulty(int spawnMax, std::vector<EnemyTypes> allowEnemies, float spawnFactor);
+	void changeDifficulty(int spawnMax, std::vector<unsigned int> allowEnemies, float spawnFactor);
 	void update(const float& dt);
 };
 

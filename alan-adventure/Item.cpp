@@ -12,7 +12,7 @@ Item::~Item()
 {
 }
 
-const sf::FloatRect& Item::getGlobalBounds() const
+sf::FloatRect Item::getGlobalBounds() const
 {
   return sprite.getGlobalBounds();
 }

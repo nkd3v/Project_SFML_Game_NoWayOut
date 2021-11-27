@@ -11,7 +11,7 @@ private:
   sf::Font font;
   sf::String str;
 
-  int textLimit;
+  size_t textLimit;
 
 public:
   TextBox();

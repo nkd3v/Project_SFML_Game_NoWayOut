@@ -14,7 +14,7 @@ void AI::update(const float& dt)
 {
   sf::Vector2f moveVec(entity.getPosition() - self.getPosition());
 
-  float vecLength = sqrt(pow(moveVec.x, 2) + pow(moveVec.y, 2));
+  float vecLength = sqrtf(powf(moveVec.x, 2) + powf(moveVec.y, 2));
 
   moveVec /= vecLength;
 

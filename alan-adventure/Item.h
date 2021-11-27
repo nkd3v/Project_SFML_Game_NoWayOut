@@ -17,7 +17,7 @@ public:
   Item(float x, float y, sf::Texture& texture, Player& player, BuffManager* buffManager = nullptr);
   virtual ~Item();
 
-  const sf::FloatRect& getGlobalBounds() const;
+  sf::FloatRect getGlobalBounds() const;
 
   virtual void activate() = 0;
 

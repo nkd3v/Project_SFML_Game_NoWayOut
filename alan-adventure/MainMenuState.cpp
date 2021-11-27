@@ -90,6 +90,10 @@ void MainMenuState::updateSFMLEvents(sf::RenderTarget* target)
 
       case sf::Keyboard::Enter:
         changeState();
+        break;
+
+      default:
+        break;
       }
     }
   }

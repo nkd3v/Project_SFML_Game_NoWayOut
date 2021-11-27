@@ -124,11 +124,11 @@ void ScoreboardState::render(sf::RenderTarget* target = nullptr)
 
     for (size_t i = 0; i < scores.size(); i++)
     {
-      text.setPosition(200, 180 + i * 70);
+      text.setPosition(200, static_cast<float>(180 + i * 70));
       text.setString(scores[i].second);
       target->draw(text);
 
-      text.setPosition(600, 180 + i * 70);
+      text.setPosition(600, static_cast<float>(180 + i * 70));
       text.setString(std::to_string(scores[i].first));
       target->draw(text);
     }

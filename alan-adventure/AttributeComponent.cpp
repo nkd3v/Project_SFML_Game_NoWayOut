@@ -12,17 +12,17 @@ AttributeComponent::~AttributeComponent()
 	
 }
 
-void AttributeComponent::loseHP(const int hp)
+void AttributeComponent::loseHP(const int changeHP)
 {
-	this->hp -= hp;
+	hp -= changeHP;
 
-	if (this->hp < 0)
-		this->hp = 0;
+	if (hp < 0)
+		hp = 0;
 }
 
-void AttributeComponent::gainHP(const int hp)
+void AttributeComponent::gainHP(const int changeHP)
 {
-	this->hp += hp;
+	this->hp += changeHP;
 
 	if (this->hp > this->hpMax)
 		this->hp = this->hpMax;
@@ -33,9 +33,9 @@ const bool AttributeComponent::isDead() const
 	return this->hp <= 0;
 }
 
-void AttributeComponent::setScore(int score)
+void AttributeComponent::setScore(int newScore)
 {
-	this->score = score;
+	this->score = newScore;
 }
 
 int AttributeComponent::getScore()

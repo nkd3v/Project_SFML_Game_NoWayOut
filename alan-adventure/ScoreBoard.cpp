@@ -14,8 +14,8 @@ void Scoreboard::addScore(const std::string& name, int score)
 
   if (!file.is_open()) std::cerr << "Opening file failed!";
 
-  for (const auto& score : scores)
-    file << score.second << ' ' << score.first << '\n';
+  for (const auto& score_ : scores)
+    file << score_.second << ' ' << score_.first << '\n';
   file.close();
 }
 

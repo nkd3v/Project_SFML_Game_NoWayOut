@@ -7,13 +7,14 @@
 class Enemy :
 	public Entity
 {
+private:
+	void initVariables();
+	void initAnimations();
+
 protected:
 	unsigned gainScore;
 	sf::Clock damageTimer;
 	sf::Int32 damageTimerMax;
-
-	virtual void initVariables() = 0;
-	virtual void initAnimations() = 0;
 
 public:
 	Enemy();

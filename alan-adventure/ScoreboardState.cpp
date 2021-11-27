@@ -21,7 +21,7 @@ ScoreboardState::ScoreboardState(sf::RenderWindow* window, std::stack<std::uniqu
   else
   {
     nameEntered = true;
-    scores = std::move(scoreboard.getScores());
+    scores = scoreboard.getScores();
   }
 
   nameTextBox.setPosition(300, 200);
@@ -61,10 +61,10 @@ void ScoreboardState::updateSFMLEvents(sf::RenderTarget* target)
       {
         if (e.key.code == sf::Keyboard::Enter)
         {
-          playerName = std::move(nameTextBox.getString());
+          playerName = nameTextBox.getString();
           nameEntered = true;
           saveScore();
-          scores = std::move(scoreboard.getScores());
+          scores = scoreboard.getScores();
         }
       }
       else
@@ -80,7 +80,7 @@ void ScoreboardState::updateSFMLEvents(sf::RenderTarget* target)
     if (!nameEntered)
     {
       if (e.type == sf::Event::TextEntered)
-        nameTextBox.update(e.text.unicode);
+        nameTextBox.update(static_cast<char>(e.text.unicode));
     }
   }
 }

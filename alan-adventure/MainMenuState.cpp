@@ -57,7 +57,7 @@ void MainMenuState::initMenu()
 
 void MainMenuState::updateMenu()
 {
-  for (int i = 0; i < maxOptions; i++)
+  for (unsigned i = 0; i < maxOptions; i++)
   {
     if (i == selectedOption)
       menu[i].setFillColor(sf::Color::Red);

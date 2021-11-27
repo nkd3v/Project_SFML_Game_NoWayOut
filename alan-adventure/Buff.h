@@ -4,6 +4,8 @@
 
 class Buff
 {
+private:
+
 protected:
   std::string name;
 
@@ -17,10 +19,6 @@ public:
   virtual ~Buff();
 
   virtual const std::string& getName() const = 0;
-
-  virtual void saveDefault() = 0;
-  virtual void activate() = 0;
-  virtual void restoreDefault() = 0;
 
   virtual bool endOfLife();
   virtual void updateLifetime();

@@ -16,10 +16,10 @@ public:
 	AttributeComponent(int hpMax = 4, int damageMin = 1, int damageMax = 2, int moveSpeed = 1, int shootSpeed = 1);
 	virtual ~AttributeComponent();
 
-	void loseHP(const int hp);
-	void gainHP(const int hp);
+	void loseHP(const int changeHP);
+	void gainHP(const int changeHP);
 
-	void setScore(int score);
+	void setScore(int newScore);
 	int getScore();
 
 	const bool isDead() const;

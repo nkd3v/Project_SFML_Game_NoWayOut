@@ -2,9 +2,9 @@
 #include "Weapon.h"
 
 Weapon::Weapon(float cooldown, Entity& entity) :
+  entity(entity),
   cooldown(cooldown),
-  cooldownMax(cooldown),
-  entity(entity)
+  cooldownMax(cooldown)
 {
 }
 

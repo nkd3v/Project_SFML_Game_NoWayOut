@@ -3,8 +3,8 @@
 class State
 {
 protected:
-  std::stack<std::unique_ptr<State>>& states;
   sf::RenderWindow* window;
+  std::stack<std::unique_ptr<State>>& states;
   std::vector<sf::Texture*> textures;
 
   sf::Vector2i mousePosScreen;

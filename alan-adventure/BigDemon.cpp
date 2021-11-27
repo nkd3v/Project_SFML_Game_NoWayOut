@@ -1,20 +1,6 @@
 #include "stdafx.h"
 #include "BigDemon.h"
 
-void BigDemon::initVariables()
-{
-	gainScore = 200;
-}
-
-void BigDemon::initAnimations()
-{
-	this->animationComponent->addAnimation("IDLE",       25.f, 0, 0, 3, 0, 64, 64);
-	this->animationComponent->addAnimation("WALK_DOWN",  11.f, 0, 1, 3, 1, 64, 64);
-	this->animationComponent->addAnimation("WALK_LEFT",  11.f, 0, 1, 3, 1, 64, 64);
-	this->animationComponent->addAnimation("WALK_RIGHT", 11.f, 0, 2, 3, 2, 64, 64);
-	this->animationComponent->addAnimation("WALK_UP",    11.f, 0, 2, 3, 2, 64, 64);
-}
-
 BigDemon::BigDemon(float x, float y, sf::Texture& texture_sheet, Entity& player)
 {
 	this->initVariables();
@@ -34,6 +20,20 @@ BigDemon::BigDemon(float x, float y, sf::Texture& texture_sheet, Entity& player)
 BigDemon::~BigDemon()
 {
 	delete this->follow;
+}
+
+void BigDemon::initVariables()
+{
+	gainScore = 200;
+}
+
+void BigDemon::initAnimations()
+{
+	this->animationComponent->addAnimation("IDLE", 25.f, 0, 0, 3, 0, 64, 64);
+	this->animationComponent->addAnimation("WALK_DOWN", 11.f, 0, 1, 3, 1, 64, 64);
+	this->animationComponent->addAnimation("WALK_LEFT", 11.f, 0, 1, 3, 1, 64, 64);
+	this->animationComponent->addAnimation("WALK_RIGHT", 11.f, 0, 2, 3, 2, 64, 64);
+	this->animationComponent->addAnimation("WALK_UP", 11.f, 0, 2, 3, 2, 64, 64);
 }
 
 void BigDemon::updateAnimation(const float& dt)

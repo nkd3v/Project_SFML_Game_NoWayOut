@@ -17,11 +17,11 @@ void EnemySpawner::addSpawner(sf::Vector2f pos, float minTime, float maxTime)
   spawnPoints.push_back(std::make_unique<SpawnPoint>(pos, minTime, maxTime));
 }
 
-void EnemySpawner::changeDifficulty(int spawnMax, std::vector<unsigned int> allowEnemies, float spawnFactor)
+void EnemySpawner::changeDifficulty(int newSpawnMax, std::vector<unsigned int> newAllowEnemies, float newSpawnFactor)
 {
-  this->spawnMax = spawnMax;
-  this->allowEnemies = std::move(allowEnemies);
-  this->spawnFactor = spawnFactor;
+  this->spawnMax = newSpawnMax;
+  this->allowEnemies = std::move(newAllowEnemies);
+  this->spawnFactor = newSpawnFactor;
 }
 
 void EnemySpawner::update(const float& dt)
@@ -34,7 +34,7 @@ void EnemySpawner::update(const float& dt)
 
     if (clock.getElapsedTime().asSeconds() >= spawnPoint->nextSpawnTime)
     {
-      enemySystem.createEnemy(allowEnemies[rand() % allowEnemies.size()], spawnPoint->pos.x, spawnPoint->pos.y);
+      enemySystem.createEnemy(allowEnemies[static_cast<unsigned int>(rand() % allowEnemies.size())], spawnPoint->pos.x, spawnPoint->pos.y);
       spawnPoint->nextSpawnTime =
         clock.getElapsedTime().asSeconds()
         + (rand() % int(spawnPoint->maxTime - spawnPoint->minTime)

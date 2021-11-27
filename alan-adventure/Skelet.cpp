@@ -1,20 +1,6 @@
 #include "stdafx.h"
 #include "Skelet.h"
 
-void Skelet::initVariables()
-{
-	gainScore = 50;
-}
-
-void Skelet::initAnimations()
-{
-	this->animationComponent->addAnimation("IDLE",       25.f, 0, 0, 3, 0, 32, 32);
-	this->animationComponent->addAnimation("WALK_DOWN",  11.f, 0, 1, 3, 1, 32, 32);
-	this->animationComponent->addAnimation("WALK_LEFT",  11.f, 0, 1, 3, 1, 32, 32);
-	this->animationComponent->addAnimation("WALK_RIGHT", 11.f, 0, 2, 3, 2, 32, 32);
-	this->animationComponent->addAnimation("WALK_UP",    11.f, 0, 2, 3, 2, 32, 32);
-}
-
 Skelet::Skelet(float x, float y, sf::Texture& texture_sheet, Entity& player)
 {
 	initVariables();
@@ -33,6 +19,20 @@ Skelet::Skelet(float x, float y, sf::Texture& texture_sheet, Entity& player)
 Skelet::~Skelet()
 {
 	delete this->follow;
+}
+
+void Skelet::initVariables()
+{
+	gainScore = 50;
+}
+
+void Skelet::initAnimations()
+{
+	this->animationComponent->addAnimation("IDLE", 25.f, 0, 0, 3, 0, 32, 32);
+	this->animationComponent->addAnimation("WALK_DOWN", 11.f, 0, 1, 3, 1, 32, 32);
+	this->animationComponent->addAnimation("WALK_LEFT", 11.f, 0, 1, 3, 1, 32, 32);
+	this->animationComponent->addAnimation("WALK_RIGHT", 11.f, 0, 2, 3, 2, 32, 32);
+	this->animationComponent->addAnimation("WALK_UP", 11.f, 0, 2, 3, 2, 32, 32);
 }
 
 void Skelet::updateAnimation(const float& dt)

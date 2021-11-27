@@ -1,17 +1,6 @@
 #include "stdafx.h"
 #include "Enemy.h"
 
-void Enemy::initVariables()
-{
-	this->gainScore = 10;
-	this->damageTimerMax = 1000;
-}
-
-void Enemy::initAnimations()
-{
-
-}
-
 Enemy::Enemy()
 {
 	this->initVariables();
@@ -19,6 +8,17 @@ Enemy::Enemy()
 }
 
 Enemy::~Enemy()
+{
+
+}
+
+void Enemy::initVariables()
+{
+	this->gainScore = 10;
+	this->damageTimerMax = 1000;
+}
+
+void Enemy::initAnimations()
 {
 
 }

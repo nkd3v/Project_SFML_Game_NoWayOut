@@ -36,7 +36,7 @@ public:
 	float spawnFactor;
 
 	void addSpawner(sf::Vector2f pos, float minTime, float maxTime);
-	void changeDifficulty(int spawnMax, std::vector<unsigned int> allowEnemies, float spawnFactor);
+	void changeDifficulty(int newSpawnMax, std::vector<unsigned int> newAllowEnemies, float newSpawnFactor);
 	void update(const float& dt);
 };
 

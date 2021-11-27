@@ -5,6 +5,7 @@ PlayerGUI::PlayerGUI(Player *player)
   : player(player)
 {
   initHPBar();
+  initMapLevel();
   initScorePanel();
 }
 
@@ -27,24 +28,40 @@ void PlayerGUI::initHPBar()
   emptyHeartRect = sf::IntRect(64, 0, 32, 32);
 }
 
+void PlayerGUI::initMapLevel()
+{
+  mapLevelText.setFont(am.getFont("DPCOMIC"));
+}
+
 void PlayerGUI::initScorePanel()
 {
-  font.loadFromFile("assets/Fonts/dpcomic.ttf");
-  scoreText.setFont(font);
+  scoreText.setFont(am.getFont("DPCOMIC"));
 }
 
 void PlayerGUI::updateHPBar()
 {
 }
 
+void PlayerGUI::updateMapLevel()
+{
+  int score = player->getAttributeComponent()->score;
+  if (score >= 0 && score < 300)
+    mapLevelText.setString("Level: 1");
+  else if (score >= 300 && score < 2000)
+    mapLevelText.setString("Level: 2");
+  else if (score >= 2000)
+    mapLevelText.setString("Level: 3");
+}
+
 void PlayerGUI::updateScorePanel()
 {
-  scoreText.setString(std::to_string(player->getAttributeComponent()->score));
+  scoreText.setString("Score: " + std::to_string(player->getAttributeComponent()->score));
 }
 
 void PlayerGUI::update()
 {
   updateHPBar();
+  updateMapLevel();
   updateScorePanel();
 }
 
@@ -79,9 +96,17 @@ void PlayerGUI::renderHPBar(sf::RenderTarget* target)
   }
 }
 
+void PlayerGUI::renderMapLevel(sf::RenderTarget* target)
+{
+  sf::Vector2f mapLevelPos = target->mapPixelToCoords(sf::Vector2i(680, 10));
+  mapLevelText.setPosition(mapLevelPos);
+
+  target->draw(mapLevelText);
+}
+
 void PlayerGUI::renderScorePanel(sf::RenderTarget* target)
 {
-  sf::Vector2f scorePos = target->mapPixelToCoords(sf::Vector2i(700, 10));
+  sf::Vector2f scorePos = target->mapPixelToCoords(sf::Vector2i(370, 10));
   scoreText.setPosition(scorePos);
 
   target->draw(scoreText);
@@ -90,5 +115,6 @@ void PlayerGUI::renderScorePanel(sf::RenderTarget* target)
 void PlayerGUI::render(sf::RenderTarget* target)
 {
   renderHPBar(target);
+  renderMapLevel(target);
   renderScorePanel(target);
 }

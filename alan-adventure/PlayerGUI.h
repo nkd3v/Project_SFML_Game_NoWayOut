@@ -16,19 +16,23 @@ private:
   sf::Vector2f heartSize;
   sf::Texture heartTexture;
 
-  sf::Font font;
   sf::Text scoreText;
+  sf::Text mapLevelText;
 
   sf::Vector2f HPBarPos;
   sf::Vector2f scorePos;
+  sf::Vector2f mapLevelPos;
 
   void initHPBar();
+  void initMapLevel();
   void initScorePanel();
 
   void updateHPBar();
+  void updateMapLevel();
   void updateScorePanel();
 
   void renderHPBar(sf::RenderTarget* target);
+  void renderMapLevel(sf::RenderTarget* target);
   void renderScorePanel(sf::RenderTarget* target);
 
 public:

@@ -56,13 +56,8 @@ void Bow::shoot(const sf::Vector2f& pos, float angle)
 
 void Bow::update(const float& dt)
 {
-  sprite.setPosition(entity.getCenter());
-
-  sf::Vector2f d = Input.mousePosCoords - entity.getPosition();
-  float angle = atan2f(d.y, d.x) * RAD2DEG;
-  sprite.setRotation(angle);
-
   updateCooldown();
+  sprite.setPosition(entity.getPosition());
 
   for (auto it = bullets.begin(); it != bullets.end();)
   {
@@ -78,7 +73,7 @@ void Bow::update(const float& dt)
 
 void Bow::render(sf::RenderTarget& target)
 {
-  Weapon::render(target);
+  target.draw(sprite);
 
   for (auto& bullet : bullets)
     bullet->render(target);

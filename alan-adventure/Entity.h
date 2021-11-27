@@ -38,6 +38,7 @@ public:
 
 	virtual const sf::Vector2f& getPosition() const;
 	virtual sf::Vector2f getCenter() const;
+	virtual sf::Vector2f getSize() const;
 	virtual const sf::FloatRect getGlobalBounds() const;
 
 	virtual void setPosition(const float x, const float y);

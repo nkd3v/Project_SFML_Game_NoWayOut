@@ -57,7 +57,19 @@ void Bow::shoot(const sf::Vector2f& pos, float angle)
 void Bow::update(const float& dt)
 {
   updateCooldown();
-  sprite.setPosition(entity.getPosition());
+  sprite.setOrigin(getSize() / 2.f);
+
+  if (entity.getMovementComponent()->getState(MOVING_RIGHT)
+    || entity.getMovementComponent()->getState(IDLE))
+  {
+    sprite.setPosition(entity.getCenter() + sf::Vector2f(15.f, 0.f));
+    sprite.setRotation(0.f);
+  }
+  else
+  {
+    sprite.setPosition(entity.getCenter() + sf::Vector2f(-15.f, 0.f));
+    sprite.setRotation(180.f);
+  }
 
   for (auto it = bullets.begin(); it != bullets.end();)
   {

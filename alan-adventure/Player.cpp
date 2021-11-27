@@ -58,7 +58,7 @@ const bool Player::getDamageTimer()
 
 void Player::attack(sf::Vector2f mousePos)
 {
-	weapon->shoot(getPosition(), atan2(mousePos.y - getPosition().y, mousePos.x - getPosition().x));
+	weapon->shoot(getCenter(), atan2f(mousePos.y - getCenter().y, mousePos.x - getCenter().x));
 }
 
 void Player::loseHP(const int hp)

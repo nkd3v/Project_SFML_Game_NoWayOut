@@ -18,7 +18,7 @@ private:
 	void updateCooldown();
 
 public:
-	Bow();
+	Bow(Entity& entity);
 	~Bow();
 
 	const std::vector<std::unique_ptr<Bullet>>& getBullets() const;

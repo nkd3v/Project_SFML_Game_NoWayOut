@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "Bow.h"
 
-Bow::Bow() :
-  Weapon(.5f)
+Bow::Bow(Entity& entity) :
+  Weapon(.5f, entity)
 {
   defaultCooldown = .5f;
   rapidCooldown = .1f;
@@ -10,6 +10,9 @@ Bow::Bow() :
 
   shootArrowSound.setBuffer(am.getSoundBuffer("SHOOT_ARROW"));
   shootArrowSound.setVolume(20);
+
+  am.loadTexture("BOW", "assets/Weapon/bow.png");
+  sprite.setTexture(am.getTexture("BOW"));
 }
 
 Bow::~Bow()
@@ -51,6 +54,8 @@ void Bow::shoot(const sf::Vector2f& pos, float angle)
 
 void Bow::update(const float& dt)
 {
+
+
   updateCooldown();
 
   for (auto it = bullets.begin(); it != bullets.end();)

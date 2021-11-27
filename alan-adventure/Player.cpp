@@ -6,7 +6,7 @@ void Player::initVariables()
 {
 	this->damageTimerMax = 500;
 
-	weapon = new Bow();
+	weapon = new Bow(*this);
 }
 
 void Player::initAnimations()

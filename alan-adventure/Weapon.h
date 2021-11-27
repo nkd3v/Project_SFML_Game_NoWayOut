@@ -8,6 +8,8 @@ class Weapon :
 private:
 
 protected:
+  Entity& entity;
+
   float cooldown;
   float cooldownMax;
 
@@ -15,7 +17,7 @@ protected:
   virtual void updateCooldown();
 
 public:
-  Weapon(float cooldown);
+  Weapon(float cooldown, Entity& entity);
   ~Weapon();
 
   virtual void shoot(const sf::Vector2f& pos, float angle) = 0;

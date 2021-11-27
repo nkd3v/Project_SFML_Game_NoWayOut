@@ -1,9 +1,10 @@
 #include "stdafx.h"
 #include "Weapon.h"
 
-Weapon::Weapon(float cooldown) :
+Weapon::Weapon(float cooldown, Entity& entity) :
   cooldown(cooldown),
-  cooldownMax(cooldown)
+  cooldownMax(cooldown),
+  entity(entity)
 {
 }
 

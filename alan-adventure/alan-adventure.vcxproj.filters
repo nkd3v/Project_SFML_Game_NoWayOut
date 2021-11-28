@@ -174,6 +174,9 @@
     <ClCompile Include="BloodSplat.cpp">
       <Filter>Managers\Buff</Filter>
     </ClCompile>
+    <ClCompile Include="RapidFireBuff.cpp">
+      <Filter>Managers\Buff</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -309,6 +312,9 @@
       <Filter>Managers\Buff</Filter>
     </ClInclude>
     <ClInclude Include="BloodSplat.h">
+      <Filter>Managers\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="RapidFireBuff.h">
       <Filter>Managers\Buff</Filter>
     </ClInclude>
   </ItemGroup>

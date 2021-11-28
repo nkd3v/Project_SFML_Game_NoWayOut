@@ -12,6 +12,11 @@ Weapon::~Weapon()
 {
 }
 
+const float& Weapon::getCooldown() const
+{
+  return cooldownMax;
+}
+
 bool Weapon::canShoot()
 {
   if (cooldown <= 0.f)

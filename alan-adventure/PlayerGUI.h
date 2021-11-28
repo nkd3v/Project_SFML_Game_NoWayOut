@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Player.h"
+#include "BuffManager.h"
 
 class PlayerGUI
 {
@@ -14,7 +15,8 @@ private:
   sf::IntRect emptyHeartRect;
 
   sf::Vector2f heartSize;
-  sf::Texture heartTexture;
+
+  sf::Sprite buffSprite;
 
   sf::Text scoreText;
   sf::Text mapLevelText;
@@ -22,6 +24,9 @@ private:
   sf::Vector2f HPBarPos;
   sf::Vector2f scorePos;
   sf::Vector2f mapLevelPos;
+  sf::Vector2f buffPos;
+
+  BuffManager* buffManager;
 
   void initHPBar();
   void initMapLevel();
@@ -30,13 +35,15 @@ private:
   void updateHPBar();
   void updateMapLevel();
   void updateScorePanel();
+  void updateBuffPanel();
 
   void renderHPBar(sf::RenderTarget* target);
   void renderMapLevel(sf::RenderTarget* target);
   void renderScorePanel(sf::RenderTarget* target);
+  void renderBuffPanel(sf::RenderTarget* target);
 
 public:
-  PlayerGUI(Player *player);
+  PlayerGUI(Player *player, BuffManager* buffManager);
   ~PlayerGUI();
 
   void update();

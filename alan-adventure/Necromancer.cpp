@@ -28,6 +28,7 @@ Necromancer::~Necromancer()
 
 void Necromancer::initVariables()
 {
+	name = "Necromancer";
 	gainScore = 1000;
 	bow = new Bow(*this, "", "FIREBALL");
 	bow->setCooldown(2.f);

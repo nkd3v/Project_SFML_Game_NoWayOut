@@ -2,10 +2,11 @@
 
 #include "Entity.h"
 #include "SwiftBuff.h"
+#include "RapidFireBuff.h"
 #include "WarpEffect.h"
 #include "BloodSplat.h"
 
-enum BuffTypes { SWIFT, WARP, BLOOD_SPLAT };
+enum BuffTypes { SWIFT, RAPID_FIRE, WARP, BLOOD_SPLAT };
 
 class BuffManager
 {
@@ -20,6 +21,8 @@ public:
 
   BuffManager(Entity& entity);
   ~BuffManager();
+
+  const std::vector<std::unique_ptr<Buff>>& getBuffs() const;
 
   void createBuff(unsigned int buffType, float lifetimeMax, sf::Vector2f pos = sf::Vector2f(0, 0));
   void update();

@@ -26,7 +26,7 @@ void ItemManager::createItem(const short type, const float xPos, const float yPo
 		this->items.push_back(new HealthPotion(xPos, yPos, this->textures["HEALTH_POTION"], this->player));
 		break;
 	case ItemTypes::RAPID_FIRE_POTION:
-		this->items.push_back(new RapidFirePotion(xPos, yPos, this->textures["RAPID_FIRE_POTION"], this->player));
+		this->items.push_back(new RapidFirePotion(xPos, yPos, this->textures["RAPID_FIRE_POTION"], this->player, buffManager));
 		break;
 	case ItemTypes::SWIFT_POTION:
 		this->items.push_back(new SwiftPotion(xPos, yPos, this->textures["SWIFT_POTION"], this->player, buffManager));

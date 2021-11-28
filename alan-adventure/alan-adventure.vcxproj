@@ -48,6 +48,7 @@
     <ClCompile Include="OrcWarrior.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerGUI.cpp" />
+    <ClCompile Include="RapidFireBuff.cpp" />
     <ClCompile Include="RapidFirePotion.cpp" />
     <ClCompile Include="Scoreboard.cpp" />
     <ClCompile Include="ScoreboardState.cpp" />
@@ -94,6 +95,7 @@
     <ClInclude Include="OrcWarrior.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerGUI.h" />
+    <ClInclude Include="RapidFireBuff.h" />
     <ClInclude Include="RapidFirePotion.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Scoreboard.h" />

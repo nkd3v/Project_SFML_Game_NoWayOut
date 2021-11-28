@@ -13,7 +13,7 @@ SwiftPotion::~SwiftPotion()
 
 void SwiftPotion::activate()
 {
-  buffManager->createBuff(SWIFT, 3.f);
+  buffManager->createBuff(SWIFT, 5.f);
 }
 
 

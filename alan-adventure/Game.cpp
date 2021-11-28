@@ -19,8 +19,10 @@ void Game::initStates()
 
 void Game::initResources()
 {
+  // Font
   am.loadFont("DPCOMIC", "assets/Fonts/dpcomic.ttf");
 
+  // Music
   am.loadSoundBuffer("TITLE_SCREEN", "assets/Sounds/Music/title-screen.wav");
   am.loadSoundBuffer("OVERWORLD_NIGHT", "assets/Sounds/Music/overworld-night.wav");
   am.loadSoundBuffer("JUNGLE", "assets/Sounds/Music/jungle.wav");
@@ -28,21 +30,32 @@ void Game::initResources()
   am.loadSoundBuffer("GRAVEYARD", "assets/Sounds/Music/graveyard.wav");
   am.loadSoundBuffer("APHEX", "assets/Sounds/Music/aphex.wav");
 
+  // Sound
   am.loadSoundBuffer("ENEMY_HIT", "assets/Sounds/enemy-hit.wav");
   am.loadSoundBuffer("ENEMY_KILL", "assets/Sounds/enemy-kill.wav");
   am.loadSoundBuffer("ITEM_PICK", "assets/Sounds/item-pick.wav");
   am.loadSoundBuffer("PLAYER_HIT", "assets/Sounds/player-hit.wav");
   am.loadSoundBuffer("SHOOT_ARROW", "assets/Sounds/shoot-arrow.wav");
 
+  // Image
   am.loadImage("FAVICON", "assets/favicon.png");
 
+  // Enemy
   am.loadTexture("NECROMANCER", "assets/Enemy/necromancer.png");
+
+  // Weapon
   am.loadTexture("BULLET", "assets/Weapon/arrow.png");
   am.loadTexture("FIREBALL", "assets/Weapon/fireball.png");
   am.loadTexture("BOW", "assets/Weapon/bow.png");
-  am.loadTexture("BLOOD_SPLAT", "assets/Effects/blood-splat.png");
 
+  // Effect
+  am.loadTexture("BLOOD_SPLAT", "assets/Effects/blood-splat.png");
   am.loadTexture("WARP", "assets/Effects/warp.png");
+
+  // GUI
+  am.loadTexture("SWIFTNESS_BUFF", "assets/GUI/swiftness-buff.png");
+  am.loadTexture("RAPID_FIRE_BUFF", "assets/GUI/rapid-fire-buff.png");
+  am.loadTexture("HEART", "assets/GUI/heart.png");
 }
 
 Game::Game()

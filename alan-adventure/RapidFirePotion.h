@@ -8,7 +8,7 @@ class RapidFirePotion
 private:
 
 public:
-  RapidFirePotion(float x, float y, sf::Texture &texture, Player &player);
+  RapidFirePotion(float x, float y, sf::Texture &texture, Player &player, BuffManager* buffManager);
   ~RapidFirePotion();
 
   void activate();

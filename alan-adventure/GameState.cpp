@@ -9,9 +9,9 @@ GameState::GameState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>
   initTextures();
   initMap();
   initPlayers();
+  initBuffManager();
   initPlayerGUI();
   initEnemySystem();
-  initBuffManager();
   initItemManager();
   initEnemySpawner();
   initView();
@@ -91,7 +91,7 @@ void GameState::initPlayers()
 
 void GameState::initPlayerGUI()
 {
-  playerGUI = new PlayerGUI(player);
+  playerGUI = new PlayerGUI(player, buffManager);
 }
 
 void GameState::initEnemySystem()
@@ -212,10 +212,22 @@ void GameState::updateCombatAndEnemies(const float& dt)
     float score = player->getAttributeComponent()->getScore() + 1000.f;
     if (enemy->isDead())
     {
+      if (enemy->getName() == "Necromancer")
+      {
+        newState = std::make_unique<ScoreboardState>(window, states, player->getAttributeComponent()->score + 1);
+        quit = true;
+      }
+
       buffManager->createBuff(BLOOD_SPLAT, 5.f, enemy->getPosition());
 
+#ifdef _DEBUG
+      if (rand() % 100 < 100)
+        itemManager->createItem(RAPID_FIRE, enemy->getPosition().x, enemy->getPosition().y);
+#elif NDEBUG
       if (rand() % 100 < score / 10000.f * 100.f)
         itemManager->createItem(rand() % itemManager->getItemCount(), enemy->getPosition().x, enemy->getPosition().y);
+#endif
+
 
       enemyKillSound.play();
       player->getAttributeComponent()->score += enemy->getGainScore();

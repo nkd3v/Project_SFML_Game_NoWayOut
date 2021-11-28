@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "PlayerGUI.h"
 
-PlayerGUI::PlayerGUI(Player *player)
-  : player(player)
+PlayerGUI::PlayerGUI(Player *player, BuffManager *buffManager)
+  : player(player), buffManager(buffManager)
 {
   initHPBar();
   initMapLevel();
@@ -16,11 +16,7 @@ PlayerGUI::~PlayerGUI()
 
 void PlayerGUI::initHPBar()
 {
-  if (!heartTexture.loadFromFile("assets/GUI/heart.png"))
-  {
-    throw "Error: Could not load Heart GUI";
-  }
-  heartSprite.setTexture(heartTexture);
+  heartSprite.setTexture(am.getTexture("HEART"));
   heartSize = sf::Vector2f(32.f, 32.f);
 
   fullHeartRect = sf::IntRect(0, 0, 32, 32);
@@ -60,11 +56,16 @@ void PlayerGUI::updateScorePanel()
   scoreText.setString("Score: " + std::to_string(player->getAttributeComponent()->score));
 }
 
+void PlayerGUI::updateBuffPanel()
+{
+}
+
 void PlayerGUI::update()
 {
   updateHPBar();
   updateMapLevel();
   updateScorePanel();
+  updateBuffPanel();
 }
 
 void PlayerGUI::renderHPBar(sf::RenderTarget* target)
@@ -100,7 +101,7 @@ void PlayerGUI::renderHPBar(sf::RenderTarget* target)
 
 void PlayerGUI::renderMapLevel(sf::RenderTarget* target)
 {
-  sf::Vector2f mapLevelPos = target->mapPixelToCoords(sf::Vector2i(640, 10));
+  mapLevelPos = target->mapPixelToCoords(sf::Vector2i(640, 10));
   mapLevelText.setPosition(mapLevelPos);
 
   target->draw(mapLevelText);
@@ -108,10 +109,31 @@ void PlayerGUI::renderMapLevel(sf::RenderTarget* target)
 
 void PlayerGUI::renderScorePanel(sf::RenderTarget* target)
 {
-  sf::Vector2f scorePos = target->mapPixelToCoords(sf::Vector2i(370, 10));
+  scorePos = target->mapPixelToCoords(sf::Vector2i(370, 10));
   scoreText.setPosition(scorePos);
 
   target->draw(scoreText);
+}
+
+void PlayerGUI::renderBuffPanel(sf::RenderTarget* target)
+{
+  buffPos = target->mapPixelToCoords(sf::Vector2i(20, 755));
+  for (int i = 0, j = 0; i < buffManager->getBuffs().size(); i++)
+  {
+    const auto& buff = buffManager->getBuffs()[i];
+    if (buff->getName() == "Swift buff")
+    {
+      buffSprite.setTexture(am.getTexture("SWIFTNESS_BUFF"));
+      buffSprite.setPosition(buffPos + sf::Vector2f(36.f * j++, 0.f));
+      target->draw(buffSprite);
+    }
+    else if (buff->getName() == "Rapid Fire Buff")
+    {
+      buffSprite.setTexture(am.getTexture("RAPID_FIRE_BUFF"));
+      buffSprite.setPosition(buffPos + sf::Vector2f(36.f * j++, 0.f));
+      target->draw(buffSprite);
+    }
+  }
 }
 
 void PlayerGUI::render(sf::RenderTarget* target)
@@ -119,4 +141,5 @@ void PlayerGUI::render(sf::RenderTarget* target)
   renderHPBar(target);
   renderMapLevel(target);
   renderScorePanel(target);
+  renderBuffPanel(target);
 }

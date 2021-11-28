@@ -102,6 +102,11 @@ const sf::FloatRect Entity::getGlobalBounds() const
 	return this->sprite.getGlobalBounds();
 }
 
+const std::string& Entity::getName() const
+{
+	return name;
+}
+
 void Entity::setPosition(const float x, const float y)
 {
 	if (this->hitboxComponent)

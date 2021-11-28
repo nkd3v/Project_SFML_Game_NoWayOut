@@ -1,5 +1,4 @@
-#ifndef HITBOXCOMPONENT_H
-#define HITBOXCOMPONENT_H
+#pragma once
 
 class HitboxComponent
 {
@@ -29,5 +28,3 @@ public:
 	void update();
 	void render(sf::RenderTarget& target);
 };
-
-#endif

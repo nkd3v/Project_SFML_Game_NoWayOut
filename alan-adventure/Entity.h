@@ -13,6 +13,7 @@ private:
 
 protected:
 
+	std::string name;
 	sf::Sprite sprite;
 
 	HitboxComponent* hitboxComponent;
@@ -41,6 +42,7 @@ public:
 	virtual sf::Vector2f getSize() const;
 	virtual const sf::FloatRect getGlobalBounds() const;
 
+	const virtual std::string& getName() const;
 	virtual void setPosition(const float x, const float y);
 
 	virtual void move(const float x, const float y, const float& dt);

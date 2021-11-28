@@ -33,6 +33,8 @@ void Game::initResources()
   am.loadSoundBuffer("SHOOT_ARROW", "assets/Sounds/shoot-arrow.wav");
 
   am.loadImage("FAVICON", "assets/favicon.png");
+
+  am.loadTexture("NECROMANCER", "assets/Enemy/necromancer.png");
 }
 
 Game::Game()

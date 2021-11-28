@@ -4,8 +4,9 @@
 #include "Skelet.h"
 #include "BigDemon.h"
 #include "OrcWarrior.h"
+#include "Necromancer.h"
 
-enum EnemyTypes { SKELET, BIG_DEMON, ORC_WARRIOR };
+enum EnemyTypes { SKELET, BIG_DEMON, ORC_WARRIOR, NECROMANCER };
 
 class EnemySystem
 {
@@ -19,7 +20,7 @@ public:
 		std::map<std::string, sf::Texture>& textures, Entity& player);
 	virtual ~EnemySystem();
 
-	int getEnemyCount();
+	int getEnemyTypeSize();
 
 	void createEnemy(const short type, const float xPos, const float yPos);
 	void removeEnemy(const int index);

@@ -3,6 +3,7 @@
 
 #include "Entity.h"
 #include "AI.h"
+#include "AIEvade.h"
 
 class Enemy :
 	public Entity

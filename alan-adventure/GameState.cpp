@@ -287,7 +287,7 @@ void GameState::updateDifficulty(const float& dt)
 
   if (score >= 0 && score < 500)
   {
-    enemySpawner->allowEnemies = { SKELET };
+    enemySpawner->allowEnemies = { NECROMANCER };
     level = 1;
   }
   else if (score >= 500 && score < 2500)

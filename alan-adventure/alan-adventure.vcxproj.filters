@@ -162,6 +162,12 @@
     <ClCompile Include="Buff.cpp">
       <Filter>Managers\Buff</Filter>
     </ClCompile>
+    <ClCompile Include="Necromancer.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="AIEvade.cpp">
+      <Filter>AI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -286,6 +292,12 @@
     </ClInclude>
     <ClInclude Include="Buff.h">
       <Filter>Managers\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="Necromancer.h">
+      <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="AIEvade.h">
+      <Filter>AI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

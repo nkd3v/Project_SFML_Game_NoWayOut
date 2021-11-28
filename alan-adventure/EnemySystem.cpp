@@ -13,9 +13,9 @@ EnemySystem::~EnemySystem()
 
 }
 
-int EnemySystem::getEnemyCount()
+int EnemySystem::getEnemyTypeSize()
 {
-	return activeEnemies.size();
+	return 4;
 }
 
 void EnemySystem::createEnemy(const short type, const float xPos, const float yPos)
@@ -23,21 +23,23 @@ void EnemySystem::createEnemy(const short type, const float xPos, const float yP
 	switch (type)
 	{
 	case EnemyTypes::SKELET:
-		this->activeEnemies.push_back(new Skelet(xPos, yPos, this->textures["SKELET"], this->player));
+		activeEnemies.push_back(new Skelet(xPos, yPos, textures["SKELET"], player));
 		break;
 	case EnemyTypes::BIG_DEMON:
-		this->activeEnemies.push_back(new BigDemon(xPos, yPos, this->textures["BIG_DEMON"], this->player));
+		activeEnemies.push_back(new BigDemon(xPos, yPos, textures["BIG_DEMON"], player));
 		break;
 	case EnemyTypes::ORC_WARRIOR:
-		this->activeEnemies.push_back(new OrcWarrior(xPos, yPos, this->textures["ORC_WARRIOR"], this->player));
+		activeEnemies.push_back(new OrcWarrior(xPos, yPos, textures["ORC_WARRIOR"], player));
 		break;
+	case EnemyTypes::NECROMANCER:
+		activeEnemies.push_back(new Necromancer(xPos, yPos, am.getTexture("NECROMANCER"), player));
 	}
 }
 
 void EnemySystem::removeEnemy(const int index)
 {
-	delete this->activeEnemies[index];
-	this->activeEnemies.erase(this->activeEnemies.begin() + index);
+	delete activeEnemies[index];
+	activeEnemies.erase(activeEnemies.begin() + index);
 }
 
 void EnemySystem::update(const float& dt)

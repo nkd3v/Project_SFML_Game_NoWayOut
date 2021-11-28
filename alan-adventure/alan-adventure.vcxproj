@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AI.cpp" />
+    <ClCompile Include="AIEvade.cpp" />
     <ClCompile Include="AnimationComponent.cpp" />
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AttributeComponent.cpp" />
@@ -42,6 +43,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
+    <ClCompile Include="Necromancer.cpp" />
     <ClCompile Include="OrcWarrior.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerGUI.cpp" />
@@ -63,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
+    <ClInclude Include="AIEvade.h" />
     <ClInclude Include="AnimationComponent.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="AttributeComponent.h" />
@@ -84,6 +87,7 @@
     <ClInclude Include="ItemManager.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="MovementComponent.h" />
+    <ClInclude Include="Necromancer.h" />
     <ClInclude Include="OrcWarrior.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerGUI.h" />

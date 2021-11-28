@@ -31,8 +31,8 @@ void ItemManager::createItem(const short type, const float xPos, const float yPo
 	case ItemTypes::SWIFT_POTION:
 		this->items.push_back(new SwiftPotion(xPos, yPos, this->textures["SWIFT_POTION"], this->player, buffManager));
 		break;
-	case ItemTypes::INVISIBLE_POTION:
-		this->items.push_back(new InvisiblePotion(xPos, yPos, this->textures["INVISIBLE_POTION"], this->player));
+	case ItemTypes::FULLHEALTH_POTION:
+		this->items.push_back(new FullHealthPotion(xPos, yPos, this->textures["FULLHEALTH_POTION"], this->player));
 		break;
 	default:
 		throw("Error: Enemy type does not exists");

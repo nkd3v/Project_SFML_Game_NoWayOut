@@ -10,6 +10,11 @@ Buff::~Buff()
 {
 }
 
+const std::string& Buff::getName() const
+{
+  return name;
+}
+
 bool Buff::endOfLife()
 {
   return lifetime >= lifetimeMax;
@@ -23,6 +28,10 @@ void Buff::updateLifetime()
 void Buff::update()
 {
   updateLifetime();
+}
+
+void Buff::render(sf::RenderTarget& target)
+{
 }
 
 void Buff::reset(float newLifetimeMax)

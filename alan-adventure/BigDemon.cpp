@@ -8,7 +8,7 @@ BigDemon::BigDemon(float x, float y, sf::Texture& texture_sheet, Entity& player)
 	this->createHitboxComponent(this->sprite, 8.f, 0.f, 48.f, 64.f);
 	this->createMovementComponent(70.f, 800.f, 500.f);
 	this->createAnimationComponent(texture_sheet);
-	this->createAttributeComponent(10, 4, 4);
+	this->createAttributeComponent(6, 4, 4);
 
 	this->setPosition(x, y);
 	this->initAnimations();

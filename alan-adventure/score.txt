@@ -1,5 +1,7 @@
+dd 11380
 dddddddddd 7390
-ddddddddd 4380
-ssssss 3460
-ssss 3390
-dddf 2790
+w 6480
+ddddw 5780
+dd 5340
+aaaaa 5310
+

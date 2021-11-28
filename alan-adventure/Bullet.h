@@ -6,8 +6,6 @@ class Bullet
   : public Entity
 {
 private:
-  sf::Texture bulletTexture;
-
   sf::Clock timer;
 
   float speed;
@@ -18,11 +16,10 @@ private:
   int life;
 
 public:
-  Bullet(sf::Vector2f pos, float speed, float angle);
+  Bullet(sf::Vector2f pos, float speed, float angle, std::string texture = "BULLET");
   ~Bullet();
 
   void initVariables();
-  void initTexture();
 
   void kill();
   bool endofLife();

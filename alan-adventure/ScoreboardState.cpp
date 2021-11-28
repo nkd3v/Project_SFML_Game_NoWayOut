@@ -14,6 +14,9 @@ ScoreboardState::ScoreboardState(sf::RenderWindow* window, std::stack<std::uniqu
   if (code > 0)
   {
     nameEntered = false;
+    bgMusic.setBuffer(am.getSoundBuffer("APHEX"));
+    bgMusic.setVolume(20.f);
+    bgMusic.play();
   }
   else
   {

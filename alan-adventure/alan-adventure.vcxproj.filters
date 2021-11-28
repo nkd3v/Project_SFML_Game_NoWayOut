@@ -129,7 +129,7 @@
     <ClCompile Include="HealthPotion.cpp">
       <Filter>Items</Filter>
     </ClCompile>
-    <ClCompile Include="InvisiblePotion.cpp">
+    <ClCompile Include="FullHealthPotion.cpp">
       <Filter>Items</Filter>
     </ClCompile>
     <ClCompile Include="RapidFirePotion.cpp">
@@ -167,6 +167,12 @@
     </ClCompile>
     <ClCompile Include="AIEvade.cpp">
       <Filter>AI</Filter>
+    </ClCompile>
+    <ClCompile Include="WarpEffect.cpp">
+      <Filter>Managers\Buff</Filter>
+    </ClCompile>
+    <ClCompile Include="BloodSplat.cpp">
+      <Filter>Managers\Buff</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -254,7 +260,7 @@
     <ClInclude Include="HealthPotion.h">
       <Filter>Items</Filter>
     </ClInclude>
-    <ClInclude Include="InvisiblePotion.h">
+    <ClInclude Include="FullHealthPotion.h">
       <Filter>Items</Filter>
     </ClInclude>
     <ClInclude Include="RapidFirePotion.h">
@@ -298,6 +304,12 @@
     </ClInclude>
     <ClInclude Include="AIEvade.h">
       <Filter>AI</Filter>
+    </ClInclude>
+    <ClInclude Include="WarpEffect.h">
+      <Filter>Managers\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="BloodSplat.h">
+      <Filter>Managers\Buff</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

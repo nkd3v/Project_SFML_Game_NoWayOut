@@ -4,9 +4,9 @@
 #include "HealthPotion.h"
 #include "RapidFirePotion.h"
 #include "SwiftPotion.h"
-#include "InvisiblePotion.h"
+#include "FullHealthPotion.h"
 
-enum ItemTypes { HEALTH_POTION, RAPID_FIRE_POTION, SWIFT_POTION, INVISIBLE_POTION };
+enum ItemTypes { HEALTH_POTION, RAPID_FIRE_POTION, SWIFT_POTION, FULLHEALTH_POTION };
 
 class ItemManager
 {

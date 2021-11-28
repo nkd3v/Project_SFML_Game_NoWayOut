@@ -22,6 +22,8 @@ private:
   bool nameEntered;
   std::string playerName;
 
+  sf::Sound bgMusic;
+
 public:
   ScoreboardState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states, int code = 0);
   virtual ~ScoreboardState();

@@ -45,12 +45,14 @@ void PlayerGUI::updateHPBar()
 void PlayerGUI::updateMapLevel()
 {
   int score = player->getAttributeComponent()->score;
-  if (score >= 0 && score < 500)
-    mapLevelText.setString("Level: 1");
-  else if (score >= 500 && score < 2500)
-    mapLevelText.setString("Level: 2");
-  else if (score >= 2500)
-    mapLevelText.setString("Level: 3");
+  if (score >= 0 && score < 800)
+    mapLevelText.setString("Level: 1/4");
+  else if (score >= 800 && score < 4000)
+    mapLevelText.setString("Level: 2/4");
+  else if (score >= 4000 && score < 9000)
+    mapLevelText.setString("Level: 3/4");
+  else if (score >= 9000)
+    mapLevelText.setString("Level: 4/4");
 }
 
 void PlayerGUI::updateScorePanel()
@@ -98,7 +100,7 @@ void PlayerGUI::renderHPBar(sf::RenderTarget* target)
 
 void PlayerGUI::renderMapLevel(sf::RenderTarget* target)
 {
-  sf::Vector2f mapLevelPos = target->mapPixelToCoords(sf::Vector2i(680, 10));
+  sf::Vector2f mapLevelPos = target->mapPixelToCoords(sf::Vector2i(640, 10));
   mapLevelText.setPosition(mapLevelPos);
 
   target->draw(mapLevelText);

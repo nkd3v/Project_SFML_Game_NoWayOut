@@ -21,6 +21,7 @@ public:
 	virtual ~EnemySystem();
 
 	int getEnemyTypeSize();
+	int getActiveEnemies();
 
 	void createEnemy(const short type, const float xPos, const float yPos);
 	void removeEnemy(const int index);

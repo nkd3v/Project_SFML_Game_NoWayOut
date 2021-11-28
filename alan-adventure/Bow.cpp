@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Bow.h"
 
-Bow::Bow(Entity& entity) :
+Bow::Bow(Entity& entity, std::string bowTexture, std::string bulletTexture) :
   Weapon(.5f, entity)
 {
   defaultCooldown = .5f;
@@ -11,8 +11,11 @@ Bow::Bow(Entity& entity) :
   shootArrowSound.setBuffer(am.getSoundBuffer("SHOOT_ARROW"));
   shootArrowSound.setVolume(20);
 
-  am.loadTexture("BOW", "assets/Weapon/bow.png");
-  sprite.setTexture(am.getTexture("BOW"));
+  hasBow = bowTexture != "";
+  if (hasBow)
+    sprite.setTexture(am.getTexture(bowTexture));
+
+  this->bulletTexture = bulletTexture;
 }
 
 Bow::~Bow()
@@ -49,26 +52,35 @@ void Bow::shoot(const sf::Vector2f& pos, float angle)
 {
   if (canShoot())
   {
-    bullets.emplace_back(std::make_unique<Bullet>(pos, 1000.f, angle));
+    bullets.emplace_back(std::make_unique<Bullet>(pos, 1000.f, angle, bulletTexture));
     shootArrowSound.play();
   }
+}
+
+void Bow::setCooldown(float newCooldown)
+{
+  defaultCooldown = newCooldown;
 }
 
 void Bow::update(const float& dt)
 {
   updateCooldown();
-  sprite.setOrigin(getSize() / 2.f);
 
-  if (entity.getMovementComponent()->getState(MOVING_RIGHT)
-    || entity.getMovementComponent()->getState(IDLE))
+  if (hasBow)
   {
-    sprite.setPosition(entity.getCenter() + sf::Vector2f(15.f, 0.f));
-    sprite.setRotation(0.f);
-  }
-  else
-  {
-    sprite.setPosition(entity.getCenter() + sf::Vector2f(-15.f, 0.f));
-    sprite.setRotation(180.f);
+    sprite.setOrigin(getSize() / 2.f);
+
+    if (entity.getMovementComponent()->getState(MOVING_RIGHT)
+      || entity.getMovementComponent()->getState(IDLE))
+    {
+      sprite.setPosition(entity.getCenter() + sf::Vector2f(15.f, 0.f));
+      sprite.setRotation(0.f);
+    }
+    else
+    {
+      sprite.setPosition(entity.getCenter() + sf::Vector2f(-15.f, 0.f));
+      sprite.setRotation(180.f);
+    }
   }
 
   for (auto it = bullets.begin(); it != bullets.end();)
@@ -85,6 +97,7 @@ void Bow::update(const float& dt)
 
 void Bow::render(sf::RenderTarget& target)
 {
+  if (hasBow)
   target.draw(sprite);
 
   for (auto& bullet : bullets)

@@ -68,7 +68,7 @@ void GameState::initTextures()
   {
     throw "Error: Loading speed potion texture failed!";
   }
-  if (!textures["INVISIBLE_POTION"].loadFromFile("assets/Items/potions.png"))
+  if (!textures["FULLHEALTH_POTION"].loadFromFile("assets/Items/potions.png"))
   {
     throw "Error: Loading INVISIBLE potion texture failed!";
   }
@@ -212,6 +212,8 @@ void GameState::updateCombatAndEnemies(const float& dt)
     float score = player->getAttributeComponent()->getScore() + 1000.f;
     if (enemy->isDead())
     {
+      buffManager->createBuff(BLOOD_SPLAT, 5.f, enemy->getPosition());
+
       if (rand() % 100 < score / 10000.f * 100.f)
         itemManager->createItem(rand() % itemManager->getItemCount(), enemy->getPosition().x, enemy->getPosition().y);
 
@@ -269,20 +271,26 @@ void GameState::updateDifficulty(const float& dt)
 {
   int score = player->getAttributeComponent()->score;
 
-  if (score >= 0 && score < 500)
+  if (score >= 0 && score < 800)
   {
-    enemySpawner->allowEnemies = { NECROMANCER };
+    enemySpawner->allowEnemies = { SKELET };
     level = 1;
   }
-  else if (score >= 500 && score < 2500)
+  else if (score >= 800 && score < 4000)
   {
     enemySpawner->allowEnemies = { ORC_WARRIOR };
     level = 2;
   }
-  else if (score >= 2500)
+  else if (score >= 4000 && score < 9000)
   {
     enemySpawner->allowEnemies = { BIG_DEMON };
     level = 3;
+  }
+  else if (score >= 9000)
+  {
+    enemySpawner->spawnMax = 1;
+    enemySpawner->allowEnemies = { NECROMANCER };
+    level = 4;
   }
 
   if (level != lastLevel)
@@ -293,6 +301,8 @@ void GameState::updateDifficulty(const float& dt)
       bgMusic.setBuffer(am.getSoundBuffer("JUNGLE"));
     else if (level == 3)
       bgMusic.setBuffer(am.getSoundBuffer("DUNGEON"));
+    else if (level == 4)
+      bgMusic.setBuffer(am.getSoundBuffer("GRAVEYARD"));
 
     bgMusic.play();
   }
@@ -370,6 +380,8 @@ void GameState::render(sf::RenderTarget* target)
   target->setView(view);
 
   target->draw(map);
+
+  buffManager->render(*target);
 
   itemManager->render(target);
 

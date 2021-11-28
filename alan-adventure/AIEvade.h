@@ -27,6 +27,8 @@ public:
   AIEvade(Entity& self, Entity& entity);
   ~AIEvade();
 
+  bool canWarp();
+
   void update(const float& dt);
 };
 

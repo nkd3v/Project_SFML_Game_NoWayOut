@@ -19,6 +19,11 @@ AIEvade::~AIEvade()
 {
 }
 
+bool AIEvade::canWarp()
+{
+  return timeWarp + Time.deltaTime >= timeWarpNext;
+}
+
 void AIEvade::updateDir(const float& dt)
 {
   timeChangeDir += dt;

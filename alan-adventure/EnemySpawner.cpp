@@ -29,6 +29,9 @@ void EnemySpawner::update(const float& dt)
 
   for (auto& spawnPoint : spawnPoints)
   {
+    if (enemySystem.getActiveEnemies() >= spawnMax)
+      return;
+
     if (clock.getElapsedTime().asSeconds() >= spawnPoint->nextSpawnTime)
     {
       enemySystem.createEnemy(allowEnemies[static_cast<unsigned int>(rand() % allowEnemies.size())], spawnPoint->pos.x, spawnPoint->pos.y);

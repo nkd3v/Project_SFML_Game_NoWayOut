@@ -25,6 +25,8 @@ void Game::initResources()
   am.loadSoundBuffer("OVERWORLD_NIGHT", "assets/Sounds/Music/overworld-night.wav");
   am.loadSoundBuffer("JUNGLE", "assets/Sounds/Music/jungle.wav");
   am.loadSoundBuffer("DUNGEON", "assets/Sounds/Music/dungeon.wav");
+  am.loadSoundBuffer("GRAVEYARD", "assets/Sounds/Music/graveyard.wav");
+  am.loadSoundBuffer("APHEX", "assets/Sounds/Music/aphex.wav");
 
   am.loadSoundBuffer("ENEMY_HIT", "assets/Sounds/enemy-hit.wav");
   am.loadSoundBuffer("ENEMY_KILL", "assets/Sounds/enemy-kill.wav");
@@ -35,6 +37,12 @@ void Game::initResources()
   am.loadImage("FAVICON", "assets/favicon.png");
 
   am.loadTexture("NECROMANCER", "assets/Enemy/necromancer.png");
+  am.loadTexture("BULLET", "assets/Weapon/arrow.png");
+  am.loadTexture("FIREBALL", "assets/Weapon/fireball.png");
+  am.loadTexture("BOW", "assets/Weapon/bow.png");
+  am.loadTexture("BLOOD_SPLAT", "assets/Effects/blood-splat.png");
+
+  am.loadTexture("WARP", "assets/Effects/warp.png");
 }
 
 Game::Game()

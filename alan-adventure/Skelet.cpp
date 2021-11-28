@@ -8,7 +8,7 @@ Skelet::Skelet(float x, float y, sf::Texture& texture_sheet, Entity& player)
 	this->createHitboxComponent(this->sprite, 8.f, 10.f, 16.f, 18.f);
 	this->createMovementComponent(70.f, 800.f, 500.f);
 	this->createAnimationComponent(texture_sheet);
-	this->createAttributeComponent(2);
+	this->createAttributeComponent(2, 1, 1);
 
 	this->setPosition(x, y);
 	this->initAnimations();

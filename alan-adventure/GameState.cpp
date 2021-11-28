@@ -225,9 +225,10 @@ void GameState::updateCombatAndEnemies(const float& dt)
 
     updateCombat(enemy, index, dt);
 
+    float score = player->getAttributeComponent()->getScore() + 1000.f;
     if (enemy->isDead())
     {
-      if (rand() % 100 < 30)
+      if (rand() % 100 < score / 10000.f * 100.f)
         itemManager->createItem(rand() % itemManager->getItemCount(), enemy->getPosition().x, enemy->getPosition().y);
 
       enemyKillSound.play();
@@ -255,8 +256,11 @@ void GameState::updateCombat(Enemy* enemy, const int index, const float& dt)
       float angle = vectorAngle(bullet->getCenter(), enemy->getCenter());
       enemy->move(100.f * cos(angle), 100.f * sin(angle), dt);
 
+      int dmgMin = player->getAttributeComponent()->damageMin;
+      int dmgMax = player->getAttributeComponent()->damageMax;
+
       enemyHitSound.play();
-      int dmg = 1;
+      int dmg = dmgMin + rand() % (dmgMax - dmgMin + 1) - 1;
       enemy->loseHP(dmg);
       enemy->resetDamageTimer();
       bullet->kill();
@@ -281,19 +285,19 @@ void GameState::updateDifficulty(const float& dt)
 {
   int score = player->getAttributeComponent()->score;
 
-  if (score >= 0 && score < 300)
+  if (score >= 0 && score < 500)
   {
     enemySpawner->allowEnemies = { SKELET };
     level = 1;
   }
-  else if (score >= 300 && score < 2000)
+  else if (score >= 500 && score < 2500)
   {
-    enemySpawner->allowEnemies = { SKELET, ORC_WARRIOR };
+    enemySpawner->allowEnemies = { ORC_WARRIOR };
     level = 2;
   }
-  else if (score >= 2000)
+  else if (score >= 2500)
   {
-    enemySpawner->allowEnemies = { SKELET, ORC_WARRIOR, BIG_DEMON };
+    enemySpawner->allowEnemies = { BIG_DEMON };
     level = 3;
   }
 

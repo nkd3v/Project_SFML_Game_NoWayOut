@@ -8,7 +8,7 @@ OrcWarrior::OrcWarrior(float x, float y, sf::Texture& texture_sheet, Entity& pla
 	this->createHitboxComponent(this->sprite, 4.f, 32.f, 24.f, 32.f);
 	this->createMovementComponent(70.f, 800.f, 500.f);
 	this->createAnimationComponent(texture_sheet);
-	this->createAttributeComponent(5);
+	this->createAttributeComponent(5, 2, 2);
 
 	this->setPosition(x, y);
 	this->initAnimations();

@@ -45,11 +45,11 @@ void PlayerGUI::updateHPBar()
 void PlayerGUI::updateMapLevel()
 {
   int score = player->getAttributeComponent()->score;
-  if (score >= 0 && score < 300)
+  if (score >= 0 && score < 500)
     mapLevelText.setString("Level: 1");
-  else if (score >= 300 && score < 2000)
+  else if (score >= 500 && score < 2500)
     mapLevelText.setString("Level: 2");
-  else if (score >= 2000)
+  else if (score >= 2500)
     mapLevelText.setString("Level: 3");
 }
 

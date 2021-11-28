@@ -101,7 +101,7 @@ void Necromancer::update(const float& dt)
 			int dmgMin = getAttributeComponent()->damageMin;
 			int dmgMax = getAttributeComponent()->damageMax;
 
-
+			playerHitSound.play();
 			int dmg = dmgMin + rand() % (dmgMax - dmgMin + 1) - 1;
 			p.loseHP(dmg);
 			bullet->kill();
@@ -118,7 +118,11 @@ void Necromancer::update(const float& dt)
 void Necromancer::render(sf::RenderTarget& target)
 {
 	target.draw(this->sprite);
+
+#ifdef _DEBUG
 	hitboxComponent->render(target);
+#endif // _DEBUG
+
 	bow->render(target);
 	buffManager->render(target);
 }

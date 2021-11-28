@@ -12,6 +12,7 @@ public:
 	int shootSpeed;
 
 	int score;
+	bool isInvisible;
 
 	AttributeComponent(int hpMax = 4, int damageMin = 1, int damageMax = 2, int moveSpeed = 1, int shootSpeed = 1);
 	virtual ~AttributeComponent();

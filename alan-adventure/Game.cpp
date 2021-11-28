@@ -23,6 +23,8 @@ void Game::initResources()
 
   am.loadSoundBuffer("TITLE_SCREEN", "assets/Sounds/Music/title-screen.wav");
   am.loadSoundBuffer("OVERWORLD_NIGHT", "assets/Sounds/Music/overworld-night.wav");
+  am.loadSoundBuffer("JUNGLE", "assets/Sounds/Music/jungle.wav");
+  am.loadSoundBuffer("DUNGEON", "assets/Sounds/Music/dungeon.wav");
 
   am.loadSoundBuffer("ENEMY_HIT", "assets/Sounds/enemy-hit.wav");
   am.loadSoundBuffer("ENEMY_KILL", "assets/Sounds/enemy-kill.wav");

@@ -4,15 +4,12 @@
 ScoreboardState::ScoreboardState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states, int code)
   : State(window, states, code)
 {
-  if (!font.loadFromFile("assets/Fonts/dpcomic.ttf"))
-    throw "Error: Could not load font";
-
   if (!bgTexture.loadFromFile("assets/GUI/menu-bg.png"))
     throw "Error: Could not load background";
 
   bg.setTexture(bgTexture);
 
-  text.setFont(font);
+  text.setFont(am.getFont("DPCOMIC"));
 
   if (code > 0)
   {
@@ -34,7 +31,7 @@ ScoreboardState::~ScoreboardState()
 
 void ScoreboardState::saveScore()
 {
-  scoreboard.addScore(playerName, code);
+  scoreboard.addScore(playerName, code - 1);
 }
 
 void ScoreboardState::updateInput(const float& dt)
@@ -107,8 +104,8 @@ void ScoreboardState::render(sf::RenderTarget* target = nullptr)
   }
   else
   {
-    text.setString("Scoreboard");
-    text.setPosition(250, 60);
+    text.setString("Scordboard");
+    text.setPosition(240, 60);
   }
 
   text.setCharacterSize(72);
@@ -124,7 +121,7 @@ void ScoreboardState::render(sf::RenderTarget* target = nullptr)
 
     for (size_t i = 0; i < scores.size(); i++)
     {
-      text.setPosition(200, static_cast<float>(180 + i * 70));
+      text.setPosition(170, static_cast<float>(180 + i * 70));
       text.setString(scores[i].second);
       target->draw(text);
 

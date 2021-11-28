@@ -28,6 +28,6 @@ void Buff::update()
 void Buff::reset(float newLifetimeMax)
 {
   lifetime = 0.f;
-  if (lifetimeMax != 0.f)
+  if (newLifetimeMax != 0.f)
     lifetimeMax = newLifetimeMax;
 }

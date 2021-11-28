@@ -17,7 +17,6 @@ void BuffManager::createBuff(unsigned int buffType, float lifetimeMax)
 
   for (const auto& buff : buffs)
   {
-    std::cout << ((buffNames[buffType] == buff->getName()) ? "1" : "0") << '\n';
     if (buffNames[buffType] == buff->getName())
     {
       buff->reset();

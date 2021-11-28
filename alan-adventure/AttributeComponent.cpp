@@ -5,6 +5,7 @@ AttributeComponent::AttributeComponent(int hpMax, int damageMin, int damageMax, 
 	: hp(hpMax), hpMax(hpMax), damageMin(damageMax), damageMax(damageMax), moveSpeed(moveSpeed), shootSpeed(shootSpeed)
 {
 	score = 0;
+	isInvisible = false;
 }
 
 AttributeComponent::~AttributeComponent()

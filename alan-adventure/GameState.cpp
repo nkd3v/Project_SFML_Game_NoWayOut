@@ -4,6 +4,7 @@
 GameState::GameState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states)
   : State(window, states)
 {
+  initVariables();
   initSound();
   initTextures();
   initMap();
@@ -28,6 +29,12 @@ GameState::~GameState()
   {
     delete this->activeEnemies[i];
   }
+}
+
+void GameState::initVariables()
+{
+  level = 1;
+  lastLevel = 1;
 }
 
 void GameState::initTextures()
@@ -113,6 +120,15 @@ void GameState::initBuffManager()
 
 void GameState::initMap()
 {
+  worldBound.setPosition(sf::Vector2f(15.f, 65.f));
+  worldBound.setSize(sf::Vector2f(610.f, 485.f));
+
+#ifdef _DEBUG
+  worldBound.setFillColor(sf::Color::Transparent);
+  worldBound.setOutlineColor(sf::Color::Green);
+  worldBound.setOutlineThickness(1.f);
+#endif // _DEBUG
+
   mapTexture.loadFromFile("assets/Maps/stage.png");
   map.setTexture(mapTexture);
 }
@@ -190,7 +206,7 @@ void GameState::updateWorldCollision(const float& dt)
   for (auto& it : player->getWeapon()->getBullets())
   {
     const sf::Vector2f& pos = it->getPosition();
-    if (!(pos.x > 15 && pos.x < 584 && pos.y > 65 && pos.y < 528))
+    if (!(pos.x > 15 && pos.x < 610 && pos.y > 65 && pos.y < 535))
       it->kill();
   }
 }
@@ -211,8 +227,8 @@ void GameState::updateCombatAndEnemies(const float& dt)
 
     if (enemy->isDead())
     {
-      if (rand() % 100 < 100)
-        itemManager->createItem(SWIFT_POTION, enemy->getPosition().x, enemy->getPosition().y);
+      if (rand() % 100 < 30)
+        itemManager->createItem(rand() % itemManager->getItemCount(), enemy->getPosition().x, enemy->getPosition().y);
 
       enemyKillSound.play();
       player->getAttributeComponent()->score += enemy->getGainScore();
@@ -225,7 +241,7 @@ void GameState::updateCombatAndEnemies(const float& dt)
 
   if (player->getAttributeComponent()->isDead())
   {
-    newState = std::make_unique<ScoreboardState>(window, states, player->getAttributeComponent()->score);
+    newState = std::make_unique<ScoreboardState>(window, states, player->getAttributeComponent()->score + 1);
     quit = true;
   }
 }
@@ -258,20 +274,47 @@ void GameState::updateCombat(Enemy* enemy, const int index, const float& dt)
 
 void GameState::updateEnemySpawner(const float& dt)
 {
-  int score = player->getAttributeComponent()->score;
   enemySpawner->update(dt);
+}
+
+void GameState::updateDifficulty(const float& dt)
+{
+  int score = player->getAttributeComponent()->score;
 
   if (score >= 0 && score < 300)
+  {
     enemySpawner->allowEnemies = { SKELET };
+    level = 1;
+  }
   else if (score >= 300 && score < 2000)
+  {
     enemySpawner->allowEnemies = { SKELET, ORC_WARRIOR };
+    level = 2;
+  }
   else if (score >= 2000)
+  {
     enemySpawner->allowEnemies = { SKELET, ORC_WARRIOR, BIG_DEMON };
+    level = 3;
+  }
+
+  if (level != lastLevel)
+  {
+    bgMusic.stop();
+
+    if (level == 2)
+      bgMusic.setBuffer(am.getSoundBuffer("JUNGLE"));
+    else if (level == 3)
+      bgMusic.setBuffer(am.getSoundBuffer("DUNGEON"));
+
+    bgMusic.play();
+  }
 
   if (1.f - score / 10000.f >= 0.2f)
     enemySpawner->spawnFactor = 1.f - score / 10000.f;
   else
     enemySpawner->spawnFactor = 0.2f;
+
+  lastLevel = level;
 }
 
 void GameState::updatePlayerInput(const float& dt)
@@ -301,6 +344,7 @@ void GameState::update(const float& dt, sf::RenderTarget* target)
     updateEnemySpawner(dt);
     updateItemsInteraction(dt);
     updateWorldCollision(dt);
+    updateDifficulty(dt);
     playerGUI->update();
     buffManager->update();
   }
@@ -326,11 +370,8 @@ void GameState::render(sf::RenderTarget* target)
 
   player->render(*target);
 
-
-  worldBound.setPosition(sf::Vector2f(15.f, 65.f));
-  worldBound.setSize(sf::Vector2f(610.f, 485.f));
-  worldBound.setFillColor(sf::Color::Transparent);
-  worldBound.setOutlineColor(sf::Color::Green);
-  worldBound.setOutlineThickness(1.f);
+#ifdef _DEBUG
   target->draw(worldBound);
+#endif // _DEBUG
+
 }

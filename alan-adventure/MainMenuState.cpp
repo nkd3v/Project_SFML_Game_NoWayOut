@@ -78,22 +78,19 @@ void MainMenuState::updateSFMLEvents(sf::RenderTarget* target)
     }
     if (e.type == sf::Event::KeyPressed)
     {
-      switch (e.key.code)
+      if (e.key.code == sf::Keyboard::W
+          || e.key.code == sf::Keyboard::Up)
       {
-      case sf::Keyboard::W:
         selectedOption = (selectedOption + 2) % maxOptions;
-        break;
-
-      case sf::Keyboard::S:
+      }
+      else if (e.key.code == sf::Keyboard::S
+               || e.key.code == sf::Keyboard::Down)
+      {
         selectedOption = (selectedOption + 1) % maxOptions;
-        break;
-
-      case sf::Keyboard::Enter:
+      }
+      else if (e.key.code == sf::Keyboard::Enter)
+      {
         changeState();
-        break;
-
-      default:
-        break;
       }
     }
   }

@@ -15,7 +15,7 @@ ItemManager::~ItemManager()
 
 int ItemManager::getItemCount()
 {
-	return items.size();
+	return 4;
 }
 
 void ItemManager::createItem(const short type, const float xPos, const float yPos)

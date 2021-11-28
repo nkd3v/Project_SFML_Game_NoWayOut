@@ -49,8 +49,12 @@ private:
   sf::Sound enemyKillSound;
   sf::Sound playerHitSound;
 
+  int level;
+  int lastLevel;
+
   sf::RectangleShape worldBound;
 
+  void initVariables();
   void initTextures();
   void initView();
 
@@ -67,6 +71,8 @@ public:
   GameState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states);
   virtual ~GameState();
 
+  int getItemCount() const;
+
   void updateInput(const float& dt);
   void updatePlayerInput(const float& dt);
   void updatePlayer(const float& dt);
@@ -76,6 +82,7 @@ public:
   void updateCombatAndEnemies(const float& dt);
   void updateCombat(Enemy* enemy, const int index, const float& dt);
   void updateEnemySpawner(const float& dt);
+  void updateDifficulty(const float& dt);
   void update(const float& dt, sf::RenderTarget* target);
 
   void render(sf::RenderTarget* target = nullptr);

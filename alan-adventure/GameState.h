@@ -67,12 +67,6 @@ private:
   void initBuffManager();
   void initMap();
 
-public:
-  GameState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states);
-  virtual ~GameState();
-
-  int getItemCount() const;
-
   void updateInput(const float& dt);
   void updatePlayerInput(const float& dt);
   void updatePlayer(const float& dt);
@@ -83,6 +77,12 @@ public:
   void updateCombat(Enemy* enemy, const int index, const float& dt);
   void updateEnemySpawner(const float& dt);
   void updateDifficulty(const float& dt);
+
+  void checkCollision(Entity* entity);
+
+public:
+  GameState(sf::RenderWindow* window, std::stack<std::unique_ptr<State>>& states);
+  virtual ~GameState();
   void update(const float& dt, sf::RenderTarget* target);
 
   void render(sf::RenderTarget* target = nullptr);

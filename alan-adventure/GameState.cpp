@@ -182,26 +182,10 @@ void GameState::updateItemsInteraction(const float& dt)
 
 void GameState::updateWorldCollision(const float& dt)
 {
-  if (player->getPosition().x < worldBound.getPosition().x)
-  {
-    player->setPosition(worldBound.getPosition().x, player->getPosition().y);
-    player->stopVelocityX();
-  }
-  else if (player->getPosition().x + player->getGlobalBounds().width > worldBound.getPosition().x + worldBound.getSize().x)
-  {
-    player->setPosition(worldBound.getPosition().x + worldBound.getSize().x - player->getGlobalBounds().width, player->getPosition().y);
-    player->stopVelocityX();
-  }
-  if (player->getPosition().y < worldBound.getPosition().y)
-  {
-    player->setPosition(player->getPosition().x, worldBound.getPosition().y);
-    player->stopVelocityY();
-  }
-  else if (player->getPosition().y + player->getGlobalBounds().height > worldBound.getPosition().y + worldBound.getSize().y)
-  {
-    player->setPosition(player->getPosition().x,  +worldBound.getPosition().y + worldBound.getSize().y - player->getGlobalBounds().height);
-    player->stopVelocityY();
-  }
+  checkCollision(player);
+
+  for (auto& enemy : activeEnemies)
+    checkCollision(enemy);
 
   for (auto& it : player->getWeapon()->getBullets())
   {
@@ -319,6 +303,30 @@ void GameState::updateDifficulty(const float& dt)
     enemySpawner->spawnFactor = 0.2f;
 
   lastLevel = level;
+}
+
+void GameState::checkCollision(Entity* entity)
+{
+  if (entity->getPosition().x < worldBound.getPosition().x)
+  {
+    entity->setPosition(worldBound.getPosition().x, entity->getPosition().y);
+    entity->stopVelocityX();
+  }
+  else if (entity->getPosition().x + entity->getGlobalBounds().width > worldBound.getPosition().x + worldBound.getSize().x)
+  {
+    entity->setPosition(worldBound.getPosition().x + worldBound.getSize().x - entity->getGlobalBounds().width, entity->getPosition().y);
+    entity->stopVelocityX();
+  }
+  if (entity->getPosition().y < worldBound.getPosition().y)
+  {
+    entity->setPosition(entity->getPosition().x, worldBound.getPosition().y);
+    entity->stopVelocityY();
+  }
+  else if (entity->getPosition().y + entity->getGlobalBounds().height > worldBound.getPosition().y + worldBound.getSize().y)
+  {
+    entity->setPosition(entity->getPosition().x, +worldBound.getPosition().y + worldBound.getSize().y - entity->getGlobalBounds().height);
+    entity->stopVelocityY();
+  }
 }
 
 void GameState::updatePlayerInput(const float& dt)
